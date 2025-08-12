@@ -1,4 +1,4 @@
-import AnimatedWord from "./AnimatedWord";
+import AnimatedWord from './AnimatedWord';
 
 export default function Hero() {
   return (

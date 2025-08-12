@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { Sono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Sono } from 'next/font/google';
+import './globals.css';
 
 const sono = Sono({
-  variable: "--font-sono",
-  subsets: ["latin"],
+  variable: '--font-sono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
   title: "Casey's Personal Website",
-  description: "Everything about Casey!",
+  description: 'Everything about Casey!',
 };
 
 export default function RootLayout({
@@ -19,11 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${sono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${sono.variable} antialiased`}>{children}</body>
     </html>
   );
 }
