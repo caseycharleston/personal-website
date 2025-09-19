@@ -7,11 +7,23 @@ const items = [
   {
     word: 'developer',
     color: '#60a5fa',
-    tooltip: 'I mainly dabble in fullstack',
+    tooltip: 'I dabble in fullstack',
   },
-  { word: 'longhorn', color: '#bf5700', tooltip: "Hook 'em! 🤘" },
-  { word: 'gamer', color: '#f87171', tooltip: "I can't wait for silksong" },
-  { word: 'writer', color: '#000000', tooltip: 'Check out my blog!' },
+  {
+    word: 'longhorn',
+    color: '#bf5700',
+    tooltip: "Hook 'em! 🤘",
+  },
+  {
+    word: 'gamer',
+    color: '#f87171',
+    tooltip: "I'm currently playing silksong!",
+  },
+  {
+    word: 'writer',
+    color: '#000000',
+    tooltip: 'Check out my blog!',
+  },
 ];
 
 const INTERVAL = 6000;
@@ -20,21 +32,35 @@ interface AnimatedWordProps {
   className?: string;
   widthCh?: number;
   heightRem?: number;
+  currentIndex?: number;
+  onIndexChange?: (index: number) => void;
 }
 
-export default function AnimatedWord({ widthCh, heightRem = 4.5 }: AnimatedWordProps) {
-  const [index, setIndex] = useState(0);
+export default function AnimatedWord({
+  widthCh,
+  heightRem = 4.5,
+  currentIndex,
+  onIndexChange,
+}: AnimatedWordProps) {
+  const [index, setIndex] = useState(currentIndex || 0);
   const [showTooltip, setShowTooltip] = useState(false);
   const [typedText, setTypedText] = useState('');
 
+  // Use external index if provided, otherwise use internal cycling
+  const activeIndex = currentIndex !== undefined ? currentIndex : index;
+
   useEffect(() => {
-    const t = setInterval(() => {
-      setIndex(i => (i + 1) % items.length);
-      setShowTooltip(false);
-      setTypedText('');
-    }, INTERVAL);
-    return () => clearInterval(t);
-  }, []);
+    if (currentIndex === undefined) {
+      const t = setInterval(() => {
+        const newIndex = (index + 1) % items.length;
+        setIndex(newIndex);
+        setShowTooltip(false);
+        setTypedText('');
+        onIndexChange?.(newIndex);
+      }, INTERVAL);
+      return () => clearInterval(t);
+    }
+  }, [currentIndex, index, onIndexChange]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -42,12 +68,12 @@ export default function AnimatedWord({ widthCh, heightRem = 4.5 }: AnimatedWordP
       setTypedText('');
     }, 2000);
     return () => clearTimeout(timer);
-  }, [index]);
+  }, [activeIndex]);
 
   useEffect(() => {
     if (!showTooltip) return;
 
-    const currentItem = items[index % items.length];
+    const currentItem = items[activeIndex % items.length];
     const text = currentItem.tooltip;
     let currentIndex = 0;
 
@@ -61,9 +87,9 @@ export default function AnimatedWord({ widthCh, heightRem = 4.5 }: AnimatedWordP
     }, 60);
 
     return () => clearInterval(typeInterval);
-  }, [showTooltip, index]);
+  }, [showTooltip, activeIndex]);
 
-  const safeIndex = index % items.length;
+  const safeIndex = activeIndex % items.length;
   const { word, color } = items[safeIndex];
 
   const maxWordLength = Math.max(...items.map(item => item.word.length));
@@ -97,7 +123,7 @@ export default function AnimatedWord({ widthCh, heightRem = 4.5 }: AnimatedWordP
 
       {/* Animated Word */}
       <motion.div
-        className={'align-middle overflow-hidden'}
+        className={'align-middle overflow-hidden relative z-10'}
         style={{
           width: `${dynamicWidth}ch`,
           height: `${heightRem}rem`,
