@@ -18,91 +18,67 @@ const timelineData: TimelineEntry[] = [
   { date: 'Summer 2026', title: 'Meta New Grad', side: 'left' },
 ];
 
-function TimelineContent({
-  entry,
-  align = 'left',
-}: {
-  entry: TimelineEntry;
-  align?: 'left' | 'right';
-}) {
-  return (
-    <div
-      className={`max-w-lg space-y-3 text-slate-200 ${
-        align === 'right' ? 'md:text-right md:ml-auto' : 'md:mr-auto'
-      }`}
-    >
-      <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-emerald-200/70">
-        {entry.date}
-      </p>
-      <h3 className="text-2xl md:text-3xl font-semibold text-white">{entry.title}</h3>
-      {entry.image && (
-        <div className="pt-3">
-          <Image
-            src={entry.image}
-            width={180}
-            height={180}
-            alt={entry.title}
-            className="rounded-2xl object-cover shadow-lg shadow-emerald-500/20 ring-2 ring-emerald-400/30"
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TimelineItem({
-  entry,
-  isFirst,
-  isLast,
-}: {
-  entry: TimelineEntry;
-  isFirst: boolean;
-  isLast: boolean;
-}) {
+function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean }) {
   const isLeft = entry.side === 'left';
-  const horizontalLineClass = isLeft
-    ? 'hidden md:block absolute top-1/2 right-full h-0.5 w-32 bg-gradient-to-l from-emerald-300/0 via-emerald-400/70 to-emerald-400/0'
-    : 'hidden md:block absolute top-1/2 left-full h-0.5 w-32 bg-gradient-to-r from-emerald-300/0 via-emerald-400/70 to-emerald-400/0';
 
   return (
-    <div className="relative md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-16 py-12 md:py-16">
-      {isLeft && (
-        <div className="hidden md:flex md:justify-end">
-          <TimelineContent entry={entry} align="right" />
-        </div>
-      )}
-
-      <div className="relative flex flex-col items-center justify-center gap-6 md:gap-0">
-        {!isFirst && (
-          <div className="hidden md:block absolute top-0 -translate-y-full h-16 w-px bg-gradient-to-b from-emerald-500/5 via-emerald-500/40 to-emerald-400/80" />
-        )}
-        {!isLast && (
-          <div className="hidden md:block absolute bottom-0 translate-y-full h-16 w-px bg-gradient-to-t from-emerald-500/5 via-emerald-500/40 to-emerald-400/80" />
-        )}
-
-        <div className={horizontalLineClass} />
-
-        {!isFirst && (
-          <div className="md:hidden h-16 w-px bg-gradient-to-t from-emerald-400/80 to-emerald-400/0" />
-        )}
-
-        <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400 shadow-xl shadow-emerald-500/40 ring-4 ring-[#043528] ring-offset-4 ring-offset-[#171738]">
-          <span className="font-mono text-sm md:text-base text-[#043528]">{entry.date}</span>
-        </div>
-
-        {!isLast && (
-          <div className="md:hidden h-16 w-px bg-gradient-to-b from-emerald-400/80 to-emerald-400/0" />
+    <div className="relative flex items-center justify-center">
+      <div className={`w-5/12 ${isLeft ? 'text-right pr-8' : ''}`}>
+        {isLeft && (
+          <div className="inline-block">
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{entry.title}</h3>
+            <p className="text-sm md:text-base text-emerald-100/80">{entry.date}</p>
+            {entry.image && (
+              <div className="mt-3 inline-block">
+                <Image
+                  src={entry.image}
+                  width={140}
+                  height={140}
+                  alt={entry.title}
+                  className="rounded-xl object-cover shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/30"
+                />
+              </div>
+            )}
+          </div>
         )}
       </div>
 
-      {!isLeft && (
-        <div className="hidden md:flex md:justify-start">
-          <TimelineContent entry={entry} align="left" />
-        </div>
-      )}
+      <div className="relative flex flex-col items-center">
+        <div
+          className={`absolute top-1/2 w-30 h-0.5 bg-emerald-500 ${
+            isLeft ? 'right-full' : 'left-full'
+          }`}
+        />
 
-      <div className="md:hidden mt-6">
-        <TimelineContent entry={entry} align="left" />
+        <div className="w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#043528] z-10" />
+
+        {!isLast && (
+          <div className="absolute top-1/2 w-0.5 h-28 bg-emerald-500 translate-y-2" />
+        )}
+
+        {isLast && (
+          <div className="absolute w-0.5 h-30 translate-y-10.5 bg-gradient-to-b from-emerald-500 to-transparent" />
+        )}
+      </div>
+
+      <div className={`w-5/12 ${!isLeft ? 'pl-8' : ''}`}>
+        {!isLeft && (
+          <div>
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{entry.title}</h3>
+            <p className="text-sm md:text-base text-emerald-100/80">{entry.date}</p>
+            {entry.image && (
+              <div className="mt-3">
+                <Image
+                  src={entry.image}
+                  width={140}
+                  height={140}
+                  alt={entry.title}
+                  className="rounded-xl object-cover shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/30"
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -142,23 +118,22 @@ export default function AboutSection() {
         </Card>
       </div>
 
-      <div className="max-w-5xl mx-auto mt-24">
-        <h3 className="text-3xl md:text-4xl font-mono font-medium mb-14 text-center">
+      <div className="max-w-4xl mx-auto mt-20">
+        <h3 className="text-3xl md:text-4xl font-mono font-medium mb-12 text-center">
           My Journey
         </h3>
-        <div className="space-y-6 pb-16">
+        <div className="space-y-0 pb-8">
           {timelineData.map((entry, index) => (
             <TimelineItem
               key={entry.title}
               entry={entry}
-              isFirst={index === 0}
               isLast={index === timelineData.length - 1}
             />
           ))}
         </div>
         <div className="relative flex items-center justify-center pt-4">
           <p className="text-lg md:text-xl text-emerald-100/80 italic text-center">
-            guess i&apos;ll have to find out!
+            coming soon...
           </p>
         </div>
       </div>
