@@ -7,7 +7,7 @@ const items = [
   {
     word: 'developer',
     color: '#60a5fa',
-    tooltip: 'I dabble in fullstack',
+    tooltip: 'I prefer fullstack!',
   },
   {
     word: 'longhorn',
@@ -17,7 +17,7 @@ const items = [
   {
     word: 'gamer',
     color: '#f87171',
-    tooltip: "I'm currently playing silksong!",
+    tooltip: "I'm currently playing Silksong and Hades 2"
   },
   {
     word: 'writer',
@@ -104,7 +104,7 @@ export default function AnimatedWord({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-gray-800 text-white text-sm rounded-lg shadow-lg whitespace-nowrap z-10"
+            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-gray-800 text-white text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
             style={{
               maxWidth: '300px',
             }}

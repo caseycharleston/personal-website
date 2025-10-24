@@ -19,7 +19,7 @@ export default function Hero() {
   };
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center pt-16 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center pt-28 pb-16 relative overflow-hidden px-4 sm:px-8">
       {backgroundImages.map((bgImage, index) => (
         <motion.div
           key={index}
@@ -40,10 +40,10 @@ export default function Hero() {
       ))}
 
       {/* Content */}
-      <div className="relative z-10">
-        <h1 className="text-4xl md:text-6xl font-medium font-mono flex items-center gap-4">
-          <span>Casey is a</span>
-          <AnimatedWord onIndexChange={handleIndexChange} />
+      <div className="relative z-10 flex flex-col items-center text-center md:text-left md:items-start">
+        <h1 className="text-5xl md:text-7xl xl:text-8xl font-medium font-mono flex flex-wrap items-center justify-center md:justify-start gap-5 leading-tight text-white drop-shadow-[0_8px_24px_rgba(16,16,39,0.6)]">
+          <span className="shrink-0">Casey is a</span>
+          <AnimatedWord heightRem={5.8} onIndexChange={handleIndexChange} />
         </h1>
       </div>
     </div>
