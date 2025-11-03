@@ -13,7 +13,7 @@ const timelineData: TimelineEntry[] = [
   { date: 'Summer 2023', title: 'Robotics Research Assistant', side: 'right' },
   { date: 'Summer 2024', title: 'Meta SWE Intern', side: 'left' },
   { date: 'Fall 2024', title: 'Discover ServiceNow', side: 'right' },
-  { date: 'Summer 2025', title: 'Meta SWE Intern', side: 'left' },
+  { date: 'Summer 2025', title: 'Return Meta SWE Intern', side: 'left' },
   { date: 'Spring 2026', title: 'UT Austin Graduation', side: 'right' },
   { date: 'Summer 2026', title: 'Meta New Grad', side: 'left' },
 ];
@@ -87,7 +87,9 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
 export default function AboutSection() {
   return (
     <section id="about" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium mb-16">About Me</h2>
+      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-white mb-16">
+        About Me
+      </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
         <Card>
           <div className="flex flex-col justify-center h-full p-8 space-y-6">
@@ -119,7 +121,7 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-4xl mx-auto mt-20">
-        <h3 className="text-3xl md:text-4xl font-mono font-medium mb-12 text-center">
+        <h3 className="text-3xl md:text-4xl font-mono font-medium text-white mb-12 text-center">
           My Journey
         </h3>
         <div className="space-y-0 pb-8">
