@@ -17,7 +17,7 @@ const items = [
   {
     word: 'gamer',
     color: '#f87171',
-    tooltip: "I'm now playing Hitman and Hades 2"
+    tooltip: "I'm now playing Hitman and Hades 2",
   },
   {
     word: 'writer',

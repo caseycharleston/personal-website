@@ -12,7 +12,10 @@ export default function Header() {
   return (
     <header className="fixed w-full bg-[#171738]/90 backdrop-blur-lg border-b border-white/10 text-white z-50">
       <nav className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 sm:px-8 py-4">
-        <Link href="#top" className="text-2xl md:text-3xl font-mono font-semibold tracking-tight transition-transform hover:scale-[1.02]">
+        <Link
+          href="#top"
+          className="text-2xl md:text-3xl font-mono font-semibold tracking-tight transition-transform hover:scale-[1.02]"
+        >
           caseyc.dev
         </Link>
         <ul className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 text-sm sm:text-base md:text-lg font-mono">

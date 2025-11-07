@@ -42,15 +42,11 @@ export default function ProjectCard({
 
         <div className="flex flex-1 flex-col gap-6 px-6 py-8">
           <header className="space-y-3">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-white">
-              {title}
-            </h3>
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-white">{title}</h3>
             <p className="text-sm md:text-base text-emerald-100/70 font-mono uppercase tracking-wide">
               {date}
             </p>
-            <p className="text-lg md:text-xl leading-relaxed text-slate-100/90">
-              {description}
-            </p>
+            <p className="text-lg md:text-xl leading-relaxed text-slate-100/90">{description}</p>
           </header>
 
           {technologies.length > 0 && (

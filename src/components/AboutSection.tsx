@@ -52,9 +52,7 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
 
         <div className="w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#043528] z-10" />
 
-        {!isLast && (
-          <div className="absolute top-1/2 w-0.5 h-28 bg-emerald-500 translate-y-2" />
-        )}
+        {!isLast && <div className="absolute top-1/2 w-0.5 h-28 bg-emerald-500 translate-y-2" />}
 
         {isLast && (
           <div className="absolute w-0.5 h-30 translate-y-10.5 bg-gradient-to-b from-emerald-500 to-transparent" />

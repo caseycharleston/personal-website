@@ -2,7 +2,10 @@ import Card from './Card';
 
 export default function BlogSection() {
   return (
-    <section id="blog" className="min-h-screen container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
+    <section
+      id="blog"
+      className="min-h-screen container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32"
+    >
       <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-white mb-16">
         Blog
       </h2>
@@ -49,8 +52,8 @@ export default function BlogSection() {
               TypeScript Tips and Tricks
             </h3>
             <p className="text-lg md:text-xl leading-relaxed text-slate-100">
-              Advanced TypeScript patterns and techniques to improve your development workflow. Learn
-              about utility types, generics, and more.
+              Advanced TypeScript patterns and techniques to improve your development workflow.
+              Learn about utility types, generics, and more.
             </p>
             <p className="text-sm md:text-base text-gray-300">Published: September 2024</p>
           </div>
