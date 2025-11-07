@@ -17,7 +17,7 @@ const items = [
   {
     word: 'gamer',
     color: '#f87171',
-    tooltip: "I'm currently playing Silksong and Hades 2"
+    tooltip: "I'm now playing Hitman and Hades 2"
   },
   {
     word: 'writer',
@@ -105,9 +105,6 @@ export default function AnimatedWord({
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-gray-800 text-white text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
-            style={{
-              maxWidth: '300px',
-            }}
           >
             <span className="font-mono">
               {typedText}
@@ -141,8 +138,7 @@ export default function AnimatedWord({
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '-100%', opacity: 1 }}
             transition={{ duration: 0.8, ease: [0, 0, 0.58, 1] }}
-            className="flex items-center justify-center whitespace-nowrap text-white font-medium h-full"
-            style={{ fontSize: 'inherit' }}
+            className="flex items-center justify-center whitespace-nowrap text-white font-medium h-full text-[0.8em]"
           >
             {word}
           </motion.span>

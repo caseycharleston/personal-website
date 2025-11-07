@@ -6,6 +6,7 @@ interface ProjectCardProps {
   description: string;
   technologies: string[];
   href: string;
+  date: string;
   image?: {
     src: string;
     alt: string;
@@ -17,6 +18,7 @@ export default function ProjectCard({
   description,
   technologies,
   href,
+  date,
   image,
 }: ProjectCardProps) {
   return (
@@ -43,6 +45,9 @@ export default function ProjectCard({
             <h3 className="text-2xl md:text-3xl font-mono font-semibold text-white">
               {title}
             </h3>
+            <p className="text-sm md:text-base text-emerald-100/70 font-mono uppercase tracking-wide">
+              {date}
+            </p>
             <p className="text-lg md:text-xl leading-relaxed text-slate-100/90">
               {description}
             </p>
