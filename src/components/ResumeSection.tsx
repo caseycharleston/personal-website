@@ -1,74 +1,20 @@
-'use client'
-import React from 'react';
-import { ComposableMap, Geographies, Geography, Marker } from '@vnedyalk0v/react19-simple-maps';
-import geoData from '../../public/maps/north-america-minus-islands.json';
+import Card from './Card';
 
-const MapChart: React.FC = () => {
+export default function ResumeSection() {
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Interactive World Map
-          </h1>
-          <p className="text-gray-600">
-            Hover over regions to highlight them. Red marker shows example location.
+    <section id="resume" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
+      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-12">
+        Resume
+      </h2>
+      <Card className="max-w-3xl mx-auto text-center py-16">
+        <div className="space-y-4">
+          <h3 className="text-2xl md:text-3xl font-semibold text-black">Coming soon</h3>
+          <p className="text-lg leading-relaxed text-black">
+            I&apos;m putting the finishing touches on this section. Check back later for a full
+            rundown of my experience and accolades.
           </p>
         </div>
-
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <ComposableMap
-            projection="geoMercator"
-            projectionConfig={{
-              scale: 600,
-              center: [-100, 45],
-            }}
-          >
-            <Geographies geography={geoData}>
-              {({ geographies }) =>
-                geographies.map((geo) => (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    fill="#E5E7EB"
-                    stroke="#9CA3AF"
-                    strokeWidth={0.5}
-                    style={{
-                      default: { outline: 'none' },
-                      hover: { 
-                        fill: '#3B82F6',
-                        outline: 'none' 
-                      },
-                      pressed: { 
-                        fill: '#1E40AF',
-                        outline: 'none' 
-                      },
-                    }}
-                  />
-                ))
-              }
-            </Geographies>
-
-            <Marker coordinates={[-74.006, 40.7128]}>
-              <circle r={4} fill="#EF4444" stroke="#fff" strokeWidth={2} />
-              <text
-                textAnchor="middle"
-                y={-15}
-                style={{ 
-                  fontFamily: 'system-ui',
-                  fill: '#1F2937',
-                  fontSize: '14px',
-                  fontWeight: 'bold'
-                }}
-              >
-                NYC
-              </text>
-            </Marker>
-          </ComposableMap>
-        </div>
-      </div>
-    </div>
+      </Card>
+    </section>
   );
-};
-
-export default MapChart;
+}

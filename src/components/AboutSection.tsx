@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Card from './Card';
+import MapChart from './MapChart';
+import MapMarker from './MapMarker';
 
 interface TimelineEntry {
   date: string;
@@ -114,6 +116,32 @@ export default function AboutSection() {
                 className="object-cover w-full h-full"
                 style={{ objectPosition: '55% 22%', transform: 'scale(1.4)' }}
               />
+            </div>
+          </div>
+        </Card>
+        <Card className="lg:col-span-2">
+          <div className="flex flex-col space-y-6">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-mono font-medium text-black mb-2">
+                Where I&apos;ve Been
+              </h3>
+              <p className="text-lg leading-relaxed text-black">
+                Click on a label to learn more about why I was there!
+              </p>
+            </div>
+            <div className="h-90 w-3xl max-w-4xl mx-auto">
+              <MapChart
+                className="w-full h-full [&>svg]:w-full [&>svg]:h-full"
+                scale={1100}
+                center={[-100, 40]}
+              >
+                <MapMarker
+                  coordinates={[-74.006, 40.7128]}
+                  popupLabel="NYC"
+                  popupTitle="New York City"
+                  popupText="40.7128°N, 74.0060°W"
+                />
+              </MapChart>
             </div>
           </div>
         </Card>
