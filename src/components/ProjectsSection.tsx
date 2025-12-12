@@ -16,9 +16,10 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'aos-lab-project',
-    title: 'AOS Lab Project',
-    description: 'Placeholder',
-    technologies: ['gVisor', 'AWS Firecracker', 'Docker', 'C++', 'Python'],
+    title: 'AWS Firecracker/GCP gVisor Comparison Study',
+    description:
+      'As part of my Advanced OS class, a partner and I ran a small comparison study against the AWS/GCP solution to serverless functions in a simulated environment.',
+    technologies: ['gVisor', 'Firecracker', 'Docker', 'Python/FastAPI'],
     href: '#',
     date: 'Oct 2025 - Dec 2025',
   },
