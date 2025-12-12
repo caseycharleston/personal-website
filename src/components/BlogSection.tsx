@@ -4,9 +4,9 @@ export default function BlogSection() {
   return (
     <section
       id="blog"
-      className="min-h-screen container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32"
+      className="min-h-screen section-shell"
     >
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
+      <h2 className="section-title mb-16">
         Blog
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

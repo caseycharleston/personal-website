@@ -7,8 +7,8 @@ export default function AboutSection() {
   const markerLabelSize = 18;
 
   return (
-    <section id="about" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
+    <section id="about" className="section-shell">
+      <h2 className="section-title mb-16">
         About Me
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
@@ -18,7 +18,7 @@ export default function AboutSection() {
               Hi there! I&apos;m Casey, a computer science student at UT Austin. I&apos;m orignally
               from the Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
             </p>
-            <p className="text-lg leading-relaxed text-black">
+            <p className="leading-relaxed text-black">
               My career is mostly software engineering-related. My favorite parts of engineering are
               the collaborative problem-solving and knowledge-sharing. I&apos;ve also been a
               teaching assistant. If it were not for software engineering, I&apos;d happily look

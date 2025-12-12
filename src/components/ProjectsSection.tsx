@@ -81,8 +81,8 @@ const projects: Project[] = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
+    <section id="projects" className="section-shell">
+      <h2 className="section-title mb-16">
         Projects
       </h2>
       {projects.length === 0 ? (

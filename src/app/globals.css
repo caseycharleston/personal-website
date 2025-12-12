@@ -34,3 +34,13 @@ p {
 html {
   scroll-behavior: smooth;
 }
+
+@layer components {
+  .section-shell {
+    @apply container mx-auto px-6 sm:px-12 lg:px-64 py-24 lg:py-32;
+  }
+
+  .section-title {
+    @apply text-center text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-12;
+  }
+}

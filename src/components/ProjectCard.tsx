@@ -46,7 +46,7 @@ export default function ProjectCard({
             <p className="text-sm md:text-base text-black font-mono uppercase tracking-wide">
               {date}
             </p>
-            <p className="text-lg md:text-xl leading-relaxed text-black">{description}</p>
+            <p className="text-md leading-relaxed text-black">{description}</p>
           </header>
 
           {technologies.length > 0 && (
