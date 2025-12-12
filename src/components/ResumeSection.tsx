@@ -1,58 +1,74 @@
-import Card from './Card';
+'use client'
+import React from 'react';
+import { ComposableMap, Geographies, Geography, Marker } from '@vnedyalk0v/react19-simple-maps';
+import geoData from '../../public/maps/north-america-minus-islands.json';
 
-export default function ResumeSection() {
+const MapChart: React.FC = () => {
   return (
-    <section
-      id="resume"
-      className="min-h-screen container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32"
-    >
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
-        Resume
-      </h2>
-      <Card>
-        <div className="space-y-10 text-black">
-          <div>
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black mb-3">
-              Education
-            </h3>
-            <p className="text-lg md:text-xl">University of Texas at Austin - Computer Science</p>
-            <p className="text-sm md:text-base text-black mt-2">Expected Graduation: 2025</p>
-          </div>
-          <div>
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black mb-3">Skills</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                JavaScript
-              </span>
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                TypeScript
-              </span>
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                React
-              </span>
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                Node.js
-              </span>
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                Python
-              </span>
-              <span className="px-4 py-1.5 bg-black/5 text-black border border-black/10 rounded-full text-sm md:text-base">
-                SQL
-              </span>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black mb-3">
-              Experience
-            </h3>
-            <p className="text-lg md:text-xl">Software Development Intern - Summer 2024</p>
-            <p className="text-sm md:text-base text-black mt-2 leading-relaxed">
-              Worked on full-stack web applications and gained experience with modern development
-              practices.
-            </p>
-          </div>
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+            Interactive World Map
+          </h1>
+          <p className="text-gray-600">
+            Hover over regions to highlight them. Red marker shows example location.
+          </p>
         </div>
-      </Card>
-    </section>
+
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <ComposableMap
+            projection="geoMercator"
+            projectionConfig={{
+              scale: 600,
+              center: [-100, 45],
+            }}
+          >
+            <Geographies geography={geoData}>
+              {({ geographies }) =>
+                geographies.map((geo) => (
+                  <Geography
+                    key={geo.rsmKey}
+                    geography={geo}
+                    fill="#E5E7EB"
+                    stroke="#9CA3AF"
+                    strokeWidth={0.5}
+                    style={{
+                      default: { outline: 'none' },
+                      hover: { 
+                        fill: '#3B82F6',
+                        outline: 'none' 
+                      },
+                      pressed: { 
+                        fill: '#1E40AF',
+                        outline: 'none' 
+                      },
+                    }}
+                  />
+                ))
+              }
+            </Geographies>
+
+            <Marker coordinates={[-74.006, 40.7128]}>
+              <circle r={4} fill="#EF4444" stroke="#fff" strokeWidth={2} />
+              <text
+                textAnchor="middle"
+                y={-15}
+                style={{ 
+                  fontFamily: 'system-ui',
+                  fill: '#1F2937',
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+                }}
+              >
+                NYC
+              </text>
+            </Marker>
+          </ComposableMap>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default MapChart;
