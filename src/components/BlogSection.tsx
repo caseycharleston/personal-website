@@ -12,7 +12,7 @@ export default function BlogSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <Card>
           <div className="space-y-5">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-emerald-600 transition-colors hover:text-emerald-700 hover:underline underline-offset-4">
               Getting Started with Next.js
             </h3>
             <p className="text-lg md:text-xl leading-relaxed text-black">
@@ -24,7 +24,7 @@ export default function BlogSection() {
         </Card>
         <Card>
           <div className="space-y-5">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-emerald-600 transition-colors hover:text-emerald-700 hover:underline underline-offset-4">
               The Art of Clean Code
             </h3>
             <p className="text-lg md:text-xl leading-relaxed text-black">
@@ -36,7 +36,7 @@ export default function BlogSection() {
         </Card>
         <Card>
           <div className="space-y-5">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-emerald-600 transition-colors hover:text-emerald-700 hover:underline underline-offset-4">
               Building Responsive UIs
             </h3>
             <p className="text-lg md:text-xl leading-relaxed text-black">
@@ -48,7 +48,7 @@ export default function BlogSection() {
         </Card>
         <Card>
           <div className="space-y-5">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-emerald-600 transition-colors hover:text-emerald-700 hover:underline underline-offset-4">
               TypeScript Tips and Tricks
             </h3>
             <p className="text-lg md:text-xl leading-relaxed text-black">

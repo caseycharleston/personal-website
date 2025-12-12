@@ -42,7 +42,9 @@ export default function ProjectCard({
 
         <div className="flex flex-1 flex-col gap-6 px-6 py-8">
           <header className="space-y-3">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">{title}</h3>
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-emerald-600 transition-colors group-hover:text-emerald-700 group-hover:underline underline-offset-4">
+              {title}
+            </h3>
             <p className="text-sm md:text-base text-black font-mono uppercase tracking-wide">
               {date}
             </p>
