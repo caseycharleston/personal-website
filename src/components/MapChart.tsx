@@ -1,7 +1,7 @@
 'use client';
 
 import { ComposableMap, Geographies, Geography } from '@vnedyalk0v/react19-simple-maps';
-import React from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import geoData from '../../public/maps/north-america-minus-islands.json';
 
 interface MapChartProps {
@@ -11,48 +11,58 @@ interface MapChartProps {
   center?: [number, number];
 }
 
+interface MapPopupContextValue {
+  openId: string | null;
+  setOpenId: (id: string | null) => void;
+}
+
+const MapPopupContext = createContext<MapPopupContextValue | null>(null);
+
+export function useMapPopup() {
+  const context = useContext(MapPopupContext);
+  if (!context) {
+    throw new Error('useMapPopup must be used within a MapChart');
+  }
+  return context;
+}
+
 export default function MapChart({
   children,
   className = '',
   scale = 600,
   center = [-100, 45],
 }: MapChartProps) {
+  const [openId, setOpenId] = useState<string | null>(null);
+
   return (
     <div className={`relative overflow-hidden rounded-2xl border border-black/10 ${className}`}>
-      <ComposableMap
-        projection="geoMercator"
-        projectionConfig={{
-          scale,
-          center,
-        }}
-      >
-        <Geographies geography={geoData}>
-          {({ geographies }) =>
-            geographies.map(geo => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill="#E5E7EB"
-                stroke="#9CA3AF"
-                strokeWidth={0.5}
-                style={{
-                  default: { outline: 'none' },
-                  hover: {
-                    fill: '#3B82F6',
-                    outline: 'none',
-                  },
-                  pressed: {
-                    fill: '#1E40AF',
-                    outline: 'none',
-                  },
-                }}
-              />
-            ))
-          }
-        </Geographies>
+      <MapPopupContext.Provider value={{ openId, setOpenId }}>
+        <ComposableMap
+          className="h-full w-full"
+          projection="geoMercator"
+          projectionConfig={{
+            scale,
+            center,
+          }}
+        >
+          <Geographies geography={geoData}>
+            {({ geographies }) =>
+              geographies.map(geo => (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  fill="#E5E7EB"
+                  stroke="#9CA3AF"
+                  strokeWidth={0.5}
+                  className="outline-none transition-colors hover:fill-blue-500 active:fill-blue-900"
+                />
+              ))
+            }
+          </Geographies>
 
-        {children}
-      </ComposableMap>
+          {children}
+        </ComposableMap>
+      </MapPopupContext.Provider>
     </div>
   );
 }

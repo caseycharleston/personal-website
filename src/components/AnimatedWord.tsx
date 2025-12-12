@@ -7,7 +7,7 @@ const items = [
   {
     word: 'developer',
     color: '#d7e7ff',
-    tooltip: 'I prefer fullstack!',
+    tooltip: 'I love fullstack and computer vision!',
   },
   {
     word: 'longhorn',
@@ -17,7 +17,7 @@ const items = [
   {
     word: 'gamer',
     color: '#f7c9c9',
-    tooltip: "I'm now playing Hitman and Hades 2",
+    tooltip: 'Now playing: Hitman, Hades 2, Slay the Princess',
   },
   {
     word: 'writer',
@@ -26,7 +26,7 @@ const items = [
   },
 ];
 
-const INTERVAL = 6000;
+const INTERVAL = 6000; // ms
 
 interface AnimatedWordProps {
   className?: string;

@@ -85,6 +85,8 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
 }
 
 export default function AboutSection() {
+  const markerLabelSize = 18;
+
   return (
     <section id="about" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
       <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
@@ -98,10 +100,10 @@ export default function AboutSection() {
               from the Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
             </p>
             <p className="text-lg leading-relaxed text-black">
-              My career is mostly software engineering-related. My favorite parts of
-              engineering are the collaborative problem-solving and knowledge-sharing. I&apos;ve
-              also been a teaching assistant. If it were not for software engineering, I&apos;d
-              happily look into getting my Master&apos;s and becoming a teacher.
+              My career is mostly software engineering-related. My favorite parts of engineering are
+              the collaborative problem-solving and knowledge-sharing. I&apos;ve also been a
+              teaching assistant. If it were not for software engineering, I&apos;d happily look
+              into getting my Master&apos;s and becoming a teacher.
             </p>
           </div>
         </Card>
@@ -123,46 +125,70 @@ export default function AboutSection() {
           <div className="flex flex-col space-y-6">
             <div>
               <h3 className="text-2xl md:text-3xl font-mono font-medium text-black mb-2">
-                Where I&apos;ve Been
+                Where I&apos;ve Lived
               </h3>
               <p className="text-lg leading-relaxed text-black">
                 Click on a label to learn more about why I was there!
               </p>
             </div>
-            <div className="h-90 w-3xl max-w-4xl mx-auto">
+            <div className="h-90 lg:w-3xl md:w-xl sm:w-lg mx-auto">
               <MapChart
                 className="w-full h-full [&>svg]:w-full [&>svg]:h-full"
-                scale={1100}
+                scale={800}
                 center={[-100, 40]}
               >
                 <MapMarker
-                  coordinates={[-74.006, 40.7128]}
-                  popupLabel="NYC"
-                  popupTitle="New York City"
-                  popupText="40.7128°N, 74.0060°W"
+                  id="prosper"
+                  coordinates={[-96.8019, 33.2362]}
+                  popupLabel="Prosper, TX"
+                  popupTitle="Prosper, TX"
+                  popupText="High School, 2017 - 2022"
+                  labelFontSize={markerLabelSize}
+                />
+                <MapMarker
+                  id="austin"
+                  coordinates={[-97.7431, 30.2672]}
+                  popupLabel="Austin, TX"
+                  popupTitle="Austin, TX"
+                  popupText="UT Austin, 2022 - 2026"
+                  labelFontSize={markerLabelSize}
+                />
+                <MapMarker
+                  id="san-mateo"
+                  coordinates={[-122.3255, 37.5629]}
+                  popupLabel="San Mateo, CA"
+                  popupTitle="San Mateo, CA"
+                  popupText="Meta SWE Internship, Summer 2025"
+                  labelFontSize={markerLabelSize}
+                />
+                <MapMarker
+                  id="bellevue"
+                  coordinates={[-122.2015, 47.6101]}
+                  popupLabel="Bellevue, WA"
+                  popupTitle="Bellevue, WA"
+                  popupText="Meta SWE Internship, Summer 2024"
+                  labelFontSize={markerLabelSize}
+                />
+                <MapMarker
+                  id="toronto"
+                  coordinates={[-79.3832, 43.6532]}
+                  popupLabel="Toronto, ON"
+                  popupTitle="Toronto, Canada"
+                  popupText="Elementary School, 2009 - 2013"
+                  labelFontSize={markerLabelSize}
+                />
+                <MapMarker
+                  id="grafton"
+                  coordinates={[-71.6856, 42.207]}
+                  popupLabel="Grafton, MA"
+                  popupTitle="Grafton, MA"
+                  popupText="Middle School, 2013 - 2017"
+                  labelFontSize={markerLabelSize}
                 />
               </MapChart>
             </div>
           </div>
         </Card>
-      </div>
-
-      <div className="max-w-4xl mx-auto mt-20">
-        <h3 className="text-3xl md:text-4xl font-mono font-medium text-black mb-12 text-center">
-          My Journey
-        </h3>
-        <div className="space-y-0 pb-8">
-          {timelineData.map((entry, index) => (
-            <TimelineItem
-              key={entry.title}
-              entry={entry}
-              isLast={index === timelineData.length - 1}
-            />
-          ))}
-        </div>
-        <div className="relative flex items-center justify-center pt-4">
-          <p className="text-lg md:text-xl text-black italic text-center">coming soon...</p>
-        </div>
       </div>
     </section>
   );
