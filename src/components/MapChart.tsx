@@ -47,9 +47,9 @@ export default function MapChart({
         >
           <Geographies geography={geoData}>
             {({ geographies }) =>
-              geographies.map(geo => (
+              geographies.map((geo, index) => (
                 <Geography
-                  key={geo.rsmKey}
+                  key={`${geo.rsmKey}-${index}`}
                   geography={geo}
                   fill="#E5E7EB"
                   stroke="#9CA3AF"

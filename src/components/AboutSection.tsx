@@ -3,87 +3,6 @@ import Card from './Card';
 import MapChart from './MapChart';
 import MapMarker from './MapMarker';
 
-interface TimelineEntry {
-  date: string;
-  title: string;
-  image?: string;
-  side: 'left' | 'right';
-}
-
-const timelineData: TimelineEntry[] = [
-  { date: 'Fall 2022', title: 'UT Austin Student', side: 'left' },
-  { date: 'Summer 2023', title: 'Robotics Research Assistant', side: 'right' },
-  { date: 'Summer 2024', title: 'Meta SWE Intern', side: 'left' },
-  { date: 'Fall 2024', title: 'Discover ServiceNow', side: 'right' },
-  { date: 'Summer 2025', title: 'Return Meta SWE Intern', side: 'left' },
-  { date: 'Spring 2026', title: 'UT Austin Graduation', side: 'right' },
-  { date: 'Summer 2026', title: 'Meta New Grad', side: 'left' },
-];
-
-function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean }) {
-  const isLeft = entry.side === 'left';
-
-  return (
-    <div className="relative flex items-center justify-center">
-      <div className={`w-5/12 ${isLeft ? 'text-right pr-8' : ''}`}>
-        {isLeft && (
-          <div className="inline-block">
-            <h3 className="text-xl md:text-2xl font-semibold text-black mb-2">{entry.title}</h3>
-            <p className="text-sm md:text-base text-black">{entry.date}</p>
-            {entry.image && (
-              <div className="mt-3 inline-block">
-                <Image
-                  src={entry.image}
-                  width={140}
-                  height={140}
-                  alt={entry.title}
-                  className="rounded-xl object-cover shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/30"
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      <div className="relative flex flex-col items-center">
-        <div
-          className={`absolute top-1/2 w-30 h-0.5 bg-emerald-500 ${
-            isLeft ? 'right-full' : 'left-full'
-          }`}
-        />
-
-        <div className="w-4 h-4 rounded-full bg-emerald-500 border-4 border-[#043528] z-10" />
-
-        {!isLast && <div className="absolute top-1/2 w-0.5 h-28 bg-emerald-500 translate-y-2" />}
-
-        {isLast && (
-          <div className="absolute w-0.5 h-30 translate-y-10.5 bg-gradient-to-b from-emerald-500 to-transparent" />
-        )}
-      </div>
-
-      <div className={`w-5/12 ${!isLeft ? 'pl-8' : ''}`}>
-        {!isLeft && (
-          <div>
-            <h3 className="text-xl md:text-2xl font-semibold text-black mb-2">{entry.title}</h3>
-            <p className="text-sm md:text-base text-black">{entry.date}</p>
-            {entry.image && (
-              <div className="mt-3">
-                <Image
-                  src={entry.image}
-                  width={140}
-                  height={140}
-                  alt={entry.title}
-                  className="rounded-xl object-cover shadow-lg shadow-emerald-500/20 ring-1 ring-emerald-400/30"
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function AboutSection() {
   const markerLabelSize = 18;
 
@@ -127,9 +46,6 @@ export default function AboutSection() {
               <h3 className="text-2xl md:text-3xl font-mono font-medium text-black mb-2">
                 Where I&apos;ve Lived
               </h3>
-              <p className="text-lg leading-relaxed text-black">
-                Click on a label to learn more about why I was there!
-              </p>
             </div>
             <div className="h-90 lg:w-3xl md:w-xl sm:w-lg mx-auto">
               <MapChart
@@ -141,48 +57,36 @@ export default function AboutSection() {
                   id="prosper"
                   coordinates={[-96.8019, 33.2362]}
                   popupLabel="Prosper, TX"
-                  popupTitle="Prosper, TX"
-                  popupText="High School, 2017 - 2022"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
                   id="austin"
                   coordinates={[-97.7431, 30.2672]}
                   popupLabel="Austin, TX"
-                  popupTitle="Austin, TX"
-                  popupText="UT Austin, 2022 - 2026"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
                   id="san-mateo"
                   coordinates={[-122.3255, 37.5629]}
                   popupLabel="San Mateo, CA"
-                  popupTitle="San Mateo, CA"
-                  popupText="Meta SWE Internship, Summer 2025"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
                   id="bellevue"
                   coordinates={[-122.2015, 47.6101]}
                   popupLabel="Bellevue, WA"
-                  popupTitle="Bellevue, WA"
-                  popupText="Meta SWE Internship, Summer 2024"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
                   id="toronto"
                   coordinates={[-79.3832, 43.6532]}
                   popupLabel="Toronto, ON"
-                  popupTitle="Toronto, Canada"
-                  popupText="Elementary School, 2009 - 2013"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
                   id="grafton"
                   coordinates={[-71.6856, 42.207]}
                   popupLabel="Grafton, MA"
-                  popupTitle="Grafton, MA"
-                  popupText="Middle School, 2013 - 2017"
                   labelFontSize={markerLabelSize}
                 />
               </MapChart>
