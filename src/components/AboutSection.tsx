@@ -9,7 +9,7 @@ interface TimelineEntry {
 }
 
 const timelineData: TimelineEntry[] = [
-  { date: '2022', title: 'UT Austin Freshman', side: 'left' },
+  { date: 'Fall 2022', title: 'UT Austin Student', side: 'left' },
   { date: 'Summer 2023', title: 'Robotics Research Assistant', side: 'right' },
   { date: 'Summer 2024', title: 'Meta SWE Intern', side: 'left' },
   { date: 'Fall 2024', title: 'Discover ServiceNow', side: 'right' },
@@ -26,8 +26,8 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
       <div className={`w-5/12 ${isLeft ? 'text-right pr-8' : ''}`}>
         {isLeft && (
           <div className="inline-block">
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{entry.title}</h3>
-            <p className="text-sm md:text-base text-emerald-100/80">{entry.date}</p>
+            <h3 className="text-xl md:text-2xl font-semibold text-black mb-2">{entry.title}</h3>
+            <p className="text-sm md:text-base text-black">{entry.date}</p>
             {entry.image && (
               <div className="mt-3 inline-block">
                 <Image
@@ -62,8 +62,8 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
       <div className={`w-5/12 ${!isLeft ? 'pl-8' : ''}`}>
         {!isLeft && (
           <div>
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">{entry.title}</h3>
-            <p className="text-sm md:text-base text-emerald-100/80">{entry.date}</p>
+            <h3 className="text-xl md:text-2xl font-semibold text-black mb-2">{entry.title}</h3>
+            <p className="text-sm md:text-base text-black">{entry.date}</p>
             {entry.image && (
               <div className="mt-3">
                 <Image
@@ -85,26 +85,27 @@ function TimelineItem({ entry, isLast }: { entry: TimelineEntry; isLast: boolean
 export default function AboutSection() {
   return (
     <section id="about" className="container mx-auto px-4 sm:px-8 lg:px-12 py-24 lg:py-32">
-      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-white mb-16">
+      <h2 className="text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-16">
         About Me
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
         <Card>
           <div className="flex flex-col justify-center h-full p-8 space-y-6">
-            <p className="text-xl md:text-2xl leading-relaxed text-slate-100">
-              Hi there! I&apos;m Casey, a software engineer with a passion for building scalable and
-              efficient software solutions.
+            <p className="text-lg leading-relaxed text-black">
+              Hi there! I&apos;m Casey, a computer science student at UT Austin. I&apos;m orignally
+              from the Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
             </p>
-            <p className="text-xl md:text-2xl leading-relaxed text-slate-100">
-              When I&apos;m not coding, you can find me gaming, writing blog posts, or cheering on
-              the Longhorns! I believe in continuous learning and sharing knowledge with the
-              community.
+            <p className="text-lg leading-relaxed text-black">
+              My career is mostly software engineering-related. My favorite parts of
+              engineering are the collaborative problem-solving and knowledge-sharing. I&apos;ve
+              also been a teaching assistant. If it were not for software engineering, I&apos;d
+              happily look into getting my Master&apos;s and becoming a teacher.
             </p>
           </div>
         </Card>
         <Card>
           <div className="flex items-center justify-center p-8">
-            <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-400/30 ring-offset-8 ring-offset-[#12122b] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+            <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-400/30 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
               <Image
                 src="/headshot.jpeg"
                 width={1000}
@@ -119,7 +120,7 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-4xl mx-auto mt-20">
-        <h3 className="text-3xl md:text-4xl font-mono font-medium text-white mb-12 text-center">
+        <h3 className="text-3xl md:text-4xl font-mono font-medium text-black mb-12 text-center">
           My Journey
         </h3>
         <div className="space-y-0 pb-8">
@@ -132,9 +133,7 @@ export default function AboutSection() {
           ))}
         </div>
         <div className="relative flex items-center justify-center pt-4">
-          <p className="text-lg md:text-xl text-emerald-100/80 italic text-center">
-            coming soon...
-          </p>
+          <p className="text-lg md:text-xl text-black italic text-center">coming soon...</p>
         </div>
       </div>
     </section>

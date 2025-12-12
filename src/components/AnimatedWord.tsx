@@ -6,22 +6,22 @@ import { useEffect, useState } from 'react';
 const items = [
   {
     word: 'developer',
-    color: '#60a5fa',
+    color: '#d7e7ff',
     tooltip: 'I prefer fullstack!',
   },
   {
     word: 'longhorn',
-    color: '#bf5700',
+    color: '#f5d9b0',
     tooltip: "Hook 'em! 🤘",
   },
   {
     word: 'gamer',
-    color: '#f87171',
+    color: '#f7c9c9',
     tooltip: "I'm now playing Hitman and Hades 2",
   },
   {
     word: 'writer',
-    color: '#000000',
+    color: '#e6dfcf',
     tooltip: 'Check out my blog!',
   },
 ];
@@ -104,7 +104,7 @@ export default function AnimatedWord({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-gray-800 text-white text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
+            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-[#F2F0E5] border border-black/10 text-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
           >
             <span className="font-mono">
               {typedText}
@@ -113,7 +113,7 @@ export default function AnimatedWord({
               )}
             </span>
             {/* Arrow pointing down */}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F2F0E5]"></div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -138,7 +138,7 @@ export default function AnimatedWord({
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '-100%', opacity: 1 }}
             transition={{ duration: 0.8, ease: [0, 0, 0.58, 1] }}
-            className="flex items-center justify-center whitespace-nowrap text-white font-medium h-full text-[0.8em]"
+            className="flex items-center justify-center whitespace-nowrap text-black font-medium h-full text-[0.8em]"
           >
             {word}
           </motion.span>

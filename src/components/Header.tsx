@@ -10,7 +10,7 @@ const tabs = [
 
 export default function Header() {
   return (
-    <header className="fixed w-full bg-[#171738]/90 backdrop-blur-lg border-b border-white/10 text-white z-50">
+    <header className="fixed w-full bg-[#FEFCF0]/95 backdrop-blur-lg border-b border-black/10 text-black z-50">
       <nav className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 sm:px-8 py-4">
         <Link
           href="#top"
@@ -23,7 +23,7 @@ export default function Header() {
             <li key={tab.href}>
               <a
                 href={tab.href}
-                className="relative transition-colors duration-200 hover:text-emerald-300 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-emerald-300 after:transition-transform after:duration-200 hover:after:scale-x-100"
+                className="relative transition-colors duration-200 hover:text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-200 hover:after:scale-x-100"
               >
                 {tab.label}
               </a>

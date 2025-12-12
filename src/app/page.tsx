@@ -8,7 +8,7 @@ import ResumeSection from '@/components/ResumeSection';
 
 export default function Home() {
   return (
-    <main className="bg-[#171738]">
+    <main className="bg-[#FEFCF0] text-black">
       <Header />
       <section id="top">
         <Hero />

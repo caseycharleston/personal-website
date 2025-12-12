@@ -24,7 +24,7 @@ export default function ProjectCard({
   return (
     <Link
       href={href}
-      className="group block h-full rounded-3xl bg-white/10 border border-white/20 backdrop-blur-sm overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#171738] hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-500/20"
+      className="group block h-full rounded-3xl bg-[#F2F0E5] border border-black/10 overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-black/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FEFCF0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/15"
     >
       <article className="flex h-full flex-col">
         {image && (
@@ -36,17 +36,17 @@ export default function ProjectCard({
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#171738]/60 via-[#171738]/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FEFCF0]/80 via-[#FEFCF0]/40 to-transparent" />
           </div>
         )}
 
         <div className="flex flex-1 flex-col gap-6 px-6 py-8">
           <header className="space-y-3">
-            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-white">{title}</h3>
-            <p className="text-sm md:text-base text-emerald-100/70 font-mono uppercase tracking-wide">
+            <h3 className="text-2xl md:text-3xl font-mono font-semibold text-black">{title}</h3>
+            <p className="text-sm md:text-base text-black font-mono uppercase tracking-wide">
               {date}
             </p>
-            <p className="text-lg md:text-xl leading-relaxed text-slate-100/90">{description}</p>
+            <p className="text-lg md:text-xl leading-relaxed text-black">{description}</p>
           </header>
 
           {technologies.length > 0 && (
@@ -54,7 +54,7 @@ export default function ProjectCard({
               {technologies.map(tech => (
                 <li
                   key={tech}
-                  className="rounded-full border border-emerald-300/30 bg-emerald-500/10 px-4 py-1.5 text-sm md:text-base text-emerald-100"
+                  className="rounded-full border border-black/10 bg-black/5 px-4 py-1.5 text-sm md:text-base text-black"
                 >
                   {tech}
                 </li>
