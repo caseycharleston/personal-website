@@ -22,6 +22,10 @@ const projects: Project[] = [
     technologies: ['gVisor', 'Firecracker', 'Docker', 'Python/FastAPI'],
     href: '#',
     date: 'Oct 2025 - Dec 2025',
+    image: {
+      src: '/images/firecracker.png',
+      alt: 'firecracker design',
+    }
   },
   {
     id: 'texas-acm-website',
@@ -31,6 +35,10 @@ const projects: Project[] = [
     technologies: ['React', 'Next.js', 'Vercel', 'Typescript', 'TailwindCSS'],
     href: 'https://www.texasacm.org/',
     date: 'Apr 2025 - Present',
+    image: {
+      src: '/images/texas-acm.jpeg',
+      alt: "texas acm website home page",
+    }
   },
   {
     id: 'treasury-crypto',
@@ -40,6 +48,10 @@ const projects: Project[] = [
     technologies: ['Consensus Algorithms', 'Distributed Computing', 'Cryptocurrency'],
     href: '#',
     date: 'Feb 2025 - Apr 2025',
+    image: {
+      src: '/images/blockchain-collage.jpeg',
+      alt: 'blockchain collage',
+    }
   },
   {
     id: 'ut-registration-plus',
@@ -49,6 +61,10 @@ const projects: Project[] = [
     technologies: ['Chromium', 'React', 'Typescript', 'TailwindCSS'],
     href: 'https://chromewebstore.google.com/detail/ut-registration-plus/hboadpjkoaieogjimneceaahlppnipaa?hl=en&pli=1',
     date: 'Sep 2023 - Apr 2024',
+    image: {
+      src: '/images/calendar.png',
+      alt: 'utrp calendar',
+    }
   },
   {
     id: 'better-gaze-detection',
@@ -58,6 +74,10 @@ const projects: Project[] = [
     technologies: ['Ceres Solver', 'Unity', 'C++', 'C#'],
     href: '#',
     date: 'Aug 2023 - Dec 2023',
+    image: {
+      src: '/images/head.png',
+      alt: 'head',
+    }
   },
   {
     id: 'ur-v5-virtualized-arm',
@@ -67,6 +87,10 @@ const projects: Project[] = [
     technologies: ['ROS/RViz', 'Gazebo', 'C++', 'Embedded Programming'],
     href: 'https://github.com/caseycharleston/v5_ur5arm',
     date: 'May 2023 - Aug 2023',
+    image: {
+      src: '/images/ur5-arm.png',
+      alt: 'ur5 arm',
+    }
   },
   {
     id: 'sugoroku',
@@ -76,6 +100,10 @@ const projects: Project[] = [
     technologies: ['Unity', 'C#'],
     href: 'https://www.utjapanlab.com/ready-set-yokohama',
     date: 'Jan 2023 - Apr 2023',
+    image: {
+      src: '/images/sugoroku.jpg',
+      alt: 'sugoroku',
+    }
   },
 ];
 
