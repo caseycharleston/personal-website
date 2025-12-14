@@ -35,7 +35,7 @@ export default function MapChart({
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-black/10 ${className}`}>
+    <div className={`relative overflow-hidden rounded-2xl border border-black/10 bg-blue-200 ${className}`}>
       <MapPopupContext.Provider value={{ openId, setOpenId }}>
         <ComposableMap
           className="h-full w-full"
@@ -54,7 +54,7 @@ export default function MapChart({
                   fill="#E5E7EB"
                   stroke="#9CA3AF"
                   strokeWidth={0.5}
-                  className="outline-none transition-colors hover:fill-blue-500 active:fill-blue-900"
+                  className="outline-none transition-colors"
                 />
               ))
             }

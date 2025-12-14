@@ -14,7 +14,7 @@ export default function Header() {
       <nav className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 sm:px-8 py-4">
         <Link
           href="#top"
-          className="text-2xl md:text-3xl font-mono font-semibold tracking-tight transition-transform hover:scale-[1.02]"
+          className="text-2xl md:text-3xl font-mono font-semibold tracking-tight transition-transform hover:scale-[1.02] hover:text-emerald-600"
         >
           caseyc.dev
         </Link>
@@ -23,7 +23,7 @@ export default function Header() {
             <li key={tab.href}>
               <a
                 href={tab.href}
-                className="relative transition-colors duration-200 hover:text-black after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-200 hover:after:scale-x-100"
+                className="relative transition-colors duration-200 hover:text-emerald-600"
               >
                 {tab.label}
               </a>
