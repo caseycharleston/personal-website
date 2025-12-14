@@ -35,7 +35,9 @@ export default function MapChart({
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-black/10 bg-blue-200 ${className}`}>
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-black/10 bg-blue-200 ${className}`}
+    >
       <MapPopupContext.Provider value={{ openId, setOpenId }}>
         <ComposableMap
           className="h-full w-full"
