@@ -8,9 +8,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="section-shell">
-      <h2 className="section-title mb-16">
-        About Me
-      </h2>
+      <h2 className="section-title mb-16">About Me</h2>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
         <Card>
           <div className="flex flex-col justify-center h-full p-8 space-y-6">
@@ -91,6 +89,53 @@ export default function AboutSection() {
                 />
               </MapChart>
             </div>
+          </div>
+        </Card>
+        <Card className="lg:col-span-2">
+          <div className="flex flex-col space-y-4">
+            <h3 className="text-2xl md:text-3xl font-mono font-medium text-black">
+              A Sample of My Favorite Things
+            </h3>
+            <ul className="list-disc pl-6 space-y-2 text-lg text-black">
+              <li>
+                <span className="font-semibold">Sports Teams</span>: Longhorns, Seahawks, LAL (Los
+                Angeles&apos; Luka)
+              </li>
+              <li>
+                <span className="font-semibold">Movies</span>: <i>Fantastic Mr. Fox</i>,{' '}
+                <i>Kubo and the Two Strings</i>, <i>The Truman Show</i>{' '}
+              </li>
+              <li>
+                <span className="font-semibold">TV Shows</span>: <i>Adventure Time</i>,{' '}
+                <i>Better Call Saul</i>, <i>Smiling Friends</i>, <i>Severance</i>, <i>Silo</i>
+              </li>
+              <li>
+                <span className="font-semibold">Games</span>: <i>Baldur&apos;s Gate 3</i>,{' '}
+                <i>The Binding of Isaac</i>, <i>Hades/Hades 2</i>, <i>Hollow Knight/Silksong</i>
+              </li>
+
+              <li>
+                <span className="font-semibold">Coffee places</span>: Bennu Coffee (ATX), Stouthaus
+                Coffee (ATX), Finjan Qahwa (SF)
+              </li>
+              <li>
+                <span className="font-semibold">Food</span>: Cabo Bob&apos;s (ATX), Guppy&apos;s
+                (ATX), FOB Sushi (Seattle), Bay Burgers (SF), Taqueria San Bruno{' '}
+              </li>
+              <li>
+                <span className="font-semibold">Music</span>: Kendrick Lamar, SZA, Pusha T, Little
+                Simz, Gorillaz, Tame Impala
+              </li>
+              <li>
+                <span className="font-semibold">YouTubers</span>: CGP Grey, Lemmino, Nick Robinson,
+                Super Eyepatch Wolf, Nexpo, RetroGamingNow, Paul Platt, Raycevick, Ludwig, mossbag,
+                and plenty others. I watch too much YouTube
+              </li>
+              <li>
+                <span className="font-semibold">Hobbies</span>: bouldering, biking, hiking,
+                PC/keyboard building, writing, sharing my opinions, trying new things
+              </li>
+            </ul>
           </div>
         </Card>
       </div>
