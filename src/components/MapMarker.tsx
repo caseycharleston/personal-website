@@ -26,7 +26,7 @@ export default function MapMarker({
       <g ref={markerRef}>
         <circle r={4} className="fill-red-500 stroke-white stroke-[2]" />
 
-        <g transform="translate(0, -15)">
+        <g transform="translate(0, -25)">
           <rect
             x={-labelWidth / 2}
             y={-labelHeight / 2}
@@ -34,7 +34,7 @@ export default function MapMarker({
             height={labelHeight}
             rx="10"
             ry="10"
-            className="fill-emerald-500 stroke-emerald-600 stroke-[1.5]"
+            className="fill-emerald-600 stroke-emerald-500 stroke-[1.5]"
           />
           <text
             textAnchor="middle"

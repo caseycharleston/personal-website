@@ -23,7 +23,7 @@ export default function AboutSection() {
               I&apos;m a computer science student at UT Austin. I&apos;m originally from the
               Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
             </p>
-            <p className="leading-relaxed text-black">
+            <p className="text-lg leading-relaxed text-black">
               My career is mostly software engineering-related. My favorite parts of engineering are
               the collaborative problem-solving and knowledge-sharing. I&apos;ve also been a
               teaching assistant. If it were not for software engineering, I&apos;d happily look
@@ -33,7 +33,7 @@ export default function AboutSection() {
         </Card>
         <Card>
           <div className="flex items-center justify-center p-8">
-            <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-400/30 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+            <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-600 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
               <Image
                 src="/headshot.jpeg"
                 width={1000}
@@ -122,7 +122,7 @@ export default function AboutSection() {
               </li>
 
               <li>
-                <span className="font-semibold">Coffee places</span>: Bennu Coffee (ATX), Stouthaus
+                <span className="font-semibold">Coffee</span>: Bennu Coffee (ATX), Stouthaus
                 Coffee (ATX), Finjan Qahwa (SF)
               </li>
               <li>
@@ -134,7 +134,7 @@ export default function AboutSection() {
                 Simz, Gorillaz, Tame Impala
               </li>
               <li>
-                <span className="font-semibold">YouTubers</span>: CGP Grey, Lemmino, Nick Robinson,
+                <span className="font-semibold">YouTubers</span>: CGP Grey, LEMMiNO, Nick Robinson,
                 Super Eyepatch Wolf, Nexpo, RetroGamingNow, Paul Platt, Raycevick, Ludwig, mossbag,
                 and plenty others. I watch too much YouTube
               </li>
