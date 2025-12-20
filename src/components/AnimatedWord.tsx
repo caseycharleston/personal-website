@@ -6,22 +6,18 @@ import { useEffect, useState } from 'react';
 const items = [
   {
     word: 'developer',
-    color: '#d7e7ff',
-    tooltip: 'I love fullstack and computer vision!',
+    tooltip: 'I <3 fullstack',
   },
   {
     word: 'longhorn',
-    color: '#f5d9b0',
     tooltip: "Hook 'em! 🤘",
   },
   {
     word: 'gamer',
-    color: '#f7c9c9',
-    tooltip: 'Now playing: Hitman, Hades 2, Slay the Princess',
+    tooltip: 'Now playing: Baldur\'s Gate 3, Hades 2, Slay the Spire',
   },
   {
     word: 'writer',
-    color: '#e6dfcf',
     tooltip: 'Check out my blog!',
   },
 ];
@@ -29,7 +25,6 @@ const items = [
 const INTERVAL = 6000; // ms
 
 interface AnimatedWordProps {
-  className?: string;
   widthCh?: number;
   heightRem?: number;
   currentIndex?: number;
@@ -38,7 +33,7 @@ interface AnimatedWordProps {
 
 export default function AnimatedWord({
   widthCh,
-  heightRem = 4.5,
+  heightRem = 2.4,
   currentIndex,
   onIndexChange,
 }: AnimatedWordProps) {
@@ -46,7 +41,6 @@ export default function AnimatedWord({
   const [showTooltip, setShowTooltip] = useState(false);
   const [typedText, setTypedText] = useState('');
 
-  // Use external index if provided, otherwise use internal cycling
   const activeIndex = currentIndex !== undefined ? currentIndex : index;
 
   useEffect(() => {
@@ -84,27 +78,27 @@ export default function AnimatedWord({
       } else {
         clearInterval(typeInterval);
       }
-    }, 60);
+    }, 40);
 
     return () => clearInterval(typeInterval);
   }, [showTooltip, activeIndex]);
 
   const safeIndex = activeIndex % items.length;
-  const { word, color } = items[safeIndex];
+  const { word } = items[safeIndex];
 
   const maxWordLength = Math.max(...items.map(item => item.word.length));
   const dynamicWidth = widthCh || maxWordLength + 2;
 
   return (
-    <div className="relative">
+    <span className="relative inline-flex align-middle">
       <AnimatePresence>
         {showTooltip && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+          <motion.span
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-4 py-2 bg-[#F2F0E5] border border-black/10 text-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-[#F2F0E5] border border-black/10 text-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
           >
             <span className="font-mono">
               {typedText}
@@ -112,38 +106,27 @@ export default function AnimatedWord({
                 <span className="animate-pulse">|</span>
               )}
             </span>
-            {/* Arrow pointing down */}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F2F0E5]"></div>
-          </motion.div>
+            <span className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F2F0E5]" />
+          </motion.span>
         )}
       </AnimatePresence>
-
-      {/* Animated Word */}
-      <motion.div
-        className={'align-middle overflow-hidden relative z-10'}
-        style={{
-          width: `${dynamicWidth}ch`,
-          height: `${heightRem}rem`,
-          borderRadius: 9999,
-        }}
-        animate={{ backgroundColor: color }}
-        transition={{
-          backgroundColor: { duration: 0.8, ease: [0, 0, 0.58, 1] },
-        }}
+      <span
+        className="inline-flex align-middle overflow-hidden justify-center text-center bg-[#F2F0E5] border border-black/10 rounded-full px-3"
+        style={{ width: `${dynamicWidth}ch`, height: `${heightRem}rem` }}
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={word}
-            initial={{ y: '100%', opacity: 1 }}
+            initial={{ y: '100%', opacity: 0 }}
             animate={{ y: '0%', opacity: 1 }}
-            exit={{ y: '-100%', opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0, 0, 0.58, 1] }}
-            className="flex items-center justify-center whitespace-nowrap text-black font-medium h-full text-[0.8em]"
+            exit={{ y: '-100%', opacity: 0 }}
+            transition={{ duration: 0.7, ease: [0, 0, 0.58, 1] }}
+            className="flex items-center justify-center whitespace-nowrap font-mono font-semibold text-black"
           >
             {word}
           </motion.span>
         </AnimatePresence>
-      </motion.div>
-    </div>
+      </span>
+    </span>
   );
 }

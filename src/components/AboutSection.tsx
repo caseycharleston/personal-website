@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import AnimatedWord from './AnimatedWord';
 import Card from './Card';
 import MapChart from './MapChart';
 import MapMarker from './MapMarker';
@@ -8,13 +9,19 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="section-shell">
-      <h2 className="section-title mb-16">About Me</h2>
+      <h2 className="section-title mt-24 mb-16">Hi, I&apos;m Casey</h2>
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-12 text-black">
+        <span className="text-xl font-mono">I&apos;m a</span>
+        <span className="text-xl font-mono">
+          <AnimatedWord />
+        </span>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
         <Card>
           <div className="flex flex-col justify-center h-full p-8 space-y-6">
             <p className="text-lg leading-relaxed text-black">
-              Hi there! I&apos;m Casey, a computer science student at UT Austin. I&apos;m orignally
-              from the Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
+              I&apos;m a computer science student at UT Austin. I&apos;m originally from the
+              Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
             </p>
             <p className="leading-relaxed text-black">
               My career is mostly software engineering-related. My favorite parts of engineering are
