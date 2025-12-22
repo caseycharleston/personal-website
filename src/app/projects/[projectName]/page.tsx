@@ -8,7 +8,7 @@ export default async function ProjectPage({
   const { projectName } = await params;
 
   try {
-    const data = await import(`../../../../public/project-pages/${projectName}`);
+    const data = await import(`@/posts/projects/${projectName}`);
   } catch (err) {
     notFound();
   }
