@@ -1,11 +1,11 @@
 import Header from '@/components/Header';
-import ProjectsSection from '@/components/ProjectsSection';
+import ResumeSection from '@/components/ResumeSection';
 
-export default function Page() {
+export default function ResumePage() {
   return (
     <main className="bg-[#FEFCF0] text-black">
       <Header />
-      <ProjectsSection />
+      <ResumeSection />
     </main>
   );
 }
