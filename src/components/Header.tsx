@@ -2,7 +2,6 @@ import Link from 'next/link';
 
 const tabs = [
   { label: 'Projects', href: '/projects' },
-  { label: 'Resume', href: '/resume' },
   { label: 'Blog', href: '/blog' },
 ];
 

@@ -44,7 +44,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="min-h-screen section-shell ">
+    <section id="contact" className="min-h-screen section-shell">
       <h2 className="section-title mb-8">Stay Connected</h2>
       <hr className="mb-8" />
       <div className="space-y-4">
