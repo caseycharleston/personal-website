@@ -1,11 +1,11 @@
 'use client';
 
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
+import { Check, Copy } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaBluesky } from 'react-icons/fa6';
-import { HiCheckCircle, HiOutlineClipboard } from 'react-icons/hi';
 import { IoIosMail } from 'react-icons/io';
 
 export default function ContactSection() {
@@ -45,36 +45,36 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="min-h-screen section-shell">
-      <h2 className="section-title mb-8">Stay Connected</h2>
+      <h2 className="section-title mb-8">Contact Me</h2>
       <hr className="mb-8" />
       <div className="space-y-4">
         <Link
           href="https://www.linkedin.com/in/caseycharleston/"
-          className="flex items-center gap-3 text-black transition-colors duration-200 hover:text-emerald-600"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
           target="_blank"
           rel="noreferrer"
         >
-          <FaLinkedin /> linkedin.com/in/caseycharleston
+          <FaLinkedin /> LinkedIn
         </Link>
         <Link
           href="https://github.com/caseycharleston"
-          className="flex items-center gap-3 text-black transition-colors duration-200 hover:text-emerald-600"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
           target="_blank"
           rel="noreferrer"
         >
-          <FaGithub /> github.com/caseycharleston
+          <FaGithub /> GitHub
         </Link>
         <Link
           href="https://bsky.app/profile/caseycharleston.bsky.social"
-          className="flex items-center gap-3 text-black transition-colors duration-200 hover:text-emerald-600"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
           target="_blank"
           rel="noreferrer"
         >
-          <FaBluesky /> bsky.app/profile/caseycharleston.bsky.social
+          <FaBluesky /> BlueSky
         </Link>
         <Popover>
           <div
-            className="relative inline-flex items-center gap-3 text-black transition-colors duration-200 hover:text-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            className="relative inline-flex items-center gap-3 text-black transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
             role="presentation"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -93,7 +93,13 @@ export default function ContactSection() {
               }}
               aria-label={`Copy email ${email}`}
             >
-              <IoIosMail className="text-xl" /> {email}
+              <div className="flex items-center gap-3 text-black">
+                <IoIosMail className="text-xl text-black" />
+                <div className="flex items-center gap-3 rounded bg-gray-100 px-3 text-black">
+                  {email}
+                  {isCopied ? <Check className="text-emerald-600" size={16} /> : <Copy size={16}/>}
+                </div>
+              </div>
             </div>
             <PopoverPanel
               static
@@ -101,13 +107,8 @@ export default function ContactSection() {
                 isHovering ? 'opacity-100' : 'pointer-events-none opacity-0'
               }`}
             >
-              <div className="relative flex items-center gap-2 whitespace-nowrap rounded-md border border-black/10 bg-gray-900 px-3 py-2 text-xs text-white shadow-lg">
+              <div className="relative whitespace-nowrap rounded-md border border-black/10 bg-gray-900 px-3 py-2 text-xs text-white shadow-lg">
                 <span className="absolute -left-1 top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 bg-gray-900 border-l border-t border-black/10" />
-                {isCopied ? (
-                  <HiCheckCircle className="text-emerald-400" />
-                ) : (
-                  <HiOutlineClipboard className="text-white" />
-                )}
                 <span>{isCopied ? 'Copied!' : 'Click to copy'}</span>
               </div>
             </PopoverPanel>
