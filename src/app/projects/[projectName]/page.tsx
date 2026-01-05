@@ -130,14 +130,14 @@ export default async function ProjectPage({
         </div>
         <div className="flex justify-center">
           <Image
-          src={meta.image.src}
-          alt={meta.image.alt}
-          width="0"
-          height="0"
-          sizes="100vw"
-          unoptimized
-          className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
-        />
+            src={meta.image.src}
+            alt={meta.image.alt}
+            width="0"
+            height="0"
+            sizes="100vw"
+            unoptimized
+            className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
+          />
         </div>
         <div className="space-y-6 border-t border-black/10 pt-10">{renderContent(content)}</div>
       </section>

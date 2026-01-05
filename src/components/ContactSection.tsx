@@ -97,7 +97,7 @@ export default function ContactSection() {
                 <IoIosMail className="text-xl text-black" />
                 <div className="flex items-center gap-3 rounded bg-gray-100 px-3 text-black">
                   {email}
-                  {isCopied ? <Check className="text-emerald-600" size={16} /> : <Copy size={16}/>}
+                  {isCopied ? <Check className="text-emerald-600" size={16} /> : <Copy size={16} />}
                 </div>
               </div>
             </div>
