@@ -10,11 +10,7 @@ interface MapMarkerProps {
   labelFontSize?: number;
 }
 
-export default function MapMarker({
-  coordinates,
-  popupLabel,
-  labelFontSize = 14,
-}: MapMarkerProps) {
+export default function MapMarker({ coordinates, popupLabel, labelFontSize = 14 }: MapMarkerProps) {
   const markerRef = useRef<SVGGElement | null>(null);
   const labelSizeClass =
     labelFontSize >= 18 ? 'text-lg' : labelFontSize >= 16 ? 'text-base' : 'text-sm';

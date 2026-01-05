@@ -122,8 +122,8 @@ export default function AboutSection() {
               </li>
 
               <li>
-                <span className="font-semibold">Coffee</span>: Bennu Coffee (ATX), Stouthaus
-                Coffee (ATX), Finjan Qahwa (SF)
+                <span className="font-semibold">Coffee</span>: Bennu Coffee (ATX), Stouthaus Coffee
+                (ATX), Finjan Qahwa (SF)
               </li>
               <li>
                 <span className="font-semibold">Food</span>: Cabo Bob&apos;s (ATX), Guppy&apos;s

@@ -10,9 +10,8 @@ export interface PostMeta {
   title: string;
   description: string;
   date: string;
-  href: string;
   tags?: string[];
-  image?: PostImage;
+  image: PostImage;
 }
 
 export interface PostEntry {
@@ -89,12 +88,10 @@ function parseFrontmatter(raw: string): { meta: Partial<PostMeta>; content: stri
 
 async function readPostsFromDir(dir: string): Promise<PostEntry[]> {
   const entries = await fs.readdir(dir);
-  const files = entries
-    .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
-    .sort();
+  const files = entries.filter(file => file.endsWith('.mdx') || file.endsWith('.md')).sort();
 
   const posts = await Promise.all(
-    files.map(async (file) => {
+    files.map(async file => {
       const slug = file.replace(/\.(mdx|md)$/, '');
       const filePath = path.join(dir, file);
       const raw = await fs.readFile(filePath, 'utf8');
@@ -111,6 +108,26 @@ async function readPostsFromDir(dir: string): Promise<PostEntry[]> {
 }
 
 export async function getProjectPosts() {
-  const projectsDir = path.join(process.cwd(), 'src', 'posts', 'projects');
+  const projectsDir = path.join(process.cwd(), 'public', 'posts', 'projects');
   return readPostsFromDir(projectsDir);
+}
+
+export async function getProjectPostBySlug(slug: string) {
+  const projectsDir = path.join(process.cwd(), 'public', 'posts', 'projects');
+  const mdxPath = path.join(projectsDir, `${slug}.mdx`);
+  const mdPath = path.join(projectsDir, `${slug}.md`);
+
+  try {
+    const raw = await fs.readFile(mdxPath, 'utf8');
+    const { meta, content } = parseFrontmatter(raw);
+    return { slug, meta: meta as PostMeta, content: content.trim() };
+  } catch {}
+
+  try {
+    const raw = await fs.readFile(mdPath, 'utf8');
+    const { meta, content } = parseFrontmatter(raw);
+    return { slug, meta: meta as PostMeta, content: content.trim() };
+  } catch {}
+
+  return null;
 }

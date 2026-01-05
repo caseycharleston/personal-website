@@ -3,9 +3,7 @@ import Link from 'next/link';
 export default function NotFound() {
   return (
     <main className="section-shell flex min-h-[70vh] flex-col items-center justify-center text-center">
-      <h1 className="mt-3 text-3xl font-mono font-semibold sm:text-4xl">
-        404
-      </h1>
+      <h1 className="mt-3 text-3xl font-mono font-semibold sm:text-4xl">404</h1>
       <p className="mt-4 max-w-xl text-base text-black/80">
         The link you followed does not point anywhere on my website. Go back home!
       </p>

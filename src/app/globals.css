@@ -37,7 +37,7 @@ html {
 
 @layer components {
   .section-shell {
-    @apply container mx-auto px-6 sm:px-12 lg:px-64 py-8;
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-16 xl:px-20 py-24;
   }
 
   .section-title {

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import { getProjectPostBySlug, getProjectPosts } from '@/lib/posts';
@@ -66,14 +65,10 @@ function renderContent(content: string) {
     if (imageMatch) {
       flushParagraph();
       blocks.push(
-        <Image
+        <img
           key={`img-${blocks.length}`}
           src={imageMatch[2]}
           alt={imageMatch[1]}
-          width="0"
-          height="0"
-          sizes="100vw"
-          unoptimized
           className="w-full rounded-2xl border border-black/10 bg-black/5"
         />
       );
@@ -105,7 +100,7 @@ export default async function ProjectPage({
     <main className="bg-[#FEFCF0] text-black">
       <Header />
       <section className="section-shell space-y-10">
-        <div className="space-y-4 mt-10">
+        <div className="space-y-4">
           <p className="text-xs font-mono uppercase tracking-[0.2em] text-black/60">
             <Link href="/projects" className="transition-colors hover:text-emerald-600">
               Projects
@@ -128,17 +123,7 @@ export default async function ProjectPage({
             </ul>
           )}
         </div>
-        <div className="flex justify-center">
-          <Image
-          src={meta.image.src}
-          alt={meta.image.alt}
-          width="0"
-          height="0"
-          sizes="100vw"
-          unoptimized
-          className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
-        />
-        </div>
+
         <div className="space-y-6 border-t border-black/10 pt-10">{renderContent(content)}</div>
       </section>
     </main>

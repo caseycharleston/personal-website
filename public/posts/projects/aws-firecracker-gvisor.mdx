@@ -1,0 +1,24 @@
+---
+title: AWS Firecracker/GCP gVisor Comparison Study
+description: As part of my Advanced OS class, a partner and I ran a small comparison study against the AWS/GCP solution to serverless functions in a simulated environment.
+date: Oct 2025 - Dec 2025
+tags:
+  - AWS
+  - gVisor
+  - Python
+  - Serverless-functions
+image:
+  src: /posts/images/firecracker.png
+  alt: firecracker design
+---
+## Overview
+
+We benchmarked cold starts, memory overhead, and isolation guarantees across representative serverless workloads. The work focused on setting up reproducible harnesses and documenting key tradeoffs for real-world deployments.
+
+### Environment Notes
+
+The harness compared warm and cold start paths, captured median and tail latencies, and recorded resource utilization under mixed workloads.
+
+### Next Steps
+
+Future work includes automating more real-world request traces and scaling the experiment to larger function catalogs.

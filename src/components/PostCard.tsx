@@ -7,7 +7,7 @@ interface PostCardProps {
   tags?: string[];
   href: string;
   date: string;
-  image?: {
+  image: {
     src: string;
     alt: string;
   };
@@ -45,9 +45,7 @@ export default function PostCard({
             <h3 className="text-lg font-mono font-semibold text-emerald-600 transition-colors group-hover:text-emerald-700 group-hover:underline underline-offset-4">
               {title}
             </h3>
-            <p className="text-xs font-mono uppercase tracking-wide text-black/70">
-              {date}
-            </p>
+            <p className="text-xs font-mono uppercase tracking-wide text-black/70">{date}</p>
             <p className="text-sm leading-relaxed text-black">{description}</p>
           </header>
 
