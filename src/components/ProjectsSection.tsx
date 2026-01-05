@@ -16,7 +16,8 @@ export default async function ProjectsSection() {
             tags={project.meta.tags ?? []}
             href={`/projects/${project.slug}`}
             date={project.meta.date}
-            image={project.meta.image}
+            imageSrc={project.meta.imageSrc}
+            imageAlt={project.meta.imageAlt}
           />
         ))}
       </div>

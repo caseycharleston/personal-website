@@ -1,17 +1,13 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-export interface PostImage {
-  src: string;
-  alt: string;
-}
-
 export interface PostMeta {
   title: string;
   description: string;
   date: string;
   tags?: string[];
-  image: PostImage;
+  imageSrc: string;
+  imageAlt: string;
 }
 
 export interface PostEntry {
@@ -56,29 +52,17 @@ function parseFrontmatter(raw: string): { meta: Partial<PostMeta>; content: stri
       continue;
     }
 
-    if (line.startsWith('image:')) {
-      const image: PostImage = { src: '', alt: '' };
-      i += 1;
-      while (i < lines.length && lines[i].startsWith('  ')) {
-        const trimmed = lines[i].trim();
-        const [key, ...rest] = trimmed.split(':');
-        const value = stripQuotes(rest.join(':').trim());
-        if (key === 'src' || key === 'alt') {
-          image[key] = value;
-        }
-        i += 1;
-      }
-      if (image.src && image.alt) {
-        meta.image = image;
-      }
-      continue;
-    }
-
     const [key, ...rest] = line.split(':');
     const value = stripQuotes(rest.join(':').trim());
     const trimmedKey = key.trim();
     if (trimmedKey) {
-      (meta as Record<string, string>)[trimmedKey] = value;
+      if (trimmedKey === 'imageSrc') {
+        meta.imageSrc = value.startsWith('/') ? value : `/posts/images/${value}`;
+      } else if (trimmedKey === 'imageAlt') {
+        meta.imageAlt = value;
+      } else {
+        (meta as Record<string, string>)[trimmedKey] = value;
+      }
     }
     i += 1;
   }

@@ -7,10 +7,8 @@ interface PostCardProps {
   tags?: string[];
   href: string;
   date: string;
-  image: {
-    src: string;
-    alt: string;
-  };
+  imageSrc: string;
+  imageAlt: string;
 }
 
 export default function PostCard({
@@ -19,7 +17,8 @@ export default function PostCard({
   tags = [],
   href,
   date,
-  image,
+  imageSrc,
+  imageAlt,
 }: PostCardProps) {
   return (
     <Link
@@ -27,11 +26,11 @@ export default function PostCard({
       className="group block h-full overflow-hidden rounded-2xl border border-black/10 bg-[#F2F0E5] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-black/20 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FEFCF0]"
     >
       <article className="flex h-full flex-col">
-        {image && (
+        {imageSrc && imageAlt && (
           <div className="relative aspect-[4/3] w-full overflow-hidden">
             <Image
-              src={image.src}
-              alt={image.alt}
+              src={imageSrc}
+              alt={imageAlt}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

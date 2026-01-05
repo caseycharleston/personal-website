@@ -10,6 +10,11 @@ export async function generateStaticParams() {
   return projects.map(project => ({ projectName: project.slug }));
 }
 
+function imageAltFromFilename(filename: string) {
+  const base = filename.replace(/\.[^/.]+$/, '');
+  return base.replace(/[-_]+/g, ' ').trim() || base;
+}
+
 function renderContent(content: string) {
   const lines = content.split('\n');
   const blocks: ReactNode[] = [];
@@ -59,6 +64,25 @@ function renderContent(content: string) {
           </h3>
         );
       }
+      return;
+    }
+
+    const obsidianImageMatch = /^!\[\[(.+)\]\]$/.exec(trimmed);
+    if (obsidianImageMatch) {
+      const filename = obsidianImageMatch[1].trim();
+      flushParagraph();
+      blocks.push(
+        <Image
+          key={`img-${blocks.length}`}
+          src={`/posts/images/${filename}`}
+          alt={imageAltFromFilename(filename)}
+          width="0"
+          height="0"
+          sizes="100vw"
+          unoptimized
+          className="w-full rounded-2xl border border-black/10 bg-black/5"
+        />
+      );
       return;
     }
 
@@ -130,8 +154,8 @@ export default async function ProjectPage({
         </div>
         <div className="flex justify-center">
           <Image
-            src={meta.image.src}
-            alt={meta.image.alt}
+            src={meta.imageSrc}
+            alt={meta.imageAlt}
             width="0"
             height="0"
             sizes="100vw"
