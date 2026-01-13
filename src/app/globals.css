@@ -31,6 +31,52 @@ p {
   color: #000000;
 }
 
+pre code {
+  display: block;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #0f172a;
+  color: #f8fafc;
+  overflow-x: auto;
+}
+
+.hljs {
+  background: transparent;
+  color: inherit;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #94a3b8;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #38bdf8;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type,
+.hljs-attr {
+  color: #34d399;
+}
+
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  color: #fbbf24;
+}
+
+.hljs-built_in,
+.hljs-params,
+.hljs-meta {
+  color: #f472b6;
+}
+
 html {
   scroll-behavior: smooth;
 }

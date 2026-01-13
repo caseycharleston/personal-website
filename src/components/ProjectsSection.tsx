@@ -1,4 +1,4 @@
-import { getProjectPosts } from '@/lib/posts';
+import { getProjectPosts } from '@/lib/mdx-content';
 import PostCard from './PostCard';
 
 export default async function ProjectsSection() {

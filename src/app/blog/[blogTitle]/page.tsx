@@ -1,100 +1,22 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
-import { getProjectPostBySlug, getProjectPosts } from '@/lib/posts';
-import type { ReactNode } from 'react';
+import { getBlogPostBySlug, getBlogPosts, BlogMdxContent } from '@/lib/mdx-content';
 
 export async function generateStaticParams() {
-  const projects = await getProjectPosts();
-  return projects.map(project => ({ projectName: project.slug }));
+  const posts = await getBlogPosts();
+  return posts.map(post => ({ blogTitle: post.slug }));
 }
 
-function renderContent(content: string) {
-  const lines = content.split('\n');
-  const blocks: ReactNode[] = [];
-  let paragraph: string[] = [];
+export default async function ProjectPage({ params }: { params: Promise<{ blogTitle: string }> }) {
+  const { blogTitle } = await params;
+  const post = await getBlogPostBySlug(blogTitle);
 
-  const flushParagraph = () => {
-    if (paragraph.length === 0) {
-      return;
-    }
-    const text = paragraph.join(' ');
-    blocks.push(
-      <p key={`p-${blocks.length}`} className="text-base leading-relaxed text-black/90">
-        {text}
-      </p>
-    );
-    paragraph = [];
-  };
-
-  lines.forEach(line => {
-    const trimmed = line.trim();
-    if (!trimmed) {
-      flushParagraph();
-      return;
-    }
-
-    const headingMatch = /^(#{1,3})\s+(.*)$/.exec(trimmed);
-    if (headingMatch) {
-      flushParagraph();
-      const level = headingMatch[1].length;
-      const text = headingMatch[2];
-      if (level === 1) {
-        blocks.push(
-          <h1 key={`h1-${blocks.length}`} className="text-3xl font-mono font-semibold text-black">
-            {text}
-          </h1>
-        );
-      } else if (level === 2) {
-        blocks.push(
-          <h2 key={`h2-${blocks.length}`} className="text-2xl font-mono font-semibold text-black">
-            {text}
-          </h2>
-        );
-      } else {
-        blocks.push(
-          <h3 key={`h3-${blocks.length}`} className="text-xl font-mono font-semibold text-black">
-            {text}
-          </h3>
-        );
-      }
-      return;
-    }
-
-    const imageMatch = /^!\[(.*)\]\((.*)\)$/.exec(trimmed);
-    if (imageMatch) {
-      flushParagraph();
-      blocks.push(
-        <img
-          key={`img-${blocks.length}`}
-          src={imageMatch[2]}
-          alt={imageMatch[1]}
-          className="w-full rounded-2xl border border-black/10 bg-black/5"
-        />
-      );
-      return;
-    }
-
-    paragraph.push(trimmed);
-  });
-
-  flushParagraph();
-  return blocks;
-}
-
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ projectName: string }>;
-}) {
-  const { projectName } = await params;
-  const project = await getProjectPostBySlug(projectName);
-
-  if (!project) {
+  if (!post) {
     notFound();
   }
 
-  const { meta, content } = project;
+  const { meta, Content } = post;
 
   return (
     <main className="bg-[#FEFCF0] text-black">
@@ -124,7 +46,9 @@ export default async function ProjectPage({
           )}
         </div>
 
-        <div className="space-y-6 border-t border-black/10 pt-10">{renderContent(content)}</div>
+        <div className="space-y-6 border-t border-black/10 pt-10">
+          <BlogMdxContent Content={Content} />
+        </div>
       </section>
     </main>
   );

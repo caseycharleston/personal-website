@@ -2,113 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
-import { getProjectPostBySlug, getProjectPosts } from '@/lib/posts';
-import type { ReactNode } from 'react';
+import { getProjectPostBySlug, getProjectPosts, ProjectMdxContent } from '@/lib/mdx-content';
 
 export async function generateStaticParams() {
   const projects = await getProjectPosts();
   return projects.map(project => ({ projectName: project.slug }));
-}
-
-function imageAltFromFilename(filename: string) {
-  const base = filename.replace(/\.[^/.]+$/, '');
-  return base.replace(/[-_]+/g, ' ').trim() || base;
-}
-
-function renderContent(content: string) {
-  const lines = content.split('\n');
-  const blocks: ReactNode[] = [];
-  let paragraph: string[] = [];
-
-  const flushParagraph = () => {
-    if (paragraph.length === 0) {
-      return;
-    }
-    const text = paragraph.join(' ');
-    blocks.push(
-      <p key={`p-${blocks.length}`} className="text-base leading-relaxed text-black/90">
-        {text}
-      </p>
-    );
-    paragraph = [];
-  };
-
-  lines.forEach(line => {
-    const trimmed = line.trim();
-    if (!trimmed) {
-      flushParagraph();
-      return;
-    }
-
-    const headingMatch = /^(#{1,3})\s+(.*)$/.exec(trimmed);
-    if (headingMatch) {
-      flushParagraph();
-      const level = headingMatch[1].length;
-      const text = headingMatch[2];
-      if (level === 1) {
-        blocks.push(
-          <h1 key={`h1-${blocks.length}`} className="text-3xl font-mono font-semibold text-black">
-            {text}
-          </h1>
-        );
-      } else if (level === 2) {
-        blocks.push(
-          <h2 key={`h2-${blocks.length}`} className="text-2xl font-mono font-semibold text-black">
-            {text}
-          </h2>
-        );
-      } else {
-        blocks.push(
-          <h3 key={`h3-${blocks.length}`} className="text-xl font-mono font-semibold text-black">
-            {text}
-          </h3>
-        );
-      }
-      return;
-    }
-
-    const obsidianImageMatch = /^!\[\[(.+)\]\]$/.exec(trimmed);
-    if (obsidianImageMatch) {
-      const filename = obsidianImageMatch[1].trim();
-      flushParagraph();
-      blocks.push(
-        <Image
-          key={`img-${blocks.length}`}
-          src={`/posts/images/${filename}`}
-          alt={imageAltFromFilename(filename)}
-          width="0"
-          height="0"
-          sizes="100vw"
-          unoptimized
-          className="w-full rounded-2xl border border-black/10 bg-black/5"
-        />
-      );
-      return;
-    }
-
-    const imageMatch = /^!\[(.*)\]\((.*)\)$/.exec(trimmed);
-    if (imageMatch) {
-      flushParagraph();
-      blocks.push(
-        <Image
-          key={`img-${blocks.length}`}
-          src={imageMatch[2]}
-          alt={imageMatch[1]}
-          width="0"
-          height="0"
-          sizes="100vw"
-          unoptimized
-          className="w-full rounded-2xl border border-black/10 bg-black/5"
-        />
-      );
-      return;
-    }
-
-    paragraph.push(trimmed);
-  });
-
-  flushParagraph();
-  return blocks;
 }
 
 export default async function ProjectPage({
@@ -123,7 +21,7 @@ export default async function ProjectPage({
     notFound();
   }
 
-  const { meta, content } = project;
+  const { meta, Content } = project;
 
   return (
     <main className="bg-[#FEFCF0] text-black">
@@ -163,7 +61,9 @@ export default async function ProjectPage({
             className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
           />
         </div>
-        <div className="space-y-6 border-t border-black/10 pt-10">{renderContent(content)}</div>
+        <div className="space-y-6 border-t border-black/10 pt-10">
+          <ProjectMdxContent Content={Content} />
+        </div>
       </section>
     </main>
   );

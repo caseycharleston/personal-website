@@ -134,9 +134,9 @@ export default function AboutSection() {
                 Simz, Gorillaz, Tame Impala
               </li>
               <li>
-                <span className="font-semibold">YouTubers</span>: CGP Grey, DougDoug, LEMMiNO, Nick Robinson,
-                Super Eyepatch Wolf, Nexpo, RetroGamingNow, Paul Platt, Raycevick, Ludwig, mossbag,
-                and plenty others. I watch too much YouTube
+                <span className="font-semibold">YouTubers</span>: CGP Grey, DougDoug, LEMMiNO, Nick
+                Robinson, Super Eyepatch Wolf, Nexpo, RetroGamingNow, Paul Platt, Raycevick, Ludwig,
+                mossbag, and plenty others. I watch too much YouTube
               </li>
               <li>
                 <span className="font-semibold">Hobbies</span>: bouldering, biking, hiking,
