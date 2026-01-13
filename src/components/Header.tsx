@@ -15,12 +15,12 @@ export default function Header() {
         >
           caseyc.dev
         </Link>
-        <ul className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 text-sm sm:text-base md:text-lg font-mono">
+        <ul className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-10 font-mono">
           {tabs.map(tab => (
             <li key={tab.href}>
               <Link
                 href={tab.href}
-                className="relative transition-colors duration-200 hover:text-emerald-600"
+                className="relative transition-colors text-2xl duration-200 hover:text-emerald-600"
               >
                 {tab.label}
               </Link>
