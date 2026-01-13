@@ -56,10 +56,6 @@ async function compileTarget(target) {
       imageAlt: data.imageAlt ?? '',
     };
 
-    if (meta.imageSrc && !meta.imageSrc.startsWith('/')) {
-      meta.imageSrc = `/posts/images/${meta.imageSrc}`;
-    }
-
     const compiled = await compile(content, {
       outputFormat: 'program',
       remarkPlugins: [remarkGfm],

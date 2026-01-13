@@ -43,10 +43,6 @@ async function build() {
       imageAlt: data.imageAlt ?? '',
     };
 
-    if (meta.imageSrc && !meta.imageSrc.startsWith('/')) {
-      meta.imageSrc = `/posts/images/${meta.imageSrc}`;
-    }
-
     const compiled = await compile(content, {
       outputFormat: 'program',
       providerImportSource: '@mdx-js/react',
@@ -66,10 +62,7 @@ async function build() {
     `export async function loadPost(slug) {\n` +
     `  switch (slug) {\n` +
     manifest
-      .map(
-        entry =>
-          `    case ${JSON.stringify(entry.slug)}:\n      return import('./${entry.slug}.mjs');`
-      )
+      .map(entry => `    case ${JSON.stringify(entry.slug)}:\n      return import('./${entry.slug}.mjs');`)
       .join('\n') +
     `\n    default:\n      return null;\n  }\n}\n`;
 

@@ -30,6 +30,14 @@ function imageAltFromFilename(filename: string) {
   return base.replace(/[-_]+/g, ' ').trim() || base;
 }
 
+// Ensures image src is correctly pointed to the right directory
+function normalizeMetaImageSrc(src: string) {
+  if (src.startsWith('images/')) {
+    return `/posts/${src}`;
+  }
+  return `/posts/images/${src}`;
+}
+
 function MdxLink({ href = '', children, ...rest }: ComponentProps<'a'> & { children?: ReactNode }) {
   const isExternal = href.startsWith('http://') || href.startsWith('https://');
   return (
@@ -45,23 +53,15 @@ function MdxLink({ href = '', children, ...rest }: ComponentProps<'a'> & { child
   );
 }
 
-function BlogImage({ src = '', alt = '' }: ComponentProps<'img'>) {
+function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
   if (typeof src !== 'string' || !src) {
     return null;
   }
-  return (
-    <img src={src} alt={alt} className="w-full rounded-2xl border border-black/10 bg-black/5" />
-  );
-}
-
-function ProjectImage({ src = '', alt = '' }: ComponentProps<'img'>) {
-  if (typeof src !== 'string' || !src) {
-    return null;
-  }
+  const normalizedSrc = `/posts/${src}`;
   const resolvedAlt = alt || imageAltFromFilename(src);
   return (
     <Image
-      src={src}
+      src={normalizedSrc}
       alt={resolvedAlt}
       width="0"
       height="0"
@@ -82,16 +82,22 @@ const baseMdxComponents: MDXComponents = {
 
 const blogMdxComponents: MDXComponents = {
   ...baseMdxComponents,
-  img: BlogImage,
+  img: MdxImage,
 };
 
 const projectMdxComponents: MDXComponents = {
   ...baseMdxComponents,
-  img: ProjectImage,
+  img: MdxImage,
 };
 
 export async function getBlogPosts(): Promise<MdxEntry[]> {
-  return posts as MdxEntry[];
+  return (posts as MdxEntry[]).map(post => ({
+    ...post,
+    meta: {
+      ...post.meta,
+      imageSrc: normalizeMetaImageSrc(post.meta.imageSrc),
+    },
+  }));
 }
 
 export async function getBlogPostBySlug(slug: string) {
@@ -102,13 +108,22 @@ export async function getBlogPostBySlug(slug: string) {
 
   return {
     slug,
-    meta: mod.meta,
+    meta: {
+      ...mod.meta,
+      imageSrc: normalizeMetaImageSrc(mod.meta.imageSrc),
+    },
     Content: mod.default,
   };
 }
 
 export async function getProjectPosts(): Promise<MdxEntry[]> {
-  return projects as MdxEntry[];
+  return (projects as MdxEntry[]).map(project => ({
+    ...project,
+    meta: {
+      ...project.meta,
+      imageSrc: normalizeMetaImageSrc(project.meta.imageSrc),
+    },
+  }));
 }
 
 export async function getProjectPostBySlug(slug: string) {
@@ -119,7 +134,10 @@ export async function getProjectPostBySlug(slug: string) {
 
   return {
     slug,
-    meta: mod.meta,
+    meta: {
+      ...mod.meta,
+      imageSrc: normalizeMetaImageSrc(mod.meta.imageSrc),
+    },
     Content: mod.default,
   };
 }
