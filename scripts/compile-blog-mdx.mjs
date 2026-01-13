@@ -62,7 +62,10 @@ async function build() {
     `export async function loadPost(slug) {\n` +
     `  switch (slug) {\n` +
     manifest
-      .map(entry => `    case ${JSON.stringify(entry.slug)}:\n      return import('./${entry.slug}.mjs');`)
+      .map(
+        entry =>
+          `    case ${JSON.stringify(entry.slug)}:\n      return import('./${entry.slug}.mjs');`
+      )
       .join('\n') +
     `\n    default:\n      return null;\n  }\n}\n`;
 
