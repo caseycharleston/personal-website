@@ -23,9 +23,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
       <Header />
       <section className="section-shell space-y-10">
         <div className="space-y-4">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-black/60">
-            <Link href="/projects" className="transition-colors hover:text-emerald-600">
-              Projects
+          <p className="text-sm font-mono uppercase tracking-[0.2em] text-black/60">
+            <Link
+              href="/blog"
+              className="underline underline-offset-2 decoration-black/60 transition-colors hover:text-emerald-600 hover:decoration-emerald-600"
+            >
+              Blog
             </Link>{' '}
             / {meta.title}
           </p>

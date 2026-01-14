@@ -28,8 +28,11 @@ export default async function ProjectPage({
       <Header />
       <section className="section-shell space-y-10">
         <div className="space-y-4 mt-10">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-black/60">
-            <Link href="/projects" className="transition-colors hover:text-emerald-600">
+          <p className="text-sm font-mono uppercase tracking-[0.2em] text-black/60">
+            <Link
+              href="/projects"
+              className="underline underline-offset-2 decoration-black/60 transition-colors hover:text-emerald-600 hover:decoration-emerald-600"
+            >
               Projects
             </Link>{' '}
             / {meta.title}
