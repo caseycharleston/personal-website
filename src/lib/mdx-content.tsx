@@ -78,6 +78,12 @@ const baseMdxComponents: MDXComponents = {
   h2: ({ children }) => <h2 className="text-2xl font-mono font-semibold text-black">{children}</h2>,
   h3: ({ children }) => <h3 className="text-xl font-mono font-semibold text-black">{children}</h3>,
   p: ({ children }) => <p className="text-base leading-relaxed text-black/90">{children}</p>,
+  ul: ({ children }) => <ul className="list-disc space-y-2 pl-6 text-base text-black/90">{children}</ul>,
+  ol: ({ children }) => <ol className="list-decimal space-y-2 pl-6 text-base text-black/90">{children}</ol>,
+  li: ({ children }) => <li className="text-base leading-relaxed">{children}</li>,
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-2 border-black/20 pl-4 italic text-black/70">{children}</blockquote>
+  ),
 };
 
 const blogMdxComponents: MDXComponents = {
