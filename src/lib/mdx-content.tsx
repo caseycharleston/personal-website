@@ -13,6 +13,7 @@ export interface MdxMeta {
   tags?: string[];
   imageSrc: string;
   imageAlt: string;
+  order?: number;
 }
 
 export interface MdxEntry {
@@ -32,10 +33,38 @@ function imageAltFromFilename(filename: string) {
 
 // Ensures image src is correctly pointed to the right directory
 function normalizeMetaImageSrc(src: string) {
-  if (src.startsWith('images/')) {
-    return `/posts/${src}`;
+  const normalizedSrc = src.replace(/^\.\//, '');
+  if (normalizedSrc.startsWith('/posts/')) {
+    return normalizedSrc;
   }
-  return `/posts/images/${src}`;
+  if (normalizedSrc.startsWith('posts/')) {
+    return `/${normalizedSrc}`;
+  }
+  if (normalizedSrc.startsWith('images/')) {
+    return `/posts/${normalizedSrc}`;
+  }
+  if (normalizedSrc.startsWith('/')) {
+    return normalizedSrc;
+  }
+  return `/posts/images/${normalizedSrc}`;
+}
+
+function parseBlogDate(date: string) {
+  const parts = date.split('/');
+  if (parts.length !== 3) {
+    return Number.NaN;
+  }
+  const [monthString, dayString, yearString] = parts;
+  const month = Number(monthString) - 1;
+  const day = Number(dayString);
+  const year = Number(yearString);
+  if (!Number.isInteger(month) || !Number.isInteger(day) || !Number.isInteger(year)) {
+    return Number.NaN;
+  }
+  if (month < 0 || month > 11 || day < 1 || day > 31) {
+    return Number.NaN;
+  }
+  return Date.UTC(year, month, day);
 }
 
 function MdxLink({ href = '', children, ...rest }: ComponentProps<'a'> & { children?: ReactNode }) {
@@ -57,7 +86,7 @@ function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
   if (typeof src !== 'string' || !src) {
     return null;
   }
-  const normalizedSrc = `/posts/${src}`;
+  const normalizedSrc = `/${src}`;
   const resolvedAlt = alt || imageAltFromFilename(src);
   return (
     <Image
@@ -67,7 +96,7 @@ function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
       height="0"
       sizes="100vw"
       unoptimized
-      className="w-full rounded-2xl border border-black/10 bg-black/5"
+      className="mx-auto max-w-1/2 w-full rounded-2xl border border-black/10 bg-black/5"
     />
   );
 }
@@ -78,11 +107,17 @@ const baseMdxComponents: MDXComponents = {
   h2: ({ children }) => <h2 className="text-2xl font-mono font-semibold text-black">{children}</h2>,
   h3: ({ children }) => <h3 className="text-xl font-mono font-semibold text-black">{children}</h3>,
   p: ({ children }) => <p className="text-base leading-relaxed text-black/90">{children}</p>,
-  ul: ({ children }) => <ul className="list-disc space-y-2 pl-6 text-base text-black/90">{children}</ul>,
-  ol: ({ children }) => <ol className="list-decimal space-y-2 pl-6 text-base text-black/90">{children}</ol>,
+  ul: ({ children }) => (
+    <ul className="list-disc space-y-2 pl-6 text-base text-black/90">{children}</ul>
+  ),
+  ol: ({ children }) => (
+    <ol className="list-decimal space-y-2 pl-6 text-base text-black/90">{children}</ol>
+  ),
   li: ({ children }) => <li className="text-base leading-relaxed">{children}</li>,
   blockquote: ({ children }) => (
-    <blockquote className="border-l-2 border-black/20 pl-4 italic text-black/70">{children}</blockquote>
+    <blockquote className="border-l-2 border-black/20 pl-4 italic text-black/70">
+      {children}
+    </blockquote>
   ),
 };
 
@@ -97,13 +132,21 @@ const projectMdxComponents: MDXComponents = {
 };
 
 export async function getBlogPosts(): Promise<MdxEntry[]> {
-  return (posts as MdxEntry[]).map(post => ({
-    ...post,
-    meta: {
-      ...post.meta,
-      imageSrc: normalizeMetaImageSrc(post.meta.imageSrc),
-    },
-  }));
+  return (posts as MdxEntry[])
+    .map(post => ({
+      ...post,
+      meta: {
+        ...post.meta,
+        imageSrc: normalizeMetaImageSrc(post.meta.imageSrc),
+      },
+    }))
+    .sort((a, b) => {
+      const aDate = parseBlogDate(a.meta.date);
+      const bDate = parseBlogDate(b.meta.date);
+      const aValue = Number.isFinite(aDate) ? aDate : Number.NEGATIVE_INFINITY;
+      const bValue = Number.isFinite(bDate) ? bDate : Number.NEGATIVE_INFINITY;
+      return bValue - aValue;
+    });
 }
 
 export async function getBlogPostBySlug(slug: string) {
@@ -123,13 +166,19 @@ export async function getBlogPostBySlug(slug: string) {
 }
 
 export async function getProjectPosts(): Promise<MdxEntry[]> {
-  return (projects as MdxEntry[]).map(project => ({
-    ...project,
-    meta: {
-      ...project.meta,
-      imageSrc: normalizeMetaImageSrc(project.meta.imageSrc),
-    },
-  }));
+  return (projects as MdxEntry[])
+    .map(project => ({
+      ...project,
+      meta: {
+        ...project.meta,
+        imageSrc: normalizeMetaImageSrc(project.meta.imageSrc),
+      },
+    }))
+    .sort((a, b) => {
+      const aOrder = typeof a.meta.order === 'number' ? a.meta.order : Number.NEGATIVE_INFINITY;
+      const bOrder = typeof b.meta.order === 'number' ? b.meta.order : Number.NEGATIVE_INFINITY;
+      return bOrder - aOrder;
+    });
 }
 
 export async function getProjectPostBySlug(slug: string) {

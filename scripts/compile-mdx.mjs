@@ -46,6 +46,12 @@ async function compileTarget(target) {
     const filePath = path.join(target.inputDir, file);
     const raw = await fs.readFile(filePath, 'utf8');
     const { data, content } = matter(raw);
+    const orderValue =
+      typeof data.order === 'number'
+        ? data.order
+        : typeof data.order === 'string'
+          ? Number(data.order)
+          : NaN;
 
     const meta = {
       title: data.title ?? '',
@@ -54,6 +60,7 @@ async function compileTarget(target) {
       tags: Array.isArray(data.tags) ? data.tags : undefined,
       imageSrc: data.imageSrc ?? '',
       imageAlt: data.imageAlt ?? '',
+      order: Number.isFinite(orderValue) ? orderValue : undefined,
     };
 
     const compiled = await compile(content, {

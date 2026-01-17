@@ -3,24 +3,41 @@ title: Better Gaze Detection
 description: A research project for better gaze detection for 3D virtual agents on 2D screens from the perspective of humans.
 date: Aug 2023 - Dec 2023
 tags:
-  - Ceres Solver
-  - Unity
-  - C++
-  - C#
+  - robotics
+  - unity
 imageSrc: head.png
-imageAlt: 'a pic from the study'
+imageAlt: a pic from the study
+order: '3'
 ---
 
-## Overview
+# Validating the Mona Lisa Effect in Virtual Agent Gaze
 
-We studied perception-driven models for gaze estimation, focusing on how humans interpret eye contact on 2D displays. My work centered on simulation setups and quantitative evaluation.
+> This project was part of a course on robotics research at UT Austin: FRI II: Robotics. I worked in a team of four. For the full presentation, see [here](https://drive.google.com/file/d/1TqKDVQAVe5K5zIMIRnQCaqRo-nMK9O6E/view?usp=sharing).
 
-### Experimental Setup
+## Introduction
 
-The project included controlled user studies and synthetic data generation to model gaze alignment errors.
+Robot systems today mimic human communication to make human-robot interactions feel more natural. Part of this mimicry is the use of robotic eyes to convey emotion and intent.
 
-![[blockchain-collage.jpeg]]
+One issue from this arises when using 2D screens to display 3D virtual agents: the Mona Lisa Effect. Due to foreshortening and changes in perspective, the eyes of the virtual agent appear to be looking at a different point than intended.
 
-### Next Steps
+Depending on the distance of the agent from the camera, the gaze of the virtual agent can appear to be looking at different points in real space, while in virtual space they are looking at the same point. Essentially, 2D representations of 3D agents lead to misrepresentations of the gaze from the observer.
 
-We plan to extend the work to multi-agent interactions and real-time inference pipelines.
+## Approach
+
+### System Overview
+
+We are using Unity to mimic a 2D-rendered 3D virtual agent with two projections:
+![](posts/images/better-gaze-detection-models.png)
+
+The "Faithful Head" does not attempt to correct for the Mona Lisa Effect. The "Mona Lisa Head" introduces an optimizer to induce the Mona Lisa Effect. The idea of our approach is to induce the effect by changing the distance and focal length of the agent from the camera.
+
+The figure below models our approach. The normal head is looking at F, but by increasing the distance of the agent from the camera while adjusting the focal length, we hope to induce the Mona Lisa Effect, making it appear as though the agent is looking at A.
+![](posts/images/better-gaze-detection-model.png)
+
+We use a Ceres Solver to minimize the distance between the vectors of the normal head gazing at a particular square and the square we want the agent to appear to be looking at. Again, the distance from the camera and the focal length are variables adjusted by the optimizer. As a result, the head becomes distorted due to foreshortening.
+![](posts/images/better-gaze-detection-results.png)
+
+The image below shows the difference between the eye positions of the heads above:
+![](posts/images/better-gaze-detection.png)
+
+As observed, the eye position changes considerably, which can make it appear as though the agent is looking elsewhere. Our model shows that the Mona Lisa Effect can potentially be induced by an optimizer. The next step is to run an experiment with human partcipants to see if the change in distance and focal length affects where the agent appears to be looking from the observer.

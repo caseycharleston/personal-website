@@ -9,6 +9,7 @@ declare module '@/generated/projects/registry.mjs' {
     tags?: string[];
     imageSrc: string;
     imageAlt: string;
+    order?: number;
   }
 
   export const projects: { slug: string; meta: ProjectMeta }[];

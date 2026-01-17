@@ -9,6 +9,7 @@ declare module '@/generated/blog/registry.mjs' {
     tags?: string[];
     imageSrc: string;
     imageAlt: string;
+    order?: number;
   }
 
   export const posts: { slug: string; meta: BlogMeta }[];

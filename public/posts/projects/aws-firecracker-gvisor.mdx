@@ -8,16 +8,17 @@ tags:
   - Python
   - Serverless-functions
 imageSrc: firecracker.png
-imageAlt: 'firecracker design'
+imageAlt: firecracker design
+order: '6'
 ---
 
 # Comparing Firecracker and gVisor for Serverless Performance
 
->This comparison study was the final project of a graduate-level course I took in Fall 2025 at UT Austin: Advanced Operating Systems. For the full paper, [click here](https://drive.google.com/file/d/1m4FRiNjmH5EGP1pM7_hzu4jrOR8pYbZD/view?usp=sharing). The text below is a summary of our findings.
+> This comparison study was the final project of a graduate-level course I took in Fall 2025 at UT Austin: Advanced Operating Systems. I worked one other person. For the full paper, [click here](https://drive.google.com/file/d/1m4FRiNjmH5EGP1pM7_hzu4jrOR8pYbZD/view?usp=sharing). The text below is a summary of our findings.
 
 Serverless platforms like AWS Lambda and Google Cloud Functions let developers run code without worrying about servers, scaling, or maintenance. Under the hood, these systems still rely on isolation technologies to keep workloads secure and performant. Two popular open-source options are **Firecracker** and **gVisor**—and in this project, we set out to compare how they behave in a serverless function environment.
 
-Firecracker runs workloads inside lightweight virtual machines (MicroVMs), while gVisor runs containers inside a secure sandbox. Both aim to balance security and performance, but they make different tradeoffs. Our goal was to recreate a simplified serverless setup and see how those tradeoffs play out in practice, inspired by an existing paper, *Blending Containers and Virtual Machines: A Study of Firecracker and gVisor* by Anjali et. al.
+Firecracker runs workloads inside lightweight virtual machines (MicroVMs), while gVisor runs containers inside a secure sandbox. Both aim to balance security and performance, but they make different tradeoffs. Our goal was to recreate a simplified serverless setup and see how those tradeoffs play out in practice, inspired by an existing paper, _Blending Containers and Virtual Machines: A Study of Firecracker and gVisor_ by Anjali et. al.
 
 ---
 
@@ -50,8 +51,9 @@ These tests let us see how each platform behaves with workloads with varying bot
 ---
 
 ## What We Learned
+
 - gVisor shines at startup. Containers come online quickly, making gVisor a great fit when fast cold starts matter.
-- Firecracker shines at runtime.  Once everything is running, Firecracker tends to execute workloads more efficiently, especially for CPU-intensive and syscall-heavy tasks.
+- Firecracker shines at runtime. Once everything is running, Firecracker tends to execute workloads more efficiently, especially for CPU-intensive and syscall-heavy tasks.
 - Isolation comes with tradeoffs. gVisor adds an extra security layer around system calls, which improves safety but can introduce overhead. Firecracker relies on VM isolation instead, which often leads to smoother performance once the VM is up and running.
 - Context switching matters. We found that Firecracker spends less time switching between processes during heavy workloads, which helps explain why it performs better for demanding tasks.
 

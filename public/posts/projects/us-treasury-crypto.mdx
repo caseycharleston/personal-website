@@ -1,25 +1,64 @@
 ---
-title: 'On Transforming the US Treasury to use Cryptocurrency'
-description: 'A research paper investigating the theoretical energy costs of transitioning the US Treasury to use cryptocurrency as a basis for transactions.'
-date: 'Feb 2025 - Apr 2025'
+title: On Transforming the US Treasury to use Cryptocurrency
+description: A research paper investigating the theoretical energy costs of transitioning the US Treasury to use cryptocurrency as a basis for transactions.
+date: Feb 2025 - Apr 2025
 tags:
-  - Consensus Algorithms
-  - Distributed Computing
-  - Cryptocurrency
+  - cryptocurrency
+  - government
+  - blockchain
 imageSrc: blockchain-collage.jpeg
-imageAlt: 'blockchain collage'
+imageAlt: blockchain collage
+order: '5'
 ---
 
-## Overview
+# US Treasury? Crypto? What?
 
-This work explored consensus models, transaction throughput, and the energy footprint of large-scale financial systems. I focused on translating network-level assumptions into measurable cost models.
+> This project was developed as part of a final project at UT Austin for the course CS 378: Energy Efficient Computing. I worked with one other person. The full presentation with more data and context can be found [here](https://drive.google.com/file/d/1dIX28P9pv2qmQXnI4KvE2u6SFWQG5IyN/view?usp=sharing).
 
-### Research Focus
+![](posts/images/us-treasury-crypto-tweet.png)
 
-We compared proof-of-work and proof-of-stake models, estimating infrastructure costs at national scale.
+Early in 2025, Elon Musk, when he was still working for DOGE, said "Yes" in response to another user asking if the US Treasury should be placed on the blockchain if officials continued to allegedly break the law.
 
-![[blockchain-collage.jpeg]]
+While we understand he probably wasn't 100% serious about doing this, we thought it would be interesting to see how much energy it would take to support such a system.
 
-### Next Steps
+# Background
 
-The next phase is to examine regulatory frameworks and hybrid settlement architectures.
+Cryptocurrency has one clear upside: it is decentralized, meaning that it is not controlled by a single entity and doesn't need to be. A group of users can create transactions without needing to go through a central authority. Each individual user ensures the integrity of the system. The original tweet supports this idea. If it were true that US Treasury officials were breaking the law, as long as they didn't represent a majority of the employees, their actions would not affect the movement of money as those transactions would be rejected by the system.
+
+It also has one clear downside: it costs a lot of energy to run decentralized systems. Specifically, the consensus mechanisms used by Bitcoin is incredibly energy-intensive.
+
+## Has anyone ever done this before?
+
+Two countries have tried to use cryptocurrency as legal tender. Both El Salvador and the Central African Republic (CAR) legalized Bitcoin as legal tender in 2021 and 2022 respectively. The CAR even made their own [memecoin](https://en.wikipedia.org/wiki/Meme_coin) which went as well as you would expect:
+![](posts/images/us-treasury-crypto-car-chart.png)
+_Values above show the CAR to US Dollar conversion._
+
+For both countries, it is clear that their attempts to use cryptocurrency failed. El Salvador discontinued its use as legal tender because of poor adoption rates. As of the time of our research, only 10% of CAR's population has internet access, which is a requirement to use a cryptocurrency.
+
+# Methodology
+
+Our goal was to see if the current US Treasury system uses more or less energy than a crypto-based treasury system. In the crypto system, we need to use a consensus mechanism to ensure the integrity of transactions. The two most popular choices are Proof of Work (used by Bitcoin) and Proof of Stake (used by Ethereum).
+
+## Curren System Energy Use
+
+![](posts/images/us-treasury-crypto.png)
+Based on 2024 data, the US Treasury cost ~257 MW in 2024. Most of the energy was used by checks, accounting for the printing cost of creating checks.
+
+The other transaction types (ACH and Fedwire) are digital transactions that are similar to how bank wiring works.
+
+## Crypto System Energy Use
+
+![](posts/images/us-treasury-crypto-pow.png)
+Were we to directly peg the US Treasury to Bitcoin/Crypto, it would cost ~3 Billion MW to process the same number of transactions in 2024. For Ethereum, it would be ~130,000 MW. This represents a ~11 million-fold increase in energy use for Proof of Work (PoW) and a 509x increase for Proof of Stake (PoS).
+
+Were we to develop our own custom system to process transactions outside of traditional cryptocurrencies, PoW would still cost 17,691,696 MW / year to run. For PoS, it would be 74,689 MW / year.
+
+Regardless of the system we use, the energy use for a crypto-based US Treasury system would be incredibly more expensive to run.
+
+## What about other consensus mechanisms?
+
+There are other ways to reach consensus in a distributed system that are more centralized. For example, Proof of Authority (PoA) is something we considered. However, such a system would require trust from one or a group of entities which goes against the spirit of the original tweet. Therefore, we require a way to reach consensus without trust.
+
+# Conclusion
+
+The government, and any government for that matter, is built on a system of trust. We trust officials to do their job and follow our wishes and the officials trust us to contribute as a citizen of their government. If an official becomes untrustworthy, we vote them out. If a citizen fails to pay their fair share, they are punished. A crypto-based US Treasury is a system built without the need for trust. A well-functioning government is one built on a system of trust. If we inherently distrust all of our officials, then what is the point of having a government?
