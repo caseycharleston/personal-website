@@ -1,0 +1,84 @@
+---
+title: Texas ACM Website Revamp
+description: Roadmapped and implemented a redesign of Texas ACM's website, UT Austin's chapter of ACM.
+date: Apr 2025 - Present
+tags:
+  - react
+  - typescript
+  - tailwind
+  - vercel
+imageSrc: texas-acm.jpeg
+imageAlt: texas acm website home page
+order: '7'
+---
+
+# Texas ACM
+
+Texas ACM is the ACM student chapter at UT Austin. I have been an officer in ACM since Fall 2023. In early 2025, I had ideas about how to improve the website. The original version was built in 2016 using raw HTML & CSS. There's nothing wrong with that by itself, but it was also poorly maintained and difficult to update. The last update to the original website was in 2018.
+
+The primary goal of the revamp was to modernize the website's design with React + Typescript and make the website easier to maintain for routine organizational changes.
+
+# A Sample of Issues
+
+### 1. Outdated forms
+
+![](posts/images/SCR-20260114-tnxv.png)
+
+In the forms tab, most of the forms were outdated/unused. Also, these forms were not accessible for certain parts of the year. For example, officer applications are only opened during specific weeks in the Spring/Fall. However, it was always displayed on the website which is confusing. Additionally, the "Wishlist," "Complaints," and "Questions" forms became obsolete sometime between their addition and 2025.
+
+In the revamp, forms are displayed in two categories: current forms, and past forms. With this, we can display currently active forms on the website while allowing users to see past forms. Seeing past forms is useful for a few reasons:
+
+1. A link to a past form allows previous respondents to view their responses in case they forget.
+2. Users can see past events and applications to know what to expect in the future.
+   As an extra feature, forms can be pinned to the top for easy access, especially the all-in-one event sign-in which is the most frequently used form.
+
+### 2. Cluttered resources tab
+
+![](posts/images/texas-acm-website-resources.png)
+The resources tab has way too much information. It doesn't need to be its own separate page as all of these resources are unrelated. Additionally, there is crossover with the forms page with links to officer, mentorship, and member applications.
+
+In the revamp, the resources tab will not be a separate page. Instead, it will be a dropdown menu that links to separate pages for each resource. The major benefit of this is that we can point a member to a specific resource because each one has a separate route. For example, we can direct a member to https://www.texasacm.org/resume-book instead of https://www.texasacm.org/resources, which would force them to sort through all of the text above to find exactly what they want. Also, we can collapse the Forms page into the Resources dropdown, eliminating duplicate forms on the website.
+
+# A Sample of the Revamp
+
+> For a full list of changes, see the GitHub repository for the website [here](https://github.com/texasacm/website). For a full list of the project tasks, see the associated GitHub project [here](https://github.com/users/caseycharleston/projects/1).
+
+To view the website, you can visit https://texasacm.org.
+
+### 1. New forms tab
+
+![](posts/images/SCR-20260114-txct.png)
+The above shows the current state of the forms page. The top shows pinned forms that are most important. The bottom shows forms with deadlines that passed. There would be a group of forms in between that are unpinned and not expired, but at the time of writing, there are no such forms.
+
+### 2. New resources organization
+
+The resource page no longer exists and is instead a dropdown of links. Notice that the CS A-to-Z, FAQ, and Forms are previous pages of the old website. These are all essentially resources to members, so it makes sense to put them under here. We also have a direct link to the resume book to direct members to. The CS Guide is a new addition with links to frequently used resources and good information to know.
+
+### 3. Dynamic featured events
+
+![](posts/images/texas-acm-website-featured-events.png)
+
+In the old website, we used Google Calendar's API to display upcoming events. The new website still has this under the Calendar tab, but the most important events for members to know about are the ones happening in the near future.
+
+In the revamp, the "Featured Events" tab automatically displays the two nearest upcoming events. Clicking on a card containing the event will take you to the event on the Texas ACM Google Calendar. There's also a button to add it to a user's personal calendar which is the best way to keep up with our events.
+
+### 4. Officer and form organization
+
+The two most commonly modified pages on the website are the "About" page that contains all the current officers, and the "Forms" page that contains all forms. To make this easier to maintain, there are three files dedicated to storing info about officers and forms:
+
+`officers.ts` houses info for officers:
+![](posts/images/texas-acm-website-officers-ts.png)
+
+`forms-data.tsx` houses info for all forms:
+![](posts/images/texas-acm-website-forms-ts.png)
+
+and `constants.ts` contains links to forms to reduce clutter in the file above.
+
+Adding new officers and forms still requires editing code, but the process is made much easier by housing the raw information in dedicated files. The components that display this information pull directly from these files.
+
+# Additional Notes
+
+- I'm very proud of this website! I loved how it turned out.
+- Shoutout to [Gabriel Keller](https://github.com/gjkeller) for working on the mailing list signup functionality and adding the CS A-to-Z page.
+- Shoutout to [Manoj Kumar](https://github.com/mkmkaksl) for working on the website's dark mode.
+- I'm actively working on a handoff doc to make sure new officers know how to maintain the website.

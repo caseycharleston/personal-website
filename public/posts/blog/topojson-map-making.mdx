@@ -1,0 +1,63 @@
+---
+title: 'TopoJSON: quick intro into my struggles to place a map on my website'
+description: At least I learned something.
+date: 01/23/2026
+tags:
+  - meta
+  - maps
+  - topojson
+  - react
+imageSrc: website-map.png
+imageAlt: the "Where I Lived" card on my website
+---
+
+### Humble beginnings
+
+The idea is simple: I want to put a map on my website showing all the places I've lived in. I've lived in places in Canada and the United States, so I need a map showing the contiguous states and provinces for those two countries. Because my website is built in React, the first thing to do was to look up a React library that solves this problem.
+
+The first thing I found is [`react-simple-maps`](https://github.com/zcreativelabs/react-simple-maps). It takes in map data via a GeoJSON or TopoJSON file and displays an SVG representation of the map. These JSON formats contain information about the arcs necessary to draw boundaries of the map.
+
+### A troubling roadblock
+
+However, if you visit the link above, this React library is outdated and is not functional in React 19, which my website is built in. There are multiple PRs (e.g. [#377](https://github.com/zcreativelabs/react-simple-maps/pull/377)) on that repo with changes to make it functional, but it has not been merged in for whatever reason.
+
+### A glimmer of hope
+
+Luckily, GitHub user vnedyalk0v created their own fork of `react-simple-maps`: [`react19-simple-maps`](https://github.com/vnedyalk0v/react19-simple-maps) which fixes the compatibility issue. As an added bonus, the entire library was rewritten in TypeScript. With this, I could finally get started with testing the library on my website...
+
+### Hopeless searching for a lost treasure
+
+The treasure in question being a TopoJSON file of the map I needed: a map of the state and provincial boundaries of the US and Canada. I've seen maps with just these borders before, so surely it can't be hard to find one!
+
+Clearly I was wrong as searches for "TopoJSON map of US + Canada" resulted in TopoJSON maps of the US OR Canada, not both (in a more recent search, I found this [Microsoft forums thread](https://community.fabric.microsoft.com/t5/Developer/Custom-map-for-Canadian-provinces-and-US-States-in-Filled-Maps/m-p/2685371/highlight/true) that has such a file with both countries but also Brazil and Australia which would have been annoying to remove. It also has a bunch of metadata I personally don't need).
+
+### Why don't I make the solution myself? (forcing myself to learn a new tool)
+
+Above, I mentioned that I found a map of the US (from [here](https://github.com/topojson/us-atlas)) and Canada (from [here](https://gist.github.com/Saw-mon-and-Natalie/a11f058fc0dcce9343b02498a46b3d44)). Well if I can't find one with both, why don't I make one? That's where this tool **mapshaper** comes in. mapshaper is a tool to modify GeoJSON and TopoJSON files. It has a CLI and web interface. I chose to use the latter for convenience which is at https://mapshaper.org.
+
+After downloading the `states-10m.json` and `canada.json` files, I loaded them into mapshaper:
+![](posts/images/mapshaper-demo-1.png)
+
+You can see I'm currently looking at the states layer that has the data for all US states and territories. There are two other layers: nation, which represents the entire US border, and provinces, which are the borders for the Canadian provinces.
+
+If I bring up the console tab in the top right, I can run `info` which brings up some information about the layer I'm currently on:
+![](posts/images/map-shaper-states-info.png)
+
+I can do the same for the provinces layer:
+![](posts/images/map-shaper-provinces-info.png)
+
+Notice that the states have "FID" and "name" as attributes, while provinces have "CODE" and "NAME". Attributes are case sensitive, so "name" and "NAME" are not recognized as the same.
+
+Because I don't really care about FID or CODE, I'm going to filter them out. Here is how I renamed "NAME" to "name" and removed the CODE attribute in the provinces layer:
+![](posts/images/map-shaper-provinces-change.png)
+
+Lastly, using `merge-layers`, I can combine the states and provinces layer to obtain a single layer with the provinces and states:
+![](posts/images/map-shaper-us-and-canada.png)
+
+### A journey's end
+
+From there, I exported the file as a TopoJSON and used it on my website:
+![](posts/images/website-map.png)
+Whew! Something I thought would be simple took a lot longer to figure out. I manually deleted the US island states and territories to shrink the map's total size. As a bonus, I created a map marker component (the location and text you see above) to show off each location I've lived in. I was originally going to make them clickable to showcase why I lived there but I thought that would be TMI and hard to format properly.
+
+For your reference, here is a [direct link](https://github.com/caseycharleston/personal-website/blob/main/public/maps/north-america.json) to the map in my repository for anyone to use. I should probably rename it to US + Canada instead of North America since it doesn't include Mexico.

@@ -1,0 +1,38 @@
+---
+title: UR v5 Virtualized Arm
+description: Configured a Universal Robotics v5 arm virtual simulation to enable collision detection and motion planning.
+date: May 2023 - Aug 2023
+tags:
+  - ros
+  - rviz
+  - gazebo
+  - embedded-programming
+imageSrc: ur5-arm.png
+imageAlt: ur5 arm
+order: '2'
+---
+
+# Overview
+
+> I built this project during Summer 2023 research work at UT Austin, as part of the [Living and Working with Robots Lab](https://bridgingbarriers.utexas.edu/good-systems/projects/living-and-working-with-robots). The code for this project is available [here](https://github.com/caseycharleston/v5_ur5arm).
+
+At the robotics lab I worked in, a new robot was in development. The major difference between this version and the previous was the inclusion of a robotic arm and gripper. This would allow the robot to pick up and place objects, essential actions for domestic robot functionality.
+
+# Purpose
+
+Before the arm could be used, the robot needs to understand where the arm is in real-world space and how to move it in virtual space. This is crucial for motion planning behavior. The simplified pipeline of picking up an object is:
+
+1. Use cameras to determine gripper position to pick up an object
+2. Calculate inverse kinematics to figure out how to move gripper into that position
+3. Ensure arm doesn’t collide with detected obstacles in the scene
+4. Once motion planning is complete, execute the action and move the arm
+
+Steps 2-3 require a virtualized representation of the arm for the robot to understand. The robot uses ROS to communicate with its various software and hardware components, including the arm.
+
+# Implementation
+
+The arm itself is a universal robotics UR5 arm equipped with a robotiq gripper. I merged URDF files for the arm and gripper and configured it to work with the existing model of the robot in RViz.
+
+# Beyond the Project
+
+It's been a while since I've worked on this project but I do remember it being used for actual motion planning and movement as part of a larger research project. It was great to hear that my work was useful in aiding the lab's research.
