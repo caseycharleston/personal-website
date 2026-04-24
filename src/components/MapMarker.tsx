@@ -1,6 +1,6 @@
 'use client';
 
-import { Marker } from '@vnedyalk0v/react19-simple-maps';
+import { Marker, createCoordinates } from '@vnedyalk0v/react19-simple-maps';
 import { useRef } from 'react';
 
 interface MapMarkerProps {
@@ -12,13 +12,14 @@ interface MapMarkerProps {
 
 export default function MapMarker({ coordinates, popupLabel, labelFontSize = 14 }: MapMarkerProps) {
   const markerRef = useRef<SVGGElement | null>(null);
+  const markerCoordinates = createCoordinates(coordinates[0], coordinates[1]);
   const labelSizeClass =
     labelFontSize >= 18 ? 'text-lg' : labelFontSize >= 16 ? 'text-base' : 'text-sm';
   const labelWidth = Math.max(40, popupLabel.length * (labelFontSize * 0.6) + labelFontSize);
   const labelHeight = Math.max(22, labelFontSize * 1.6);
 
   return (
-    <Marker coordinates={coordinates} className="cursor-default">
+    <Marker coordinates={markerCoordinates} className="cursor-default">
       <g ref={markerRef}>
         <circle r={4} className="fill-red-500 stroke-white stroke-[2]" />
 

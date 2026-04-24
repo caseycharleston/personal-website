@@ -1,50 +1,52 @@
-import Image from 'next/image';
-import AnimatedWord from './AnimatedWord';
+import type { ReactNode } from 'react';
 import Card from './Card';
 import MapChart from './MapChart';
 import MapMarker from './MapMarker';
+import ContactSection from './ContactSection';
+
+function AboutDetailSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="space-y-5">
+      <div>
+        <h3 className="text-2xl md:text-3xl font-mono font-medium text-black">{title}</h3>
+        <hr className="mt-3 border-black/20" />
+      </div>
+      <div className="space-y-4 text-lg leading-relaxed text-black">{children}</div>
+    </section>
+  );
+}
+
+function StubList({ items }: { items: string[] }) {
+  return (
+    <ul className="list-disc space-y-2 pl-6 text-lg leading-relaxed text-black">
+      {items.map(item => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function AboutSection() {
   const markerLabelSize = 18;
 
   return (
     <section id="about" className="section-shell">
-      <h2 className="section-title mt-24 mb-16">Hi, I&apos;m Casey</h2>
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-12 text-black">
-        <span className="text-xl font-mono">I&apos;m a</span>
-        <span className="text-xl font-mono">
-          <AnimatedWord />
-        </span>
+      <h2 className="section-title mt-24 mb-16">About</h2>
+      <div className="mx-auto mb-20 max-w-4xl space-y-6 text-lg leading-relaxed text-black">
+        <p>
+          Hi, I'm Casey! Welcome to my personal website. I house my projects, blog posts, and social
+          links to stay in touch here. I'm currently working as a software engineer. I enjoy playing
+          video games, bouldering, hiking, and watching long YouTube videos. I also really enjoy
+          writing down my thoughts and having an organized productivity system.
+        </p>
+        <p>
+          All of the content on the website is my own. None of the writing is AI-generated and is
+          purely from my own thoughts. If you'd like to contact me or want to get back in touch,
+          feel free to reach out! My socials and email are found below.
+        </p>
+        <ContactSection />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
-        <Card>
-          <div className="flex flex-col justify-center h-full p-8 space-y-6">
-            <p className="text-lg leading-relaxed text-black">
-              I&apos;m a computer science student at UT Austin. I&apos;m originally from the
-              Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
-            </p>
-            <p className="text-lg leading-relaxed text-black">
-              My career is mostly software engineering-related. My favorite parts of engineering are
-              the collaborative problem-solving and knowledge-sharing. I&apos;ve also been a
-              teaching assistant. If it were not for software engineering, I&apos;d happily look
-              into getting my Master&apos;s and becoming a teacher.
-            </p>
-          </div>
-        </Card>
-        <Card>
-          <div className="flex items-center justify-center p-8">
-            <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-600 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
-              <Image
-                src="/headshot.jpeg"
-                width={1000}
-                height={1000}
-                alt="Headshot of Casey"
-                className="object-cover w-full h-full"
-                style={{ objectPosition: '55% 22%', transform: 'scale(1.4)' }}
-              />
-            </div>
-          </div>
-        </Card>
         <Card className="lg:col-span-2">
           <div className="flex flex-col space-y-6">
             <div>
@@ -98,53 +100,96 @@ export default function AboutSection() {
             </div>
           </div>
         </Card>
-        <Card className="lg:col-span-2">
-          <div className="flex flex-col space-y-4">
-            <h3 className="text-2xl md:text-3xl font-mono font-medium text-black">
-              A Sample of My Favorite Things
-            </h3>
-            <ul className="list-disc pl-6 space-y-2 text-lg text-black">
-              <li>
-                <span className="font-semibold">Sports Teams</span>: Longhorns, Seahawks, LAL (Los
-                Angeles&apos; Luka)
-              </li>
-              <li>
-                <span className="font-semibold">Movies</span>: <i>Fantastic Mr. Fox</i>,{' '}
-                <i>Kubo and the Two Strings</i>, <i>The Truman Show</i>{' '}
-              </li>
-              <li>
-                <span className="font-semibold">TV Shows</span>: <i>Adventure Time</i>,{' '}
-                <i>Better Call Saul</i>, <i>Smiling Friends</i>, <i>Severance</i>, <i>Silo</i>
-              </li>
-              <li>
-                <span className="font-semibold">Games</span>: <i>Baldur&apos;s Gate 3</i>,{' '}
-                <i>The Binding of Isaac</i>, <i>Hades/Hades 2</i>, <i>Hollow Knight/Silksong</i>
-              </li>
+      </div>
+      <div className="mx-auto max-w-5xl space-y-16">
+        <AboutDetailSection title="What I'm Doing Now">
+          <p className="italic">Updated April 2026</p>
+          <StubList
+            items={[
+              'Finishing my last semester of college',
+              'Thinking about learning iOS development',
+              'Planning my move to the bay area',
+            ]}
+          />
+        </AboutDetailSection>
+        <AboutDetailSection title="Website Plans">
+          <p className="italic">Updated April 2026</p>
+          <StubList items={['Daily TIL', 'Search by blog tags']} />
+        </AboutDetailSection>
 
-              <li>
-                <span className="font-semibold">Coffee</span>: Bennu Coffee (ATX), Stouthaus Coffee
-                (ATX), Finjan Qahwa (SF)
-              </li>
-              <li>
-                <span className="font-semibold">Food</span>: Cabo Bob&apos;s (ATX), Guppy&apos;s
-                (ATX), FOB Sushi (Seattle), Bay Burgers (SF), Taqueria San Bruno{' '}
-              </li>
-              <li>
-                <span className="font-semibold">Music</span>: Kendrick Lamar, SZA, Pusha T, Little
-                Simz, Gorillaz, Tame Impala
-              </li>
-              <li>
-                <span className="font-semibold">YouTubers</span>: CGP Grey, DougDoug, LEMMiNO, Nick
-                Robinson, Super Eyepatch Wolf, Nexpo, RetroGamingNow, Paul Platt, Raycevick, Ludwig,
-                mossbag, and plenty others. I watch too much YouTube
-              </li>
-              <li>
-                <span className="font-semibold">Hobbies</span>: bouldering, biking, hiking,
-                PC/keyboard building, writing, sharing my opinions, trying new things
-              </li>
-            </ul>
+        <AboutDetailSection title="Tools">
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-black">Software</h4>
+              <p>This website is hosted on Vercel and uses the Next.js framework.</p>
+              <StubList
+                items={[
+                  'Coding: Visual Studio Code',
+                  'Notes: Obsidian',
+                  'Spotlight replacement: Raycast',
+                  'Todo List: Things 3',
+                  'Time tracking: Timery',
+                  'Other fav apps: AltTab, Shottr, Cotypist, Thaw',
+                ]}
+              />
+            </div>
+
+            <div className="space-y-3">
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-black">Hardware</h4>
+              <StubList
+                items={[
+                  'Laptop: 16" MacBook M2 Pro',
+                  'PC Specs: CPU, Motherboard, Memory, Storage, GPU, PSU, Case',
+                  'Keyboard(s): Keychron K2 w/ Keychron Banana Switches | Keychron Q10 Pro w/ Holy Panda Switches',
+                  'Headphones: DROP PC38X',
+                  'Mouse: Logitech G PRO X Superlight 2',
+                ]}
+              />
+            </div>
           </div>
-        </Card>
+        </AboutDetailSection>
+        <AboutDetailSection title="Food">
+          <StubList
+            items={[
+              "Austin: Cabo Bob's, Guppy's, Two Goose, Paprika",
+              'Bay Area: Bay Burgers, Taqueria San Bruno',
+              'Seatte: FOB Sushi, FOB Poke, Pike Place Chowder',
+            ]}
+          />
+        </AboutDetailSection>
+        <AboutDetailSection title="Coffee">
+          <StubList
+            items={[
+              'Austin: Bennu Coffee, Noble Joe Coffee, Hometown Coffee, BRB Coffee, Stouthaus Coffee',
+              'Bay Area: Finjan Qahwa, Kaizen & Coffee',
+            ]}
+          />
+        </AboutDetailSection>
+        <AboutDetailSection title="Movie/TV Shows">
+          <StubList
+            items={[
+              'Fantastic Mr. Fox',
+              'The Truman Show',
+              'Kubo and the Two Strings',
+              'Adventure Time',
+              'Breaking Bad/Better Call Saul',
+              'Severance',
+              'Silo',
+            ]}
+          />
+        </AboutDetailSection>
+        <AboutDetailSection title="Video Games">
+          <StubList
+            items={[
+              "Baldur's Gate 3",
+              'The Bindinf of Isaac',
+              'Hades 1 and 2',
+              'Hollow Knight and Hollow Knight: Silksong',
+              'Overwatch',
+              'Battlefield 1',
+            ]}
+          />
+        </AboutDetailSection>
       </div>
     </section>
   );

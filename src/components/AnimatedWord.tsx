@@ -14,7 +14,7 @@ const items = [
   },
   {
     word: 'gamer',
-    tooltip: "Now playing: Baldur's Gate 3, Hades 2, Slay the Spire",
+    tooltip: 'Now playing: Terraria, Overwatch, Slay the Spire 2',
   },
   {
     word: 'writer',

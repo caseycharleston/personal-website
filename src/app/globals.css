@@ -83,7 +83,8 @@ html {
 
 @layer components {
   .section-shell {
-    @apply mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-16 xl:px-20 py-24;
+    @apply mx-auto w-full max-w-6xl py-24;
+    padding-inline: clamp(1.5rem, 6vw, 6rem);
   }
 
   .section-title {

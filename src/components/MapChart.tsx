@@ -1,6 +1,11 @@
 'use client';
 
-import { ComposableMap, Geographies, Geography } from '@vnedyalk0v/react19-simple-maps';
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  createCoordinates,
+} from '@vnedyalk0v/react19-simple-maps';
 import React, { createContext, useContext, useState } from 'react';
 import geoData from '../../public/maps/north-america-minus-islands.json';
 
@@ -33,6 +38,7 @@ export default function MapChart({
   center = [-100, 45],
 }: MapChartProps) {
   const [openId, setOpenId] = useState<string | null>(null);
+  const mapCenter = createCoordinates(center[0], center[1]);
 
   return (
     <div
@@ -44,7 +50,7 @@ export default function MapChart({
           projection="geoMercator"
           projectionConfig={{
             scale,
-            center,
+            center: mapCenter,
           }}
         >
           <Geographies geography={geoData}>

@@ -8,7 +8,11 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaBluesky } from 'react-icons/fa6';
 import { IoIosMail } from 'react-icons/io';
 
-export default function ContactSection() {
+type ContactSectionProps = {
+  className?: string;
+};
+
+export default function ContactSection({ className = '' }: ContactSectionProps) {
   const email = 'caseycharleston@gmail.com';
   const [isCopied, setIsCopied] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -44,8 +48,8 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="min-h-screen section-shell">
-      <h2 className="section-title mb-8">Contact Me</h2>
+    <section id="contact" className={`section-shell ${className}`}>
+      <h2 className="section-title">Contact Me</h2>
       <hr className="mb-8" />
       <div className="space-y-4">
         <Link
