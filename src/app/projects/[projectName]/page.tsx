@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
+import TagLink from '@/components/TagLink';
 import { getProjectPostBySlug, getProjectPosts, ProjectMdxContent } from '@/lib/mdx-content';
 
 export async function generateStaticParams() {
@@ -43,11 +44,8 @@ export default async function ProjectPage({
           {meta.tags && meta.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {meta.tags.map(tag => (
-                <li
-                  key={tag}
-                  className="rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs text-black"
-                >
-                  {tag}
+                <li key={tag}>
+                  <TagLink tag={tag} hrefBase="/projects/tags" />
                 </li>
               ))}
             </ul>

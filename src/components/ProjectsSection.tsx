@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getProjectPosts } from '@/lib/mdx-content';
 import PostCard from './PostCard';
 
@@ -6,7 +7,20 @@ export default async function ProjectsSection() {
 
   return (
     <section id="projects" className="section-shell py-24">
-      <h2 className="section-title mb-16">Projects</h2>
+      <div className="mb-16 space-y-4 text-center">
+        <h2 className="section-title mb-0">Projects</h2>
+        <p className="mx-auto max-w-3xl text-base text-black/80">
+          A collection of things I&apos;ve worked on throughout college and as a side project. View
+          projects by tag{' '}
+          <Link
+            href="/projects/tags"
+            className="underline text-emerald-600 transition-colors duration-200 hover:text-emerald-800"
+          >
+            here
+          </Link>
+          .
+        </p>
+      </div>
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
         {projects.map(project => (
           <PostCard
@@ -15,6 +29,7 @@ export default async function ProjectsSection() {
             description={project.meta.description}
             tags={project.meta.tags ?? []}
             href={`/projects/${project.slug}`}
+            tagHrefBase="/projects/tags"
             date={project.meta.date}
             imageSrc={project.meta.imageSrc}
             imageAlt={project.meta.imageAlt}

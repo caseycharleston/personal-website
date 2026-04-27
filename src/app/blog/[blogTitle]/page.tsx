@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
+import TagLink from '@/components/TagLink';
 import { getBlogPostBySlug, getBlogPosts, BlogMdxContent } from '@/lib/mdx-content';
 
 export async function generateStaticParams() {
@@ -38,11 +39,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
           {meta.tags && meta.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {meta.tags.map(tag => (
-                <li
-                  key={tag}
-                  className="rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs text-black"
-                >
-                  {tag}
+                <li key={tag}>
+                  <TagLink tag={tag} hrefBase="/blog/tags" />
                 </li>
               ))}
             </ul>
