@@ -49,7 +49,11 @@ function normalizeMetaImageSrc(src: string) {
   return `/posts/images/${normalizedSrc}`;
 }
 
-function parseBlogDate(date: string) {
+export function parseBlogDate(date?: string | null) {
+  if (typeof date !== 'string') {
+    return Number.NaN;
+  }
+
   const parts = date.split('/');
   if (parts.length !== 3) {
     return Number.NaN;
