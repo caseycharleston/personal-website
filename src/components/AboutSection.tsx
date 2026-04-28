@@ -34,15 +34,15 @@ export default function AboutSection() {
       <h2 className="section-title mt-24 mb-16">About</h2>
       <div className="mx-auto mb-20 max-w-4xl space-y-6 text-lg leading-relaxed text-black">
         <p>
-          Hi, I'm Casey! Welcome to my personal website. I house my projects, blog posts, and social
-          links to stay in touch here. I'm currently working as a software engineer. I enjoy playing
-          video games, bouldering, hiking, and watching long YouTube videos. I also really enjoy
-          writing down my thoughts and having an organized productivity system.
+          Hi, I&apos;m Casey! Welcome to my personal website. I house my projects, blog posts, and
+          social links to stay in touch here. I&apos;m currently working as a software engineer. I
+          enjoy playing video games, bouldering, hiking, and watching long YouTube videos. I also
+          really enjoy writing down my thoughts and having an organized productivity system.
         </p>
         <p>
           All of the content on the website is my own. None of the writing is AI-generated and is
-          purely from my own thoughts. If you'd like to contact me or want to get back in touch,
-          feel free to reach out! My socials and email are found below.
+          purely from my own thoughts. If you&apos;d like to contact me or want to get back in
+          touch, feel free to reach out! My socials and email are found below.
         </p>
         <ContactSection />
       </div>

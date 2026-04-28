@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 const tabs = [
   { label: 'About', href: '/about' },
-  { label: 'Projects', href: '/projects' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Projects', href: '/projects' },
 ];
 
 export default function Header() {
