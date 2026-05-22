@@ -21,9 +21,16 @@ export interface MdxEntry {
   meta: MdxMeta;
 }
 
+export interface TocItem {
+  depth: number;
+  value: string;
+  href: string;
+}
+
 export type MdxModule = {
   default: ComponentType<{ components?: MDXComponents }>;
   meta: MdxMeta;
+  toc: TocItem[];
 };
 
 function imageAltFromFilename(filename: string) {
@@ -105,11 +112,45 @@ function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
   );
 }
 
+function joinClassName(...classNames: Array<string | undefined>) {
+  return classNames.filter(Boolean).join(' ');
+}
+
 const baseMdxComponents: MDXComponents = {
   a: MdxLink,
-  h1: ({ children }) => <h1 className="text-3xl font-mono font-semibold text-black">{children}</h1>,
-  h2: ({ children }) => <h2 className="text-2xl font-mono font-semibold text-black">{children}</h2>,
-  h3: ({ children }) => <h3 className="text-xl font-mono font-semibold text-black">{children}</h3>,
+  h1: ({ children, className, ...props }: ComponentProps<'h1'>) => (
+    <h1
+      {...props}
+      className={joinClassName(
+        'scroll-mt-24 text-3xl font-mono font-semibold text-black',
+        className
+      )}
+    >
+      {children}
+    </h1>
+  ),
+  h2: ({ children, className, ...props }: ComponentProps<'h2'>) => (
+    <h2
+      {...props}
+      className={joinClassName(
+        'scroll-mt-24 text-2xl font-mono font-semibold text-black',
+        className
+      )}
+    >
+      {children}
+    </h2>
+  ),
+  h3: ({ children, className, ...props }: ComponentProps<'h3'>) => (
+    <h3
+      {...props}
+      className={joinClassName(
+        'scroll-mt-24 text-xl font-mono font-semibold text-black',
+        className
+      )}
+    >
+      {children}
+    </h3>
+  ),
   p: ({ children }) => <p className="text-base leading-relaxed text-black/90">{children}</p>,
   ul: ({ children }) => (
     <ul className="list-disc space-y-2 pl-6 text-base text-black/90">{children}</ul>
@@ -166,6 +207,7 @@ export async function getBlogPostBySlug(slug: string) {
       imageSrc: normalizeMetaImageSrc(mod.meta.imageSrc),
     },
     Content: mod.default,
+    toc: mod.toc,
   };
 }
 
@@ -198,6 +240,7 @@ export async function getProjectPostBySlug(slug: string) {
       imageSrc: normalizeMetaImageSrc(mod.meta.imageSrc),
     },
     Content: mod.default,
+    toc: mod.toc,
   };
 }
 

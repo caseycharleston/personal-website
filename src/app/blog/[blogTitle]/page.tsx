@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
+import TableOfContents from '@/components/TableOfContents';
 import TagLink from '@/components/TagLink';
 import { getBlogPostBySlug, getBlogPosts, BlogMdxContent } from '@/lib/mdx-content';
 
@@ -17,7 +18,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
     notFound();
   }
 
-  const { meta, Content } = post;
+  const { meta, Content, toc } = post;
 
   return (
     <main className="bg-[#FEFCF0] text-black">
@@ -47,8 +48,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
           )}
         </div>
 
-        <div className="space-y-6 border-t border-black/10 pt-10">
-          <BlogMdxContent Content={Content} />
+        <div className="grid gap-10 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
+          <article className="min-w-0 space-y-6">
+            <BlogMdxContent Content={Content} />
+          </article>
+          <aside className="hidden lg:block">
+            <TableOfContents items={toc} />
+          </aside>
         </div>
       </section>
     </main>

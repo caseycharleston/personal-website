@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
+import TableOfContents from '@/components/TableOfContents';
 import TagLink from '@/components/TagLink';
 import { getProjectPostBySlug, getProjectPosts, ProjectMdxContent } from '@/lib/mdx-content';
 
@@ -22,7 +23,7 @@ export default async function ProjectPage({
     notFound();
   }
 
-  const { meta, Content } = project;
+  const { meta, Content, toc } = project;
 
   return (
     <main className="bg-[#FEFCF0] text-black">
@@ -51,19 +52,24 @@ export default async function ProjectPage({
             </ul>
           )}
         </div>
-        <div className="flex justify-center">
-          <Image
-            src={meta.imageSrc}
-            alt={meta.imageAlt}
-            width="0"
-            height="0"
-            sizes="100vw"
-            unoptimized
-            className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
-          />
-        </div>
-        <div className="space-y-6 border-t border-black/10 pt-10">
-          <ProjectMdxContent Content={Content} />
+        <div className="grid gap-10 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
+          <article className="min-w-0 space-y-6">
+            <div className="flex justify-center">
+              <Image
+                src={meta.imageSrc}
+                alt={meta.imageAlt}
+                width="0"
+                height="0"
+                sizes="100vw"
+                unoptimized
+                className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
+              />
+            </div>
+            <ProjectMdxContent Content={Content} />
+          </article>
+          <aside className="hidden lg:block">
+            <TableOfContents items={toc} />
+          </aside>
         </div>
       </section>
     </main>

@@ -12,8 +12,16 @@ declare module '@/generated/projects/registry.mjs' {
     order?: number;
   }
 
+  export interface TocItem {
+    depth: number;
+    value: string;
+    href: string;
+  }
+
   export const projects: { slug: string; meta: ProjectMeta }[];
-  export function loadProject(
-    slug: string
-  ): Promise<{ default: ComponentType<{ components?: MDXComponents }>; meta: ProjectMeta } | null>;
+  export function loadProject(slug: string): Promise<{
+    default: ComponentType<{ components?: MDXComponents }>;
+    meta: ProjectMeta;
+    toc: TocItem[];
+  } | null>;
 }

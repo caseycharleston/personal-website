@@ -12,8 +12,16 @@ declare module '@/generated/blog/registry.mjs' {
     order?: number;
   }
 
+  export interface TocItem {
+    depth: number;
+    value: string;
+    href: string;
+  }
+
   export const posts: { slug: string; meta: BlogMeta }[];
-  export function loadPost(
-    slug: string
-  ): Promise<{ default: ComponentType<{ components?: MDXComponents }>; meta: BlogMeta } | null>;
+  export function loadPost(slug: string): Promise<{
+    default: ComponentType<{ components?: MDXComponents }>;
+    meta: BlogMeta;
+    toc: TocItem[];
+  } | null>;
 }

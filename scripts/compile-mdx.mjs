@@ -3,7 +3,9 @@ import path from 'path';
 import matter from 'gray-matter';
 import { compile } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
+import remarkFlexibleToc from 'remark-flexible-toc';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
 
 const targets = [
   {
@@ -63,14 +65,23 @@ async function compileTarget(target) {
       order: Number.isFinite(orderValue) ? orderValue : undefined,
     };
 
+    const toc = [];
     const compiled = await compile(content, {
       outputFormat: 'program',
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeHighlight],
+      remarkPlugins: [remarkGfm, [remarkFlexibleToc, { tocRef: toc, skipLevels: [] }]],
+      rehypePlugins: [rehypeSlug, rehypeHighlight],
     });
 
     const code = String(compiled);
-    const output = `export const meta = ${JSON.stringify(meta, null, 2)};\n${code}`;
+    const normalizedToc = toc.map(item => ({
+      depth: item.depth,
+      value: item.value,
+      href: item.href,
+    }));
+    const output =
+      `export const meta = ${JSON.stringify(meta, null, 2)};\n` +
+      `export const toc = ${JSON.stringify(normalizedToc, null, 2)};\n` +
+      code;
     await fs.writeFile(path.join(target.outputDir, `${slug}.mjs`), output);
 
     manifest.push({ slug, meta });
