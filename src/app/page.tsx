@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import HomeIndexTables from '@/components/HomeIndexTables';
 import HomeIntroSection from '@/components/HomeIntroSection';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="bg-[#FEFCF0] text-black">
       <Header />
