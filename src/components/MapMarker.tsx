@@ -31,7 +31,7 @@ export default function MapMarker({ coordinates, popupLabel, labelFontSize = 14 
             height={labelHeight}
             rx="10"
             ry="10"
-            className="fill-emerald-600 stroke-emerald-500 stroke-[1.5]"
+            className="fill-accent stroke-accent-hover stroke-[1.5]"
           />
           <text
             textAnchor="middle"

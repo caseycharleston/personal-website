@@ -84,7 +84,7 @@ function MdxLink({ href = '', children, ...rest }: ComponentProps<'a'> & { child
   return (
     <Link
       href={href}
-      className="transition-colors duration-200 underline text-accent hover:text-accent"
+      className="underline text-accent lnk hover:text-accent"
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noreferrer' : undefined}
       {...rest}

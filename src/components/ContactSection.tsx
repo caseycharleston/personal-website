@@ -54,7 +54,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
       <div className="space-y-4">
         <Link
           href="https://www.linkedin.com/in/caseycharleston/"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
+          className="flex items-center gap-3 text-accent lnk hover:underline"
           target="_blank"
           rel="noreferrer"
         >
@@ -62,7 +62,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
         </Link>
         <Link
           href="https://github.com/caseycharleston"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
+          className="flex items-center gap-3 text-accent lnk hover:underline"
           target="_blank"
           rel="noreferrer"
         >
@@ -70,7 +70,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
         </Link>
         <Link
           href="https://bsky.app/profile/caseycharleston.bsky.social"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
+          className="flex items-center gap-3 text-accent lnk hover:underline"
           target="_blank"
           rel="noreferrer"
         >

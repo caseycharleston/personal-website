@@ -155,4 +155,9 @@ html {
   .section-title {
     @apply text-center text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-foreground mb-12;
   }
+
+  /* Text/navigation links: smoothly dim on hover for clear affordance. */
+  .lnk {
+    @apply transition-[color,opacity,text-decoration-color] duration-200 hover:opacity-65;
+  }
 }

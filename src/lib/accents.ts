@@ -8,6 +8,6 @@ export const ACCENTS: { id: AccentId; label: string; swatch: string }[] = [
   { id: 'rose', label: 'Rose', swatch: '#e11d48' },
 ];
 
-export const DEFAULT_ACCENT: AccentId = 'green';
+export const DEFAULT_ACCENT: AccentId = 'amber';
 export const STORAGE_THEME = 'theme';
 export const STORAGE_ACCENT = 'accent';

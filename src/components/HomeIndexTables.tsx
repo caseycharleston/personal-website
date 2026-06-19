@@ -73,7 +73,7 @@ function HomeTable({
                 <td className="py-3 text-left align-middle">
                   <Link
                     href={`${hrefBase}/${entry.slug}`}
-                    className="font-mono text-sm font-semibold text-accent underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline sm:text-base"
+                    className="font-mono text-sm font-semibold text-accent underline-offset-4 lnk hover:text-accent hover:underline sm:text-base"
                   >
                     {entry.meta.title}
                   </Link>
@@ -87,7 +87,7 @@ function HomeTable({
         <div className="mt-6 text-left">
           <Link
             href={viewAllHref}
-            className="font-mono text-sm font-semibold text-accent underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+            className="font-mono text-sm font-semibold text-accent underline-offset-4 lnk hover:text-accent hover:underline"
           >
             {viewAllLabel} &rarr;
           </Link>
@@ -113,7 +113,7 @@ function HomeProjectGrid({ projects }: { projects: MdxEntry[] }) {
               {Icon && <Icon className="mb-3 text-2xl text-accent" aria-hidden="true" />}
               <Link
                 href={`/projects/${project.slug}`}
-                className="mb-4 font-mono text-lg font-semibold leading-snug text-accent underline-offset-4 transition-colors duration-200 hover:text-accent hover:underline"
+                className="mb-4 font-mono text-lg font-semibold leading-snug text-accent underline-offset-4 lnk hover:text-accent hover:underline"
               >
                 {project.meta.title}
               </Link>

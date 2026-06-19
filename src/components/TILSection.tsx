@@ -28,7 +28,7 @@ export default async function TILSection() {
               <div className="min-w-0 space-y-4">
                 <Link
                   href={`/til/${entry.slug}`}
-                  className="block text-xl font-mono font-semibold text-accent underline-offset-4 transition-colors hover:underline"
+                  className="block text-xl font-mono font-semibold text-accent underline-offset-4 lnk hover:underline"
                 >
                   <h3>{entry.meta.title}</h3>
                 </Link>

@@ -21,7 +21,7 @@ export default function ContentResultCard({
       <div className="space-y-3">
         <Link
           href={href}
-          className="block text-lg font-mono font-semibold text-accent underline-offset-4 transition-colors hover:text-accent hover:underline"
+          className="block text-lg font-mono font-semibold text-accent underline-offset-4 lnk hover:text-accent hover:underline"
         >
           {title}
         </Link>

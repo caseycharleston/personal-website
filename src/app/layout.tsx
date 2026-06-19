@@ -8,7 +8,7 @@ const sono = Sono({
   subsets: ['latin'],
 });
 
-const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');var a=localStorage.getItem('accent');if(a)document.documentElement.setAttribute('data-accent',a);}catch(e){}})();`;
+const themeInit = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('theme');if(t!=='light')d.classList.add('dark');var a=localStorage.getItem('accent');d.setAttribute('data-accent',a||'amber');}catch(e){d.classList.add('dark');d.setAttribute('data-accent','amber');}})();`;
 
 export const metadata: Metadata = {
   title: "Casey's Personal Website",
