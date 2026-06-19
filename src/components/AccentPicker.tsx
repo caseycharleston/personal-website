@@ -14,7 +14,10 @@ export default function AccentPicker() {
       >
         <span className="h-4 w-4 rounded-full bg-accent" />
       </Menu.Button>
-      <Menu.Items className="absolute right-0 mt-2 flex flex-col items-center gap-3 rounded-xl border border-border bg-surface p-3 shadow-lg focus:outline-none">
+      <Menu.Items
+        modal={false}
+        className="absolute right-0 mt-2 flex flex-col items-center gap-3 rounded-xl border border-border bg-surface p-3 shadow-lg focus:outline-none"
+      >
         {ACCENTS.map(a => (
           <Menu.Item key={a.id}>
             <button
