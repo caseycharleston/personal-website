@@ -103,18 +103,18 @@ export default function AboutSection() {
       </div>
       <div className="mx-auto max-w-5xl space-y-16">
         <AboutDetailSection title="What I'm Doing Now">
-          <p className="italic">Updated April 2026</p>
+          <p className="italic">Updated June 2026</p>
           <StubList
             items={[
-              'Finishing my last semester of college',
-              'Thinking about learning iOS development',
-              'Planning my move to the bay area',
+              'Starting my new grad job as a SWE at Meta',
+              'Learning (and vibe coding) iOS apps',
+              'Moving to the bay area',
             ]}
           />
         </AboutDetailSection>
         <AboutDetailSection title="Website Plans">
-          <p className="italic">Updated April 2026</p>
-          <StubList items={['Daily TIL', 'Search by blog tags']} />
+          <p className="italic">Updated June 2026</p>
+          <StubList items={['Daily TIL', 'Apple Music tracker', 'Making dumb little websites']} />
         </AboutDetailSection>
 
         <AboutDetailSection title="Tools">
@@ -129,7 +129,7 @@ export default function AboutSection() {
                   'Spotlight replacement: Raycast',
                   'Todo List: Things 3',
                   'Time tracking: Timery',
-                  'Other fav apps: AltTab, Shottr, Cotypist, Thaw',
+                  'Other fav apps: Dockdoor, Shottr, Cotypist, Thaw',
                 ]}
               />
             </div>
