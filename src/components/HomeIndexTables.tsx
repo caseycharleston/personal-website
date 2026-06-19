@@ -9,7 +9,7 @@ import {
   FaLaptopCode,
   FaRobot,
 } from 'react-icons/fa';
-import { getBlogPosts, getProjectPosts, type MdxEntry } from '@/lib/mdx-content';
+import { formatBlogDate, getBlogPosts, getProjectPosts, type MdxEntry } from '@/lib/mdx-content';
 
 const projectIcons: Record<string, IconType> = {
   'aws-firecracker-gvisor': FaAws,
@@ -29,23 +29,6 @@ type HomeTableProps = {
   viewAllHref?: string;
   viewAllLabel?: string;
 };
-
-function formatBlogDate(date: string) {
-  const [monthString, dayString, yearString] = date.split('/');
-  const month = Number(monthString);
-  const day = Number(dayString);
-  const year = Number(yearString);
-
-  if (!month || !day || !year) {
-    return date;
-  }
-
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(Date.UTC(year, month - 1, day)));
-}
 
 function HomeTable({
   title,
@@ -117,7 +100,9 @@ function HomeProjectGrid({ projects }: { projects: MdxEntry[] }) {
               >
                 {project.meta.title}
               </Link>
-              <p className="text-sm leading-relaxed text-foreground/85">{project.meta.description}</p>
+              <p className="text-sm leading-relaxed text-foreground/85">
+                {project.meta.description}
+              </p>
             </article>
           );
         })}
