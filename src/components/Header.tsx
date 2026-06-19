@@ -6,6 +6,7 @@ const tabs = [
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
   { label: 'Projects', href: '/projects' },
+  { label: 'TIL', href: '/til' },
 ];
 
 export default function Header() {

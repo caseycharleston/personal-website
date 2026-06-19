@@ -10,6 +10,7 @@
     "build:mdx": "node scripts/compile-mdx.mjs",
     "build:blog": "node scripts/compile-mdx.mjs --blog",
     "build:projects": "node scripts/compile-mdx.mjs --projects",
+    "build:til": "node scripts/compile-mdx.mjs --til",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",

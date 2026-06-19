@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { posts, loadPost } from '@/generated/blog/registry.mjs';
 import { projects, loadProject } from '@/generated/projects/registry.mjs';
+import { tils, loadTil } from '@/generated/til/registry.mjs';
 import { useMDXComponents } from '@/app/mdx-components';
 
 export interface MdxMeta {
@@ -176,6 +177,23 @@ const projectMdxComponents: MDXComponents = {
   img: MdxImage,
 };
 
+const tilMdxComponents: MDXComponents = {
+  ...baseMdxComponents,
+  img: MdxImage,
+};
+
+const tilDateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+export function formatTilDate(date: string) {
+  const timestamp = parseBlogDate(date);
+  return Number.isFinite(timestamp) ? tilDateFormatter.format(new Date(timestamp)) : date;
+}
+
 export async function getBlogPosts(): Promise<MdxEntry[]> {
   return (posts as MdxEntry[])
     .map(post => ({
@@ -242,6 +260,34 @@ export async function getProjectPostBySlug(slug: string) {
     Content: mod.default,
     toc: mod.toc,
   };
+}
+
+export async function getTILs(): Promise<MdxEntry[]> {
+  return (tils as MdxEntry[]).slice().sort((a, b) => {
+    const aDate = parseBlogDate(a.meta.date);
+    const bDate = parseBlogDate(b.meta.date);
+    const aValue = Number.isFinite(aDate) ? aDate : Number.NEGATIVE_INFINITY;
+    const bValue = Number.isFinite(bDate) ? bDate : Number.NEGATIVE_INFINITY;
+    return bValue - aValue;
+  });
+}
+
+export async function getTILBySlug(slug: string) {
+  const mod = (await loadTil(slug)) as MdxModule | null;
+  if (!mod) {
+    return null;
+  }
+
+  return {
+    slug,
+    meta: mod.meta,
+    Content: mod.default,
+    toc: mod.toc,
+  };
+}
+
+export function TILMdxContent({ Content }: { Content: MdxModule['default'] }) {
+  return <Content components={useMDXComponents(tilMdxComponents)} />;
 }
 
 export function BlogMdxContent({ Content }: { Content: MdxModule['default'] }) {

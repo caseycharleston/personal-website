@@ -22,6 +22,13 @@ const targets = [
     registryId: 'projects',
     loaderName: 'loadProject',
   },
+  {
+    name: 'til',
+    inputDir: path.join(process.cwd(), 'public', 'posts', 'TIL'),
+    outputDir: path.join(process.cwd(), 'src', 'generated', 'til'),
+    registryId: 'tils',
+    loaderName: 'loadTil',
+  },
 ];
 
 async function safeReadDir(dir) {
