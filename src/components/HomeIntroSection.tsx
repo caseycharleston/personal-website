@@ -14,14 +14,13 @@ export default function HomeIntroSection() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-8">
         <div className="flex flex-col justify-center h-full p-6 sm:p-8 space-y-6">
           <p className="text-lg leading-relaxed text-black">
-            I&apos;m a computer science student at UT Austin. I&apos;m originally from the
-            Dallas-Fort Worth area, though I&apos;ve lived all over the US + Canada.
+            I&apos;m a software engineer living in the bay area. I got my bachelor's in computer
+            science at UT Austin in May 2026. I&apos;m originally from the Dallas-Fort Worth area.
           </p>
           <p className="text-lg leading-relaxed text-black">
-            My career is mostly software engineering-related. My favorite parts of engineering are
-            the collaborative problem-solving and knowledge-sharing. I&apos;ve also been a teaching
-            assistant. If it were not for software engineering, I&apos;d happily look into getting
-            my Master&apos;s and becoming a teacher.
+            My favorite parts of engineering are the collaborative problem-solving and
+            knowledge-sharing. I&apos;ve also been a teaching assistant. If it were not for software
+            engineering, I&apos;d happily look into getting my Master&apos;s and becoming a teacher.
           </p>
         </div>
         <div className="flex items-center justify-center p-6 sm:p-8">
