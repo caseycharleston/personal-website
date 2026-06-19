@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import AnimatedWord from './AnimatedWord';
+import AnimatedWordClient from './AnimatedWordClient';
 
 export default function HomeIntroSection() {
   return (
@@ -8,14 +8,15 @@ export default function HomeIntroSection() {
       <div className="flex flex-wrap items-center justify-center gap-2 mb-12 text-foreground">
         <span className="text-xl font-mono">I&apos;m a</span>
         <span className="text-xl font-mono">
-          <AnimatedWord />
+          <AnimatedWordClient />
         </span>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-8">
         <div className="flex flex-col justify-center h-full p-6 sm:p-8 space-y-6">
           <p className="text-lg leading-relaxed text-foreground">
-            I&apos;m a software engineer living in the bay area. I got my bachelor&apos;s in computer
-            science at UT Austin in May 2026. I&apos;m originally from the Dallas-Fort Worth area.
+            I&apos;m a software engineer living in the bay area. I got my bachelor&apos;s in
+            computer science at UT Austin in May 2026. I&apos;m originally from the Dallas-Fort
+            Worth area.
           </p>
           <p className="text-lg leading-relaxed text-foreground">
             My favorite parts of engineering are the collaborative problem-solving and
@@ -34,6 +35,7 @@ export default function HomeIntroSection() {
                 width={1000}
                 height={1000}
                 alt="Headshot of Casey"
+                priority
                 className="object-cover w-full h-full"
                 style={{ objectPosition: '55% 22%', transform: 'scale(1.4)' }}
               />

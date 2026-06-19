@@ -1,4 +1,5 @@
 import type { MDXComponents } from 'mdx/types';
+import { cache } from 'react';
 import type { ComponentProps, ComponentType, ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -107,7 +108,6 @@ function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
       width="0"
       height="0"
       sizes="100vw"
-      unoptimized
       className="mx-auto max-w-1/2 w-full rounded-2xl border border-border bg-foreground/5"
     />
   );
@@ -211,7 +211,7 @@ function sortByDateDesc(a: MdxEntry, b: MdxEntry) {
   return bValue - aValue;
 }
 
-export async function getBlogPosts(): Promise<MdxEntry[]> {
+export const getBlogPosts = cache(async (): Promise<MdxEntry[]> => {
   return (posts as MdxEntry[])
     .map(post => ({
       ...post,
@@ -221,7 +221,7 @@ export async function getBlogPosts(): Promise<MdxEntry[]> {
       },
     }))
     .sort(sortByDateDesc);
-}
+});
 
 export async function getBlogPostBySlug(slug: string) {
   const mod = (await loadPost(slug)) as MdxModule | null;
@@ -240,7 +240,7 @@ export async function getBlogPostBySlug(slug: string) {
   };
 }
 
-export async function getProjectPosts(): Promise<MdxEntry[]> {
+export const getProjectPosts = cache(async (): Promise<MdxEntry[]> => {
   return (projects as MdxEntry[])
     .map(project => ({
       ...project,
@@ -254,7 +254,7 @@ export async function getProjectPosts(): Promise<MdxEntry[]> {
       const bOrder = typeof b.meta.order === 'number' ? b.meta.order : Number.NEGATIVE_INFINITY;
       return bOrder - aOrder;
     });
-}
+});
 
 export async function getProjectPostBySlug(slug: string) {
   const mod = (await loadProject(slug)) as MdxModule | null;
@@ -273,9 +273,9 @@ export async function getProjectPostBySlug(slug: string) {
   };
 }
 
-export async function getTILs(): Promise<MdxEntry[]> {
+export const getTILs = cache(async (): Promise<MdxEntry[]> => {
   return (tils as MdxEntry[]).slice().sort(sortByDateDesc);
-}
+});
 
 export async function getTILBySlug(slug: string) {
   const mod = (await loadTil(slug)) as MdxModule | null;

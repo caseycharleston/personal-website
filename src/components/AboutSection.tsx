@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import Card from './Card';
-import MapChart from './MapChart';
+import MapChartClient from './MapChartClient';
 import MapMarker from './MapMarker';
 import ContactSection from './ContactSection';
 
@@ -55,7 +55,7 @@ export default function AboutSection() {
               </h3>
             </div>
             <div className="h-90 lg:w-3xl md:w-xl sm:w-lg mx-auto">
-              <MapChart
+              <MapChartClient
                 className="w-full h-full [&>svg]:w-full [&>svg]:h-full"
                 scale={800}
                 center={[-100, 40]}
@@ -90,7 +90,7 @@ export default function AboutSection() {
                   popupLabel="Grafton, MA"
                   labelFontSize={markerLabelSize}
                 />
-              </MapChart>
+              </MapChartClient>
             </div>
           </div>
         </Card>

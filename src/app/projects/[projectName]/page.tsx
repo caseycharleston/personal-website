@@ -46,7 +46,6 @@ export default async function ProjectPage({
                 width="0"
                 height="0"
                 sizes="100vw"
-                unoptimized
                 className="w-2/3 rounded-2xl border border-border bg-foreground/5"
               />
             </div>
