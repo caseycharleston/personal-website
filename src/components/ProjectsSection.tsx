@@ -14,7 +14,7 @@ export default async function ProjectsSection() {
           projects by tag{' '}
           <Link
             href="/projects/tags"
-            className="underline text-accent transition-colors duration-200 hover:text-accent"
+            className="underline text-accent lnk hover:text-accent"
           >
             here
           </Link>

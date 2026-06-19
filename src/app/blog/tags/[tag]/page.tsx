@@ -29,7 +29,7 @@ export default async function BlogTagPage({ params }: { params: Promise<{ tag: s
           <p className="text-sm font-mono uppercase tracking-[0.2em] text-muted">
             <Link
               href="/blog/tags"
-              className="underline underline-offset-2 decoration-muted transition-colors hover:text-accent hover:decoration-accent"
+              className="underline underline-offset-2 decoration-muted lnk hover:text-accent hover:decoration-accent"
             >
               Blog Tags
             </Link>{' '}

@@ -29,7 +29,7 @@ export default function NavMenu({
           <Menu.Item key={tab.href}>
             <Link
               href={tab.href}
-              className="block rounded-lg px-4 py-2 font-mono text-lg transition-colors hover:text-accent data-focus:bg-background data-focus:text-accent"
+              className="block rounded-lg px-4 py-2 font-mono text-lg lnk hover:text-accent data-focus:bg-background data-focus:text-accent"
             >
               {tab.label}
             </Link>

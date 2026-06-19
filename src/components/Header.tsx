@@ -26,7 +26,7 @@ export default function Header() {
               <li key={tab.href}>
                 <Link
                   href={tab.href}
-                  className="relative transition-colors text-2xl duration-200 hover:text-accent"
+                  className="relative text-2xl lnk hover:text-accent"
                 >
                   {tab.label}
                 </Link>

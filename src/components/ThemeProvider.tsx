@@ -20,7 +20,7 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
   const [accent, setAccentState] = useState<AccentId>(DEFAULT_ACCENT);
 
   // Hydrate from what the inline script already applied to <html>.

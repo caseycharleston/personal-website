@@ -65,7 +65,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
             >
               <a
                 href={item.href}
-                className={`block leading-snug transition-colors ${
+                className={`block leading-snug lnk ${
                   isActive ? 'font-medium text-accent' : 'text-muted hover:text-accent'
                 }`}
               >

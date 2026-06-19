@@ -73,7 +73,7 @@ export default async function BlogSection() {
           My written down thoughts, opinions, and ideas -- now all in one place! View posts by tag{' '}
           <Link
             href="/blog/tags"
-            className="underline text-accent transition-colors duration-200 hover:text-accent"
+            className="underline text-accent lnk hover:text-accent"
           >
             here
           </Link>

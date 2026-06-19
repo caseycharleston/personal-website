@@ -46,7 +46,7 @@ export default function PostCard({
           <header className="space-y-2">
             <Link
               href={href}
-              className="block text-lg font-mono font-semibold text-accent underline-offset-4 transition-colors group-hover:hover:text-accent group-hover:underline focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+              className="block text-lg font-mono font-semibold text-accent underline-offset-4 lnk group-hover:hover:text-accent group-hover:underline focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-border focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
             >
               <h3>{title}</h3>
             </Link>
