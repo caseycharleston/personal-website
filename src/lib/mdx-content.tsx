@@ -161,9 +161,7 @@ const baseMdxComponents: MDXComponents = {
   ),
   li: ({ children }) => <li className="text-base leading-relaxed">{children}</li>,
   blockquote: ({ children }) => (
-    <blockquote className="border-l-2 border-border pl-4 italic text-muted">
-      {children}
-    </blockquote>
+    <blockquote className="border-l-2 border-border pl-4 italic text-muted">{children}</blockquote>
   ),
 };
 
@@ -194,6 +192,25 @@ export function formatTilDate(date: string) {
   return Number.isFinite(timestamp) ? tilDateFormatter.format(new Date(timestamp)) : date;
 }
 
+const blogDateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+export function formatBlogDate(date: string) {
+  const timestamp = parseBlogDate(date);
+  return Number.isFinite(timestamp) ? blogDateFormatter.format(new Date(timestamp)) : date;
+}
+
+function sortByDateDesc(a: MdxEntry, b: MdxEntry) {
+  const aDate = parseBlogDate(a.meta.date);
+  const bDate = parseBlogDate(b.meta.date);
+  const aValue = Number.isFinite(aDate) ? aDate : Number.NEGATIVE_INFINITY;
+  const bValue = Number.isFinite(bDate) ? bDate : Number.NEGATIVE_INFINITY;
+  return bValue - aValue;
+}
+
 export async function getBlogPosts(): Promise<MdxEntry[]> {
   return (posts as MdxEntry[])
     .map(post => ({
@@ -203,13 +220,7 @@ export async function getBlogPosts(): Promise<MdxEntry[]> {
         imageSrc: normalizeMetaImageSrc(post.meta.imageSrc),
       },
     }))
-    .sort((a, b) => {
-      const aDate = parseBlogDate(a.meta.date);
-      const bDate = parseBlogDate(b.meta.date);
-      const aValue = Number.isFinite(aDate) ? aDate : Number.NEGATIVE_INFINITY;
-      const bValue = Number.isFinite(bDate) ? bDate : Number.NEGATIVE_INFINITY;
-      return bValue - aValue;
-    });
+    .sort(sortByDateDesc);
 }
 
 export async function getBlogPostBySlug(slug: string) {
@@ -263,13 +274,7 @@ export async function getProjectPostBySlug(slug: string) {
 }
 
 export async function getTILs(): Promise<MdxEntry[]> {
-  return (tils as MdxEntry[]).slice().sort((a, b) => {
-    const aDate = parseBlogDate(a.meta.date);
-    const bDate = parseBlogDate(b.meta.date);
-    const aValue = Number.isFinite(aDate) ? aDate : Number.NEGATIVE_INFINITY;
-    const bValue = Number.isFinite(bDate) ? bDate : Number.NEGATIVE_INFINITY;
-    return bValue - aValue;
-  });
+  return (tils as MdxEntry[]).slice().sort(sortByDateDesc);
 }
 
 export async function getTILBySlug(slug: string) {
