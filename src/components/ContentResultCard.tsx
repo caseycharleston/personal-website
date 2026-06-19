@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import TagLink from './TagLink';
+import TagList from './TagList';
 
 interface ContentResultCardProps {
   title: string;
@@ -26,15 +26,7 @@ export default function ContentResultCard({
           {title}
         </Link>
         <p className="text-xs font-mono uppercase tracking-wide text-muted">{date}</p>
-        {tags.length > 0 && (
-          <ul className="flex flex-wrap gap-2">
-            {tags.map(tag => (
-              <li key={tag}>
-                <TagLink tag={tag} hrefBase={tagHrefBase} />
-              </li>
-            ))}
-          </ul>
-        )}
+        <TagList tags={tags} hrefBase={tagHrefBase} />
       </div>
     </article>
   );
