@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import TagLink from './TagLink';
+import TagList from './TagList';
 
 interface PostCardProps {
   title: string;
@@ -54,15 +54,7 @@ export default function PostCard({
             <p className="text-sm leading-relaxed text-foreground">{description}</p>
           </header>
 
-          {tags.length > 0 && (
-            <ul className="mt-auto flex flex-wrap gap-2">
-              {tags.map(tag => (
-                <li key={tag}>
-                  <TagLink tag={tag} hrefBase={tagHrefBase} />
-                </li>
-              ))}
-            </ul>
-          )}
+          <TagList tags={tags} hrefBase={tagHrefBase} className="mt-auto" />
         </div>
       </div>
     </article>
