@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 
 export default function AboutPage() {
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <AboutSection />
     </main>

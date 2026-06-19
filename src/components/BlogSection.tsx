@@ -69,11 +69,11 @@ export default async function BlogSection() {
     <section id="blog" className="section-shell py-24">
       <div className="mb-16 space-y-4 text-center">
         <h2 className="section-title mb-0">Blog</h2>
-        <p className="mx-auto max-w-3xl text-base text-black/80">
+        <p className="mx-auto max-w-3xl text-base text-muted">
           My written down thoughts, opinions, and ideas -- now all in one place! View posts by tag{' '}
           <Link
             href="/blog/tags"
-            className="underline text-emerald-600 transition-colors duration-200 hover:text-emerald-800"
+            className="underline text-accent transition-colors duration-200 hover:text-accent"
           >
             here
           </Link>
@@ -83,7 +83,7 @@ export default async function BlogSection() {
       <div className="space-y-16 py-24">
         {postGroups.map(group => (
           <section key={group.key} className="space-y-6">
-            <h3 className="font-mono text-2xl font-semibold text-black">{group.label}</h3>
+            <h3 className="font-mono text-2xl font-semibold text-foreground">{group.label}</h3>
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {group.posts.map(post => (
                 <PostCard

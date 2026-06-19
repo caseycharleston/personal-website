@@ -17,15 +17,15 @@ export default function ContentResultCard({
   tagHrefBase,
 }: ContentResultCardProps) {
   return (
-    <article className="rounded-2xl border border-black/10 bg-[#F2F0E5] p-5 transition-shadow hover:shadow-lg hover:shadow-black/10">
+    <article className="rounded-2xl border border-border bg-surface p-5 transition-shadow hover:shadow-lg hover:shadow-black/10">
       <div className="space-y-3">
         <Link
           href={href}
-          className="block text-lg font-mono font-semibold text-emerald-600 underline-offset-4 transition-colors hover:text-emerald-700 hover:underline"
+          className="block text-lg font-mono font-semibold text-accent underline-offset-4 transition-colors hover:text-accent hover:underline"
         >
           {title}
         </Link>
-        <p className="text-xs font-mono uppercase tracking-wide text-black/60">{date}</p>
+        <p className="text-xs font-mono uppercase tracking-wide text-muted">{date}</p>
         {tags.length > 0 && (
           <ul className="flex flex-wrap gap-2">
             {tags.map(tag => (

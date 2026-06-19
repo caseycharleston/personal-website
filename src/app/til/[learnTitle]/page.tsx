@@ -2,7 +2,7 @@ import Header from '@/components/Header';
 
 export default function TILPage() {
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
     </main>
   );

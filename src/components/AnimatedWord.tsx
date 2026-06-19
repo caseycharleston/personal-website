@@ -86,18 +86,18 @@ export default function AnimatedWord({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-[#F2F0E5] border border-black/10 text-black text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-surface border border-border text-foreground text-xs sm:text-sm md:text-base rounded-lg shadow-lg whitespace-nowrap z-10"
           >
             <span className="font-mono">
               {typedText}
               <span className={isTypingComplete ? 'animate-blink' : ''}>|</span>
             </span>
-            <span className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F2F0E5]" />
+            <span className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-surface" />
           </motion.span>
         )}
       </AnimatePresence>
       <span
-        className="inline-flex align-middle overflow-hidden justify-center text-center bg-[#F2F0E5] border border-black/10 rounded-full px-3"
+        className="inline-flex align-middle overflow-hidden justify-center text-center bg-surface border border-border rounded-full px-3"
         style={{ width: `${dynamicWidth}ch`, height: `${heightRem}rem` }}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -107,7 +107,7 @@ export default function AnimatedWord({
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '-100%', opacity: 0 }}
             transition={{ duration: 0.7, ease: [0, 0, 0.58, 1] }}
-            className="flex items-center justify-center whitespace-nowrap font-mono font-semibold text-black"
+            className="flex items-center justify-center whitespace-nowrap font-mono font-semibold text-foreground"
           >
             {word}
           </motion.span>

@@ -2,12 +2,70 @@
 
 :root {
   --background: #fefcf0;
+  --surface: #ffffff;
   --foreground: #000000;
+  --muted: #4a4a44;
+  --border: rgba(0, 0, 0, 0.1);
+  /* accent default = green (light) */
+  --accent: #059669;
+  --accent-hover: #047857;
 }
+
+[data-accent='blue'] {
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+}
+[data-accent='purple'] {
+  --accent: #9333ea;
+  --accent-hover: #7e22ce;
+}
+[data-accent='amber'] {
+  --accent: #b45309;
+  --accent-hover: #92400e;
+}
+[data-accent='rose'] {
+  --accent: #e11d48;
+  --accent-hover: #be123c;
+}
+
+.dark {
+  --background: #14120c;
+  --surface: #211e16;
+  --foreground: #f5f2e8;
+  --muted: #a8a394;
+  --border: rgba(255, 255, 255, 0.12);
+  /* accent default = green (dark) */
+  --accent: #34d399;
+  --accent-hover: #6ee7b7;
+}
+
+.dark[data-accent='blue'] {
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+}
+.dark[data-accent='purple'] {
+  --accent: #c084fc;
+  --accent-hover: #d8b4fe;
+}
+.dark[data-accent='amber'] {
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+}
+.dark[data-accent='rose'] {
+  --accent: #fb7185;
+  --accent-hover: #fda4af;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --font-sans: var(--font-sono);
   --font-mono: var(--font-sono);
   --animate-blink: blink 1s step-end infinite;
@@ -23,23 +81,19 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #fefcf0;
-    --foreground: #000000;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Calibri, Arial;
   font-size: clamp(1rem, 0.4vw + 0.95rem, 1.2rem);
   line-height: 1.7;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 p {
-  color: #000000;
+  color: var(--foreground);
 }
 
 pre code {
@@ -99,6 +153,6 @@ html {
   }
 
   .section-title {
-    @apply text-center text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-black mb-12;
+    @apply text-center text-3xl md:text-4xl xl:text-5xl font-mono font-medium text-foreground mb-12;
   }
 }

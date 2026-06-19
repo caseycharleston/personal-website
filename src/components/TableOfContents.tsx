@@ -49,9 +49,9 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <nav
       aria-label="Table of contents"
-      className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto border-l border-black/10 pl-4 text-sm"
+      className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto border-l border-border pl-4 text-sm"
     >
-      <p className="mb-3 font-mono text-xs uppercase tracking-wide text-black/50">Contents</p>
+      <p className="mb-3 font-mono text-xs uppercase tracking-wide text-muted">Contents</p>
       <ol className="space-y-2">
         {items.map(item => {
           const id = idFromHref(item.href);
@@ -66,7 +66,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
               <a
                 href={item.href}
                 className={`block leading-snug transition-colors ${
-                  isActive ? 'font-medium text-emerald-700' : 'text-black/55 hover:text-emerald-600'
+                  isActive ? 'font-medium text-accent' : 'text-muted hover:text-accent'
                 }`}
               >
                 {item.value}

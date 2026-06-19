@@ -8,17 +8,17 @@ function AboutDetailSection({ title, children }: { title: string; children: Reac
   return (
     <section className="space-y-5">
       <div>
-        <h3 className="text-2xl md:text-3xl font-mono font-medium text-black">{title}</h3>
-        <hr className="mt-3 border-black/20" />
+        <h3 className="text-2xl md:text-3xl font-mono font-medium text-foreground">{title}</h3>
+        <hr className="mt-3 border-border" />
       </div>
-      <div className="space-y-4 text-lg leading-relaxed text-black">{children}</div>
+      <div className="space-y-4 text-lg leading-relaxed text-foreground">{children}</div>
     </section>
   );
 }
 
 function StubList({ items }: { items: string[] }) {
   return (
-    <ul className="list-disc space-y-2 pl-6 text-lg leading-relaxed text-black">
+    <ul className="list-disc space-y-2 pl-6 text-lg leading-relaxed text-foreground">
       {items.map(item => (
         <li key={item}>{item}</li>
       ))}
@@ -32,7 +32,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="section-shell">
       <h2 className="section-title mt-24 mb-16">About</h2>
-      <div className="mx-auto mb-20 max-w-4xl space-y-6 text-lg leading-relaxed text-black">
+      <div className="mx-auto mb-20 max-w-4xl space-y-6 text-lg leading-relaxed text-foreground">
         <p>
           Hi, I&apos;m Casey! Welcome to my personal website. I house my projects, blog posts, and
           social links to stay in touch here. I&apos;m currently working as a software engineer. I
@@ -50,7 +50,7 @@ export default function AboutSection() {
         <Card className="lg:col-span-2">
           <div className="flex flex-col space-y-6">
             <div>
-              <h3 className="text-2xl md:text-3xl font-mono font-medium text-black mb-2">
+              <h3 className="text-2xl md:text-3xl font-mono font-medium text-foreground mb-2">
                 Where I&apos;ve Lived
               </h3>
             </div>
@@ -120,7 +120,7 @@ export default function AboutSection() {
         <AboutDetailSection title="Tools">
           <div className="space-y-8">
             <div className="space-y-3">
-              <h4 className="text-xl md:text-2xl font-mono font-medium text-black">Software</h4>
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">Software</h4>
               <p>This website is hosted on Vercel and uses the Next.js framework.</p>
               <StubList
                 items={[
@@ -135,7 +135,7 @@ export default function AboutSection() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xl md:text-2xl font-mono font-medium text-black">Hardware</h4>
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">Hardware</h4>
               <StubList
                 items={[
                   'Laptop: 16" MacBook M2 Pro',

@@ -5,7 +5,7 @@ import HomeIntroSection from '@/components/HomeIntroSection';
 
 export default function HomePage() {
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <HomeIntroSection />
       <HomeIndexTables />

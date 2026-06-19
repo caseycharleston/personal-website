@@ -22,20 +22,20 @@ export default async function BlogTagPage({ params }: { params: Promise<{ tag: s
   const matchingPosts = getEntriesForTag(posts, tagSummary.slug);
 
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <section className="section-shell space-y-10">
         <div className="space-y-4">
-          <p className="text-sm font-mono uppercase tracking-[0.2em] text-black/60">
+          <p className="text-sm font-mono uppercase tracking-[0.2em] text-muted">
             <Link
               href="/blog/tags"
-              className="underline underline-offset-2 decoration-black/60 transition-colors hover:text-emerald-600 hover:decoration-emerald-600"
+              className="underline underline-offset-2 decoration-muted transition-colors hover:text-accent hover:decoration-accent"
             >
               Blog Tags
             </Link>{' '}
             / {tagSummary.tag}
           </p>
-          <h1 className="text-3xl font-mono font-semibold text-black sm:text-4xl">
+          <h1 className="text-3xl font-mono font-semibold text-foreground sm:text-4xl">
             Results for blogs tagged with {tagSummary.tag}
           </h1>
         </div>

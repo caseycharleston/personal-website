@@ -10,7 +10,7 @@ export default function TagLink({ tag, hrefBase }: TagLinkProps) {
   return (
     <Link
       href={`${hrefBase}/${normalizeTagSlug(tag)}`}
-      className="rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs text-black transition-colors hover:border-emerald-600/30 hover:bg-emerald-600/10 hover:text-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FEFCF0]"
+      className="rounded-full border border-border bg-foreground/5 px-3 py-1 text-xs text-foreground transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       {tag}
     </Link>

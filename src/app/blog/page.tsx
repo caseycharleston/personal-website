@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 
 export default function BlogPage() {
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <BlogSection />
     </main>

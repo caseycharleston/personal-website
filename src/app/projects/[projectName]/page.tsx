@@ -26,22 +26,22 @@ export default async function ProjectPage({
   const { meta, Content, toc } = project;
 
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <section className="section-shell space-y-10">
         <div className="space-y-4 mt-10">
-          <p className="text-sm font-mono uppercase tracking-[0.2em] text-black/60">
+          <p className="text-sm font-mono uppercase tracking-[0.2em] text-muted">
             <Link
               href="/projects"
-              className="underline underline-offset-2 decoration-black/60 transition-colors hover:text-emerald-600 hover:decoration-emerald-600"
+              className="underline underline-offset-2 decoration-muted transition-colors hover:text-accent hover:decoration-accent"
             >
               Projects
             </Link>{' '}
             / {meta.title}
           </p>
-          <h1 className="text-3xl font-mono font-semibold text-black sm:text-4xl">{meta.title}</h1>
-          <p className="text-base text-black/80">{meta.description}</p>
-          <p className="text-xs font-mono uppercase tracking-wide text-black/60">{meta.date}</p>
+          <h1 className="text-3xl font-mono font-semibold text-foreground sm:text-4xl">{meta.title}</h1>
+          <p className="text-base text-foreground/80">{meta.description}</p>
+          <p className="text-xs font-mono uppercase tracking-wide text-muted">{meta.date}</p>
           {meta.tags && meta.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2">
               {meta.tags.map(tag => (
@@ -52,7 +52,7 @@ export default async function ProjectPage({
             </ul>
           )}
         </div>
-        <div className="grid gap-10 border-t border-black/10 pt-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
+        <div className="grid gap-10 border-t border-border pt-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
           <article className="min-w-0 space-y-6">
             <div className="flex justify-center">
               <Image
@@ -62,7 +62,7 @@ export default async function ProjectPage({
                 height="0"
                 sizes="100vw"
                 unoptimized
-                className="w-2/3 rounded-2xl border border-black/10 bg-black/5"
+                className="w-2/3 rounded-2xl border border-border bg-foreground/5"
               />
             </div>
             <ProjectMdxContent Content={Content} />

@@ -9,12 +9,12 @@ export default async function ProjectsSection() {
     <section id="projects" className="section-shell py-24">
       <div className="mb-16 space-y-4 text-center">
         <h2 className="section-title mb-0">Projects</h2>
-        <p className="mx-auto max-w-3xl text-base text-black/80">
+        <p className="mx-auto max-w-3xl text-base text-muted">
           A collection of things I&apos;ve worked on throughout college and as a side project. View
           projects by tag{' '}
           <Link
             href="/projects/tags"
-            className="underline text-emerald-600 transition-colors duration-200 hover:text-emerald-800"
+            className="underline text-accent transition-colors duration-200 hover:text-accent"
           >
             here
           </Link>

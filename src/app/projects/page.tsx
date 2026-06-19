@@ -3,7 +3,7 @@ import ProjectsSection from '@/components/ProjectsSection';
 
 export default function ProjectsPage() {
   return (
-    <main className="bg-[#FEFCF0] text-black">
+    <main className="bg-background text-foreground">
       <Header />
       <ProjectsSection />
     </main>

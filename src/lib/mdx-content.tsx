@@ -83,7 +83,7 @@ function MdxLink({ href = '', children, ...rest }: ComponentProps<'a'> & { child
   return (
     <Link
       href={href}
-      className="transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
+      className="transition-colors duration-200 underline text-accent hover:text-accent"
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noreferrer' : undefined}
       {...rest}
@@ -107,7 +107,7 @@ function MdxImage({ src = '', alt = '' }: ComponentProps<'img'>) {
       height="0"
       sizes="100vw"
       unoptimized
-      className="mx-auto max-w-1/2 w-full rounded-2xl border border-black/10 bg-black/5"
+      className="mx-auto max-w-1/2 w-full rounded-2xl border border-border bg-foreground/5"
     />
   );
 }
@@ -122,7 +122,7 @@ const baseMdxComponents: MDXComponents = {
     <h1
       {...props}
       className={joinClassName(
-        'scroll-mt-24 text-3xl font-mono font-semibold text-black',
+        'scroll-mt-24 text-3xl font-mono font-semibold text-foreground',
         className
       )}
     >
@@ -133,7 +133,7 @@ const baseMdxComponents: MDXComponents = {
     <h2
       {...props}
       className={joinClassName(
-        'scroll-mt-24 text-2xl font-mono font-semibold text-black',
+        'scroll-mt-24 text-2xl font-mono font-semibold text-foreground',
         className
       )}
     >
@@ -144,23 +144,23 @@ const baseMdxComponents: MDXComponents = {
     <h3
       {...props}
       className={joinClassName(
-        'scroll-mt-24 text-xl font-mono font-semibold text-black',
+        'scroll-mt-24 text-xl font-mono font-semibold text-foreground',
         className
       )}
     >
       {children}
     </h3>
   ),
-  p: ({ children }) => <p className="text-base leading-relaxed text-black/90">{children}</p>,
+  p: ({ children }) => <p className="text-base leading-relaxed text-foreground/90">{children}</p>,
   ul: ({ children }) => (
-    <ul className="list-disc space-y-2 pl-6 text-base text-black/90">{children}</ul>
+    <ul className="list-disc space-y-2 pl-6 text-base text-foreground/90">{children}</ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal space-y-2 pl-6 text-base text-black/90">{children}</ol>
+    <ol className="list-decimal space-y-2 pl-6 text-base text-foreground/90">{children}</ol>
   ),
   li: ({ children }) => <li className="text-base leading-relaxed">{children}</li>,
   blockquote: ({ children }) => (
-    <blockquote className="border-l-2 border-black/20 pl-4 italic text-black/70">
+    <blockquote className="border-l-2 border-border pl-4 italic text-muted">
       {children}
     </blockquote>
   ),

@@ -54,7 +54,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
       <div className="space-y-4">
         <Link
           href="https://www.linkedin.com/in/caseycharleston/"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
           target="_blank"
           rel="noreferrer"
         >
@@ -62,7 +62,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
         </Link>
         <Link
           href="https://github.com/caseycharleston"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
           target="_blank"
           rel="noreferrer"
         >
@@ -70,7 +70,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
         </Link>
         <Link
           href="https://bsky.app/profile/caseycharleston.bsky.social"
-          className="flex items-center gap-3 transition-colors duration-200 underline text-emerald-600 hover:text-emerald-800"
+          className="flex items-center gap-3 transition-colors duration-200 underline text-accent hover:text-accent"
           target="_blank"
           rel="noreferrer"
         >
@@ -78,7 +78,7 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
         </Link>
         <Popover>
           <div
-            className="relative inline-flex items-center gap-3 text-black transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+            className="relative inline-flex items-center gap-3 text-foreground transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             role="presentation"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -97,11 +97,11 @@ export default function ContactSection({ className = '' }: ContactSectionProps) 
               }}
               aria-label={`Copy email ${email}`}
             >
-              <div className="flex items-center gap-3 text-black">
-                <IoIosMail className="text-xl text-black" />
-                <div className="flex items-center gap-3 rounded bg-gray-100 px-3 text-black">
+              <div className="flex items-center gap-3 text-foreground">
+                <IoIosMail className="text-xl text-foreground" />
+                <div className="flex items-center gap-3 rounded bg-foreground/10 px-3 text-foreground">
                   {email}
-                  {isCopied ? <Check className="text-emerald-600" size={16} /> : <Copy size={16} />}
+                  {isCopied ? <Check className="text-accent" size={16} /> : <Copy size={16} />}
                 </div>
               </div>
             </div>
