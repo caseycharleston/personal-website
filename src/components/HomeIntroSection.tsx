@@ -25,15 +25,20 @@ export default function HomeIntroSection() {
           </p>
         </div>
         <div className="flex items-center justify-center p-6 sm:p-8">
-          <div className="relative rounded-full overflow-hidden shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-600 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
-            <Image
-              src="/headshot.jpeg"
-              width={1000}
-              height={1000}
-              alt="Headshot of Casey"
-              className="object-cover w-full h-full"
-              style={{ objectPosition: '55% 22%', transform: 'scale(1.4)' }}
-            />
+          <div className="relative rounded-3xl shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-600 ring-offset-8 ring-offset-[#FEFCF0] w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+            <div
+              className="absolute inset-0 overflow-hidden rounded-3xl"
+              style={{ transform: 'translateZ(0)' }}
+            >
+              <Image
+                src="/headshot.jpeg"
+                width={1000}
+                height={1000}
+                alt="Headshot of Casey"
+                className="object-cover w-full h-full"
+                style={{ objectPosition: '55% 22%', transform: 'scale(1.4)' }}
+              />
+            </div>
           </div>
         </div>
       </div>

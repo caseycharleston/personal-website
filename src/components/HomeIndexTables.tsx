@@ -1,11 +1,33 @@
 import Link from 'next/link';
+import type { IconType } from 'react-icons';
+import {
+  FaAws,
+  FaBitcoin,
+  FaCalendarCheck,
+  FaDice,
+  FaEye,
+  FaLaptopCode,
+  FaRobot,
+} from 'react-icons/fa';
 import { getBlogPosts, getProjectPosts, type MdxEntry } from '@/lib/mdx-content';
+
+const projectIcons: Record<string, IconType> = {
+  'aws-firecracker-gvisor': FaAws,
+  'better-gaze-detection': FaEye,
+  sugoroku: FaDice,
+  'texas-acm-website': FaLaptopCode,
+  'ur-v5-virtualized-arm': FaRobot,
+  'us-treasury-crypto': FaBitcoin,
+  'ut-registration-plus': FaCalendarCheck,
+};
 
 type HomeTableProps = {
   title: string;
   entries: MdxEntry[];
   hrefBase: string;
   formatDate?: (date: string) => string;
+  viewAllHref?: string;
+  viewAllLabel?: string;
 };
 
 function formatBlogDate(date: string) {
@@ -25,7 +47,14 @@ function formatBlogDate(date: string) {
   }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
-function HomeTable({ title, entries, hrefBase, formatDate = date => date }: HomeTableProps) {
+function HomeTable({
+  title,
+  entries,
+  hrefBase,
+  formatDate = date => date,
+  viewAllHref,
+  viewAllLabel = 'View all',
+}: HomeTableProps) {
   return (
     <section className="section-shell py-12">
       <h2 className="section-title mb-8 text-left">{title}</h2>
@@ -54,6 +83,16 @@ function HomeTable({ title, entries, hrefBase, formatDate = date => date }: Home
           </tbody>
         </table>
       </div>
+      {viewAllHref && (
+        <div className="mt-6 text-left">
+          <Link
+            href={viewAllHref}
+            className="font-mono text-sm font-semibold text-emerald-600 underline-offset-4 transition-colors duration-200 hover:text-emerald-800 hover:underline"
+          >
+            {viewAllLabel} &rarr;
+          </Link>
+        </div>
+      )}
     </section>
   );
 }
@@ -63,21 +102,25 @@ function HomeProjectGrid({ projects }: { projects: MdxEntry[] }) {
     <section className="section-shell py-12">
       <h2 className="section-title mb-8 text-left">Projects</h2>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {projects.map(project => (
-          <article
-            key={project.slug}
-            className="flex h-full flex-col rounded-lg border-2 border-[#ded3ad] bg-[#FEFCF0] p-6 shadow-sm"
-          >
-            <time className="mb-4 block text-sm text-black/60">{project.meta.date}</time>
-            <Link
-              href={`/projects/${project.slug}`}
-              className="mb-4 font-mono text-lg font-semibold leading-snug text-emerald-600 underline-offset-4 transition-colors duration-200 hover:text-emerald-800 hover:underline"
+        {projects.map(project => {
+          const Icon = projectIcons[project.slug];
+          return (
+            <article
+              key={project.slug}
+              className="flex h-full flex-col rounded-lg border-2 border-[#ded3ad] bg-[#FEFCF0] p-6 shadow-sm"
             >
-              {project.meta.title}
-            </Link>
-            <p className="text-sm leading-relaxed text-black/85">{project.meta.description}</p>
-          </article>
-        ))}
+              <time className="mb-3 block text-sm text-black/60">{project.meta.date}</time>
+              {Icon && <Icon className="mb-3 text-2xl text-emerald-600" aria-hidden="true" />}
+              <Link
+                href={`/projects/${project.slug}`}
+                className="mb-4 font-mono text-lg font-semibold leading-snug text-emerald-600 underline-offset-4 transition-colors duration-200 hover:text-emerald-800 hover:underline"
+              >
+                {project.meta.title}
+              </Link>
+              <p className="text-sm leading-relaxed text-black/85">{project.meta.description}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
@@ -88,7 +131,14 @@ export default async function HomeIndexTables() {
 
   return (
     <>
-      <HomeTable title="Blog" entries={blogPosts} hrefBase="/blog" formatDate={formatBlogDate} />
+      <HomeTable
+        title="Blog"
+        entries={blogPosts.slice(0, 3)}
+        hrefBase="/blog"
+        formatDate={formatBlogDate}
+        viewAllHref="/blog"
+        viewAllLabel="View Blog"
+      />
       <HomeProjectGrid projects={projects} />
     </>
   );
