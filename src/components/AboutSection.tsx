@@ -61,37 +61,31 @@ export default function AboutSection() {
                 center={[-100, 40]}
               >
                 <MapMarker
-                  id="prosper"
                   coordinates={[-96.8019, 33.2362]}
                   popupLabel="Prosper, TX"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
-                  id="austin"
                   coordinates={[-97.7431, 30.2672]}
                   popupLabel="Austin, TX"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
-                  id="san-mateo"
                   coordinates={[-122.3255, 37.5629]}
                   popupLabel="San Mateo, CA"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
-                  id="bellevue"
                   coordinates={[-122.2015, 47.6101]}
                   popupLabel="Bellevue, WA"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
-                  id="toronto"
                   coordinates={[-79.3832, 43.6532]}
                   popupLabel="Toronto, ON"
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
-                  id="grafton"
                   coordinates={[-71.6856, 42.207]}
                   popupLabel="Grafton, MA"
                   labelFontSize={markerLabelSize}
@@ -120,7 +114,9 @@ export default function AboutSection() {
         <AboutDetailSection title="Tools">
           <div className="space-y-8">
             <div className="space-y-3">
-              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">Software</h4>
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">
+                Software
+              </h4>
               <p>This website is hosted on Vercel and uses the Next.js framework.</p>
               <StubList
                 items={[
@@ -135,7 +131,9 @@ export default function AboutSection() {
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">Hardware</h4>
+              <h4 className="text-xl md:text-2xl font-mono font-medium text-foreground">
+                Hardware
+              </h4>
               <StubList
                 items={[
                   'Laptop: 16" MacBook M2 Pro',

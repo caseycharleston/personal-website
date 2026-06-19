@@ -18,39 +18,27 @@ const MAX_WORD_LENGTH = Math.max(...items.map(item => item.word.length));
 interface AnimatedWordProps {
   widthCh?: number;
   heightRem?: number;
-  currentIndex?: number;
-  onIndexChange?: (index: number) => void;
 }
 
-export default function AnimatedWord({
-  widthCh,
-  heightRem = 2.4,
-  currentIndex,
-  onIndexChange,
-}: AnimatedWordProps) {
-  const isControlled = currentIndex !== undefined;
-
-  const [internalIndex, setInternalIndex] = useState(currentIndex ?? 0);
+export default function AnimatedWord({ widthCh, heightRem = 2.4 }: AnimatedWordProps) {
+  const [index, setIndex] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
   const [typedText, setTypedText] = useState('');
 
-  const activeIndex = (isControlled ? currentIndex : internalIndex) % items.length;
+  const activeIndex = index % items.length;
   const { word, tooltip } = items[activeIndex];
   const isTypingComplete = showTooltip && typedText.length === tooltip.length;
 
-  // Advance to the next word a few seconds after its tooltip finishes typing
-  // (only when uncontrolled).
+  // Advance to the next word a few seconds after its tooltip finishes typing.
   useEffect(() => {
-    if (isControlled || !isTypingComplete) return;
+    if (!isTypingComplete) return;
 
     const timer = setTimeout(() => {
-      const next = (internalIndex + 1) % items.length;
-      setInternalIndex(next);
-      onIndexChange?.(next);
+      setIndex(prev => (prev + 1) % items.length);
     }, POST_TYPING_DELAY);
 
     return () => clearTimeout(timer);
-  }, [isControlled, isTypingComplete, internalIndex, onIndexChange]);
+  }, [isTypingComplete]);
 
   // Reveal the tooltip a beat after each word changes.
   useEffect(() => {

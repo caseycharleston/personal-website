@@ -4,7 +4,6 @@ import { Marker, createCoordinates } from '@vnedyalk0v/react19-simple-maps';
 import { useRef } from 'react';
 
 interface MapMarkerProps {
-  id: string;
   coordinates: [number, number];
   popupLabel: string;
   labelFontSize?: number;
