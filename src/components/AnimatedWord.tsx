@@ -4,25 +4,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const items = [
-  {
-    word: 'developer',
-    tooltip: 'I <3 fullstack',
-  },
-  {
-    word: 'longhorn',
-    tooltip: "Hook 'em! 🤘",
-  },
-  {
-    word: 'gamer',
-    tooltip: 'Now playing: Terraria, Overwatch, Slay the Spire 2',
-  },
-  {
-    word: 'writer',
-    tooltip: 'Check out my blog!',
-  },
+  { word: 'developer', tooltip: 'I <3 fullstack' },
+  { word: 'longhorn', tooltip: "Hook 'em! 🤘" },
+  { word: 'gamer', tooltip: 'Now playing: Terraria, Overwatch, Slay the Spire 2' },
+  { word: 'writer', tooltip: 'Check out my blog!' },
 ];
 
-const INTERVAL = 6000; // ms
+const TOOLTIP_DELAY = 2000; // ms after a word appears before its tooltip types
+const TYPING_SPEED = 60; // ms per character
+const POST_TYPING_DELAY = 3000; // ms to hold a finished tooltip before the next word
+const MAX_WORD_LENGTH = Math.max(...items.map(item => item.word.length));
 
 interface AnimatedWordProps {
   widthCh?: number;
@@ -37,57 +28,54 @@ export default function AnimatedWord({
   currentIndex,
   onIndexChange,
 }: AnimatedWordProps) {
-  const [index, setIndex] = useState(currentIndex || 0);
+  const isControlled = currentIndex !== undefined;
+
+  const [internalIndex, setInternalIndex] = useState(currentIndex ?? 0);
   const [showTooltip, setShowTooltip] = useState(false);
   const [typedText, setTypedText] = useState('');
 
-  const activeIndex = currentIndex !== undefined ? currentIndex : index;
+  const activeIndex = (isControlled ? currentIndex : internalIndex) % items.length;
+  const { word, tooltip } = items[activeIndex];
+  const isTypingComplete = showTooltip && typedText.length === tooltip.length;
 
+  // Advance to the next word a few seconds after its tooltip finishes typing
+  // (only when uncontrolled).
   useEffect(() => {
-    if (currentIndex === undefined) {
-      const t = setInterval(() => {
-        const newIndex = (index + 1) % items.length;
-        setIndex(newIndex);
-        setShowTooltip(false);
-        setTypedText('');
-        onIndexChange?.(newIndex);
-      }, INTERVAL);
-      return () => clearInterval(t);
-    }
-  }, [currentIndex, index, onIndexChange]);
+    if (isControlled || !isTypingComplete) return;
 
-  useEffect(() => {
     const timer = setTimeout(() => {
-      setShowTooltip(true);
-      setTypedText('');
-    }, 2000);
+      const next = (internalIndex + 1) % items.length;
+      setInternalIndex(next);
+      onIndexChange?.(next);
+    }, POST_TYPING_DELAY);
+
+    return () => clearTimeout(timer);
+  }, [isControlled, isTypingComplete, internalIndex, onIndexChange]);
+
+  // Reveal the tooltip a beat after each word changes.
+  useEffect(() => {
+    setShowTooltip(false);
+    setTypedText('');
+
+    const timer = setTimeout(() => setShowTooltip(true), TOOLTIP_DELAY);
     return () => clearTimeout(timer);
   }, [activeIndex]);
 
+  // Type the tooltip out one character at a time.
   useEffect(() => {
     if (!showTooltip) return;
 
-    const currentItem = items[activeIndex % items.length];
-    const text = currentItem.tooltip;
-    let currentIndex = 0;
+    let charIndex = 0;
+    const timer = setInterval(() => {
+      charIndex += 1;
+      setTypedText(tooltip.slice(0, charIndex));
+      if (charIndex >= tooltip.length) clearInterval(timer);
+    }, TYPING_SPEED);
 
-    const typeInterval = setInterval(() => {
-      if (currentIndex <= text.length) {
-        setTypedText(text.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typeInterval);
-      }
-    }, 40);
+    return () => clearInterval(timer);
+  }, [showTooltip, tooltip]);
 
-    return () => clearInterval(typeInterval);
-  }, [showTooltip, activeIndex]);
-
-  const safeIndex = activeIndex % items.length;
-  const { word } = items[safeIndex];
-
-  const maxWordLength = Math.max(...items.map(item => item.word.length));
-  const dynamicWidth = widthCh || maxWordLength + 2;
+  const dynamicWidth = widthCh ?? MAX_WORD_LENGTH + 2;
 
   return (
     <span className="relative inline-flex align-middle">
@@ -102,9 +90,7 @@ export default function AnimatedWord({
           >
             <span className="font-mono">
               {typedText}
-              {showTooltip && typedText.length < items[safeIndex].tooltip.length && (
-                <span className="animate-pulse">|</span>
-              )}
+              <span className={isTypingComplete ? 'animate-blink' : ''}>|</span>
             </span>
             <span className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F2F0E5]" />
           </motion.span>
