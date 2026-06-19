@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ContentPageHeader from '@/components/ContentPageHeader';
 import Header from '@/components/Header';
 import { formatTilDate, getTILBySlug, getTILs, TILMdxContent } from '@/lib/mdx-content';
 
@@ -22,23 +22,11 @@ export default async function TILPage({ params }: { params: Promise<{ learnTitle
     <main className="bg-background text-foreground">
       <Header />
       <section className="section-shell space-y-10">
-        <div className="space-y-4">
-          <p className="text-sm font-mono uppercase tracking-[0.2em] text-muted">
-            <Link
-              href="/til"
-              className="underline underline-offset-2 decoration-muted lnk hover:text-accent hover:decoration-accent"
-            >
-              TIL
-            </Link>{' '}
-            / {meta.title}
-          </p>
-          <h1 className="text-3xl font-mono font-semibold text-foreground sm:text-4xl">
-            {meta.title}
-          </h1>
-          <p className="text-xs font-mono uppercase tracking-wide text-muted">
-            {formatTilDate(meta.date)}
-          </p>
-        </div>
+        <ContentPageHeader
+          breadcrumb={{ label: 'TIL', href: '/til' }}
+          title={meta.title}
+          date={formatTilDate(meta.date)}
+        />
 
         <div className="border-t border-border pt-10">
           <article className="min-w-0 max-w-3xl space-y-6">
