@@ -31,27 +31,56 @@ const targets = [
   },
 ];
 
-async function safeReadDir(dir) {
-  try {
-    return await fs.readdir(dir);
-  } catch (error) {
-    if (error && error.code === 'ENOENT') {
-      return [];
+// Recursively collect every .mdx file under rootDir, returning paths relative
+// to rootDir. Subfolders are an authoring convenience only — the slug is always
+// the bare filename, so /<section>/<slug> URLs are independent of nesting.
+async function collectMdxFiles(rootDir) {
+  const results = [];
+
+  async function walk(dir) {
+    let entries;
+    try {
+      entries = await fs.readdir(dir, { withFileTypes: true });
+    } catch (error) {
+      if (error && error.code === 'ENOENT') {
+        return;
+      }
+      throw error;
     }
-    throw error;
+    for (const entry of entries) {
+      if (entry.name.startsWith('.')) {
+        continue; // skip dotfiles/dotdirs (e.g. .obsidian)
+      }
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        await walk(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
+        results.push(path.relative(rootDir, fullPath));
+      }
+    }
   }
+
+  await walk(rootDir);
+  return results.sort();
 }
 
 async function compileTarget(target) {
   await fs.rm(target.outputDir, { recursive: true, force: true });
   await fs.mkdir(target.outputDir, { recursive: true });
 
-  const entries = await safeReadDir(target.inputDir);
-  const files = entries.filter(file => file.endsWith('.mdx')).sort();
+  const files = await collectMdxFiles(target.inputDir);
+  const slugToFile = new Map();
   const manifest = [];
 
   for (const file of files) {
-    const slug = file.replace(/\.mdx$/, '');
+    const slug = path.basename(file).replace(/\.mdx$/, '');
+    if (slugToFile.has(slug)) {
+      throw new Error(
+        `Duplicate slug "${slug}" in "${target.name}": both "${slugToFile.get(slug)}" and ` +
+          `"${file}" map to /${target.name}/${slug}. Rename one of them.`
+      );
+    }
+    slugToFile.set(slug, file);
     const filePath = path.join(target.inputDir, file);
     const raw = await fs.readFile(filePath, 'utf8');
     const { data, content } = matter(raw);
