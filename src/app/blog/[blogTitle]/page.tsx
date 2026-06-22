@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Comments from '@/components/Comments';
 import ContentPageHeader from '@/components/ContentPageHeader';
 import Header from '@/components/Header';
 import TableOfContents from '@/components/TableOfContents';
@@ -40,6 +41,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
             <TableOfContents items={toc} />
           </aside>
         </div>
+
+        <Comments />
       </section>
     </main>
   );

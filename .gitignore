@@ -30,6 +30,9 @@ generated
 # generated content
 /src/generated/
 
+# blog drafts
+/public/posts/blog/drafts/
+
 # production
 /build
 

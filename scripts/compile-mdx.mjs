@@ -53,6 +53,9 @@ async function collectMdxFiles(rootDir) {
       }
       const fullPath = path.join(dir, entry.name);
       if (entry.isDirectory()) {
+        if (entry.name === 'drafts') {
+          continue; // skip drafts/ — unpublished work-in-progress
+        }
         await walk(fullPath);
       } else if (entry.isFile() && entry.name.endsWith('.mdx')) {
         results.push(path.relative(rootDir, fullPath));
