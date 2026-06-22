@@ -1,11 +1,23 @@
 import fs from 'fs/promises';
 import path from 'path';
-import matter from 'gray-matter';
+import yaml from 'js-yaml';
 import { compile } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
 import remarkFlexibleToc from 'remark-flexible-toc';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
+
+// Split YAML frontmatter from MDX content. Mirrors gray-matter's parse: a
+// leading `---` fenced block is parsed as YAML (`data`); everything after is
+// `content`. Files without frontmatter yield empty `data`.
+function parseFrontmatter(raw) {
+  const str = raw.replace(/^﻿/, ''); // strip BOM
+  const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(str);
+  if (!match) {
+    return { data: {}, content: str };
+  }
+  return { data: yaml.load(match[1]) ?? {}, content: str.slice(match[0].length) };
+}
 
 const targets = [
   {
@@ -86,7 +98,7 @@ async function compileTarget(target) {
     slugToFile.set(slug, file);
     const filePath = path.join(target.inputDir, file);
     const raw = await fs.readFile(filePath, 'utf8');
-    const { data, content } = matter(raw);
+    const { data, content } = parseFrontmatter(raw);
     const orderValue =
       typeof data.order === 'number'
         ? data.order
