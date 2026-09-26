@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Comments from '@/components/Comments';
 import ContentPageHeader from '@/components/ContentPageHeader';
@@ -32,6 +33,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ blogTi
           tags={meta.tags}
           tagHrefBase="/blog/tags"
         />
+
+        {meta.imageSrc && meta.imageAlt && (
+          <div className="overflow-hidden rounded-2xl border border-border bg-foreground/5">
+            <Image
+              src={meta.imageSrc}
+              alt={meta.imageAlt}
+              width={1200}
+              height={900}
+              sizes="(min-width: 1024px) 960px, 100vw"
+              className="h-auto w-full object-cover"
+              priority
+            />
+          </div>
+        )}
 
         <div className="grid gap-10 border-t border-border pt-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
           <article className="min-w-0 space-y-6">
