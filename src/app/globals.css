@@ -1,31 +1,26 @@
 @import 'tailwindcss';
 
+/* Per-accent palettes; the swatches in AccentPicker read these directly. */
 :root {
   --background: #fefcf0;
   --surface: #ffffff;
   --foreground: #000000;
   --muted: #4a4a44;
   --border: rgba(0, 0, 0, 0.1);
-  /* accent default = green (light) */
-  --accent: #059669;
-  --accent-hover: #047857;
-}
 
-[data-accent='blue'] {
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-}
-[data-accent='purple'] {
-  --accent: #9333ea;
-  --accent-hover: #7e22ce;
-}
-[data-accent='amber'] {
-  --accent: #b45309;
-  --accent-hover: #92400e;
-}
-[data-accent='rose'] {
-  --accent: #e11d48;
-  --accent-hover: #be123c;
+  --accent-green: #059669;
+  --accent-green-hover: #047857;
+  --accent-blue: #2563eb;
+  --accent-blue-hover: #1d4ed8;
+  --accent-purple: #9333ea;
+  --accent-purple-hover: #7e22ce;
+  --accent-amber: #b45309;
+  --accent-amber-hover: #92400e;
+  --accent-rose: #e11d48;
+  --accent-rose-hover: #be123c;
+
+  --accent: var(--accent-green);
+  --accent-hover: var(--accent-green-hover);
 }
 
 .dark {
@@ -34,26 +29,34 @@
   --foreground: #f5f2e8;
   --muted: #a8a394;
   --border: rgba(255, 255, 255, 0.12);
-  /* accent default = green (dark) */
-  --accent: #34d399;
-  --accent-hover: #6ee7b7;
+
+  --accent-green: #34d399;
+  --accent-green-hover: #6ee7b7;
+  --accent-blue: #60a5fa;
+  --accent-blue-hover: #93c5fd;
+  --accent-purple: #c084fc;
+  --accent-purple-hover: #d8b4fe;
+  --accent-amber: #fbbf24;
+  --accent-amber-hover: #fcd34d;
+  --accent-rose: #fb7185;
+  --accent-rose-hover: #fda4af;
 }
 
-.dark[data-accent='blue'] {
-  --accent: #60a5fa;
-  --accent-hover: #93c5fd;
+[data-accent='blue'] {
+  --accent: var(--accent-blue);
+  --accent-hover: var(--accent-blue-hover);
 }
-.dark[data-accent='purple'] {
-  --accent: #c084fc;
-  --accent-hover: #d8b4fe;
+[data-accent='purple'] {
+  --accent: var(--accent-purple);
+  --accent-hover: var(--accent-purple-hover);
 }
-.dark[data-accent='amber'] {
-  --accent: #fbbf24;
-  --accent-hover: #fcd34d;
+[data-accent='amber'] {
+  --accent: var(--accent-amber);
+  --accent-hover: var(--accent-amber-hover);
 }
-.dark[data-accent='rose'] {
-  --accent: #fb7185;
-  --accent-hover: #fda4af;
+[data-accent='rose'] {
+  --accent: var(--accent-rose);
+  --accent-hover: var(--accent-rose-hover);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

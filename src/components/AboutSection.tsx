@@ -35,13 +35,13 @@ export default function AboutSection() {
       <div className="mx-auto mb-20 max-w-4xl space-y-6 text-lg leading-relaxed text-foreground">
         <p>
           Hi, I&apos;m Casey! Welcome to my personal website. I house my projects, blog posts, and
-          social links to stay in touch here. I&apos;m currently working as a software engineer. I
+          social links to stay in touch here. I&apos;m currently working as a software engineer in the bay area. I
           enjoy playing video games, bouldering, hiking, and watching long YouTube videos. I also
-          really enjoy writing down my thoughts and having an organized productivity system.
+          really enjoy writing down my thoughts.
         </p>
         <p>
           All of the content on the website is my own. None of the writing is AI-generated and is
-          purely from my own thoughts. If you&apos;d like to contact me or want to get back in
+          purely from me. If you&apos;d like to contact me or want to get back in
           touch, feel free to reach out! My socials and email are found below.
         </p>
         <ContactSection />
@@ -104,18 +104,18 @@ export default function AboutSection() {
       </div>
       <div className="mx-auto max-w-5xl space-y-16">
         <AboutDetailSection title="What I'm Doing Now">
-          <p className="italic">Updated June 2026</p>
+          <p className="italic">Updated October 2026</p>
           <StubList
             items={[
-              'Starting my new grad job as a SWE at Meta',
-              'Learning (and vibe coding) iOS apps',
-              'Moving to the bay area',
+              'Working as a SWE in Meta',
+              'Playing Overwatch',
+              'Planning trips across the US!',
             ]}
           />
         </AboutDetailSection>
         <AboutDetailSection title="Website Plans">
-          <p className="italic">Updated June 2026</p>
-          <StubList items={['Daily TIL', 'Apple Music tracker', 'Making dumb little websites']} />
+          <p className="italic">Updated September 2026</p>
+          <StubList items={['Style changes', 'Apple Music tracker', 'Making dumb little websites']} />
         </AboutDetailSection>
 
         <AboutDetailSection title="Tools">
@@ -132,7 +132,7 @@ export default function AboutSection() {
                   'Spotlight replacement: Raycast',
                   'Todo List: Things 3',
                   'Time tracking: Timery',
-                  'Other fav apps: Dockdoor, Shottr, Cotypist, Thaw',
+                  'Other fav apps: DockDoor, Shottr, Cotypist, Ice',
                 ]}
               />
             </div>
@@ -144,10 +144,10 @@ export default function AboutSection() {
               <StubList
                 items={[
                   'Laptop: 16" MacBook M2 Pro',
-                  'PC Specs: CPU, Motherboard, Memory, Storage, GPU, PSU, Case',
-                  'Keyboard(s): Keychron K2 w/ Keychron Banana Switches | Keychron Q10 Pro w/ Holy Panda Switches',
-                  'Headphones: DROP PC38X',
-                  'Mouse: Logitech G PRO X Superlight 2',
+                  'Keyboard(s): Keychron K2 w/ Keychron Banana Switches (Gaming) | Keychron Q10 Pro w/ Holy Panda Switches (Work)',
+                  'Gaming PC Specs: CPU, Motherboard, Memory, Storage, GPU, PSU, Case',
+                  'Gaming Headphones: DROP PC38X',
+                  'Gaming Mouse: Logitech G PRO X Superlight 2',
                 ]}
               />
             </div>

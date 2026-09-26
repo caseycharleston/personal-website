@@ -25,11 +25,9 @@ export default function AccentPicker() {
               onClick={() => setAccent(a.id)}
               aria-label={a.label}
               className={`h-6 w-6 rounded-full transition-transform hover:scale-110 ${
-                accent === a.id
-                  ? 'ring-2 ring-foreground ring-offset-2 ring-offset-surface'
-                  : ''
+                accent === a.id ? 'ring-2 ring-foreground ring-offset-2 ring-offset-surface' : ''
               }`}
-              style={{ backgroundColor: a.swatch }}
+              style={{ backgroundColor: `var(--accent-${a.id})` }}
             />
           </Menu.Item>
         ))}
