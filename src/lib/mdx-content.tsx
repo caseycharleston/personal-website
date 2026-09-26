@@ -3,6 +3,7 @@ import { cache } from 'react';
 import type { ComponentProps, ComponentType, ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import HeadingAnchor from '@/components/HeadingAnchor';
 import { posts, loadPost } from '@/generated/blog/registry.mjs';
 import { projects, loadProject } from '@/generated/projects/registry.mjs';
 import { tils, loadTil } from '@/generated/til/registry.mjs';
@@ -117,41 +118,32 @@ function joinClassName(...classNames: Array<string | undefined>) {
   return classNames.filter(Boolean).join(' ');
 }
 
+function createHeading(Tag: 'h1' | 'h2' | 'h3', sizeClassName: string) {
+  function Heading({ children, className, id, ...props }: ComponentProps<typeof Tag>) {
+    return (
+      <Tag
+        {...props}
+        id={id}
+        className={joinClassName(
+          'group scroll-mt-24 font-mono font-semibold text-foreground',
+          sizeClassName,
+          className
+        )}
+      >
+        {children}
+        {id && <HeadingAnchor id={id} />}
+      </Tag>
+    );
+  }
+  Heading.displayName = `MdxHeading(${Tag})`;
+  return Heading;
+}
+
 const baseMdxComponents: MDXComponents = {
   a: MdxLink,
-  h1: ({ children, className, ...props }: ComponentProps<'h1'>) => (
-    <h1
-      {...props}
-      className={joinClassName(
-        'scroll-mt-24 text-3xl font-mono font-semibold text-foreground',
-        className
-      )}
-    >
-      {children}
-    </h1>
-  ),
-  h2: ({ children, className, ...props }: ComponentProps<'h2'>) => (
-    <h2
-      {...props}
-      className={joinClassName(
-        'scroll-mt-24 text-2xl font-mono font-semibold text-foreground',
-        className
-      )}
-    >
-      {children}
-    </h2>
-  ),
-  h3: ({ children, className, ...props }: ComponentProps<'h3'>) => (
-    <h3
-      {...props}
-      className={joinClassName(
-        'scroll-mt-24 text-xl font-mono font-semibold text-foreground',
-        className
-      )}
-    >
-      {children}
-    </h3>
-  ),
+  h1: createHeading('h1', 'text-3xl'),
+  h2: createHeading('h2', 'text-2xl'),
+  h3: createHeading('h3', 'text-xl'),
   p: ({ children }) => <p className="text-base leading-relaxed text-foreground/90">{children}</p>,
   ul: ({ children }) => (
     <ul className="list-disc space-y-2 pl-6 text-base text-foreground/90">{children}</ul>
