@@ -71,6 +71,13 @@ export default function AboutSection() {
                   labelFontSize={markerLabelSize}
                 />
                 <MapMarker
+                  coordinates={[-122.143, 37.4419]}
+                  popupLabel="Palo Alto, CA"
+                  labelFontSize={markerLabelSize}
+                  labelAnchor={[-122.3255, 37.5629]}
+                  labelStackIndex={1}
+                />
+                <MapMarker
                   coordinates={[-122.3255, 37.5629]}
                   popupLabel="San Mateo, CA"
                   labelFontSize={markerLabelSize}
